@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StellarNowWallet.Views;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,9 @@ namespace StellarNowWallet
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class AppShell : Page
     {
-        public MainPage()
+        public AppShell()
         {
             this.InitializeComponent();
 
@@ -40,6 +41,27 @@ namespace StellarNowWallet
             var full = (ApplicationView.GetForCurrentView().IsFullScreenMode);
             var left = 12 + (full ? 0 : CoreApplication.GetCurrentView().TitleBar.SystemOverlayLeftInset);
             AppTitle.Margin = new Thickness(left, 8, 0, 0);
+        }
+
+        private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            Type navType;
+
+            switch (args.InvokedItem)
+            {
+                case "Home":
+                    navType = typeof(HomeView);
+                    break;
+                case "History":
+                    navType = typeof(HistoryView);
+                    break;
+                default:
+                    navType = typeof(HomeView);
+                    break;
+            }
+
+            AppFrame.Navigate(navType);
+
         }
     }
 }
