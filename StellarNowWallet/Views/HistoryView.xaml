@@ -9,6 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <TextBlock Text="History" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="48" HorizontalAlignment="Center"/>
 
     </Grid>
 </Page>
