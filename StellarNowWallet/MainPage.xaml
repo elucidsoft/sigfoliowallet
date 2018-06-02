@@ -16,6 +16,7 @@
         Visibility="{Binding ElementName=NavView,Path=IsPaneOpen}"
         Canvas.ZIndex="1"/>
 
+
         <NavigationView x:Name="NavView" Canvas.ZIndex="0">
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Uid="HomeNavItem" Content="Home" Tag="home">
@@ -29,14 +30,14 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
+            
+            <Frame Name="fContent" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <TextBox Name="txtAccountId" Text="Stellar Account Id..." TextAlignment="Center" Height="44" Width="455" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                    <Button Content="Open" HorizontalAlignment="Center" Click="Button_Click"/>
+                </StackPanel>
+            </Frame>
         </NavigationView>
 
-        <Frame x:Name="ContentFrame" Margin="24">
-            <Frame.ContentTransitions>
-                <TransitionCollection>
-                    <NavigationThemeTransition/>
-                </TransitionCollection>
-            </Frame.ContentTransitions>
-        </Frame>
     </Grid>
 </Page>
