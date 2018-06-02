@@ -16,12 +16,12 @@
         <NavigationView x:Name="NavView" Canvas.ZIndex="0"
                         ItemInvoked="NavView_ItemInvoked">
             <NavigationView.MenuItems>
-                <NavigationViewItem x:Uid="HomeNavItem" Content="Home" Tag="home">
+                <NavigationViewItem x:Uid="HomeNavItem" Content="Home" Tag="home" IsEnabled="False">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE10F;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="AppsNavItem" Content="History" Tag="history">
+                <NavigationViewItem x:Uid="AppsNavItem" Content="History" Tag="history" IsEnabled="False">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE81C;" />
                     </NavigationViewItem.Icon>

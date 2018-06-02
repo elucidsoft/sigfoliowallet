@@ -1,5 +1,4 @@
-﻿using stellar_dotnet_sdk;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,38 +15,26 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace StellarNowWallet
+namespace StellarNowWallet.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class HomeView : Page
+    public sealed partial class LoginView : Page
     {
-        public HomeView()
+        public LoginView()
         {
             this.InitializeComponent();
-
-            LoadAccountDetails();
+#if DEBUG
+            txtAccountId.Text = "GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB";
+#endif
         }
 
-        private async void LoadAccountDetails()
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            var details = await AppShell.server.Accounts.Account(KeyPair.FromAccountId(AppShell.AccountId));
+            AppShell.AccountId = txtAccountId.Text;
 
-            var balances = details.Balances.Select(b => new AssetItem()
-            {
-                Asset = b.AssetType == "native" ? "XLM" : b.AssetCode,
-                Amount = b.BalanceString
-            });
-
-            gvBalances.ItemsSource = balances;
-
+            this.Frame.Navigate(typeof(HomeView));
         }
-    }
-
-    class AssetItem
-    {
-        public string Asset { get; set; }
-        public string Amount { get; set; }
     }
 }
