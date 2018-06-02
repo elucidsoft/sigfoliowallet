@@ -99,7 +99,10 @@
       <DependentUpon>LedgerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="AppShell.xaml.cs">
+      <DependentUpon>AppShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HistoryView.xaml.cs">
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -128,14 +131,20 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="AppShell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\HistoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.8</Version>
+      <Version>6.1.5</Version>
     </PackageReference>
     <PackageReference Include="stellar-dotnet-sdk">
       <Version>2.0.0</Version>
