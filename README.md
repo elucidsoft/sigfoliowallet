@@ -1,4 +1,4 @@
-# StellarNowWallet
+# Sigfolio Wallet
 A wallet for the Stellar Network
 
 ## Status
