@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigfolioWallet", "StellarNowWallet\SigfolioWallet.csproj", "{923EB1FE-CCD1-45A7-A4D9-9D165F4DBF85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigfolioWallet", "SigfolioWallet\SigfolioWallet.csproj", "{923EB1FE-CCD1-45A7-A4D9-9D165F4DBF85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
