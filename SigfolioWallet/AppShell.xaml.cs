@@ -1,5 +1,5 @@
 ﻿using stellar_dotnet_sdk;
-using StellarNowWallet.Views;
+using SigfolioWallet.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,7 +20,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace StellarNowWallet
+namespace SigfolioWallet
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
