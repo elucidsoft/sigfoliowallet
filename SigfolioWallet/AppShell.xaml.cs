@@ -28,20 +28,9 @@ namespace SigfolioWallet
         public AppShell()
         {
             this.InitializeComponent();
-
-            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
-            Window.Current.CoreWindow.SizeChanged += (s, e) => UpdateAppTitle();
-            coreTitleBar.LayoutMetricsChanged += (s, e) => UpdateAppTitle();
-
-
+            Window.Current.SetTitleBar(AppTitleBar);
         }
 
-        void UpdateAppTitle()
-        {
-            var full = (ApplicationView.GetForCurrentView().IsFullScreenMode);
-            var left = 12 + (full ? 0 : CoreApplication.GetCurrentView().TitleBar.SystemOverlayLeftInset);
-            AppTitle.Margin = new Thickness(left, 8, 0, 0);
-        }
 
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
@@ -61,6 +50,11 @@ namespace SigfolioWallet
             }
 
             AppFrame.Navigate(navType);
+
+        }
+
+        private void TogglePaneButton_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

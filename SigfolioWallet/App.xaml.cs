@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SigfolioWallet;
 
 namespace SigfolioWallet
 {
@@ -42,16 +43,12 @@ namespace SigfolioWallet
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            //draw into the title bar
-            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
-            coreTitleBar.ExtendViewIntoTitleBar = true;
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
             //remove the solid-colored backgrounds behind the caption controls and system back button
-            var viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
-            viewTitleBar.ButtonBackgroundColor = Colors.Transparent;
-            viewTitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-            viewTitleBar.ButtonForegroundColor = (Color)Resources["SystemBaseHighColor"];
-
+            ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            titleBar.ButtonBackgroundColor = Colors.Transparent;
+            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -86,8 +83,6 @@ namespace SigfolioWallet
                 Window.Current.Activate();
             }
         }
-
-
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails
