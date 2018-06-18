@@ -1,9 +1,11 @@
-﻿using SigfolioWallet.Views;
+using stellar_dotnet_sdk;
+using SigfolioWallet.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -25,12 +27,30 @@ namespace SigfolioWallet
     /// </summary>
     public sealed partial class AppShell : Page
     {
+        public static string AccountId { get; set; }
+        //public static readonly Server server = new Server("https://horizon-testnet.stellar.org/");
+        public static readonly Server server = new Server("https://horizon.stellar.org/");
+
         public AppShell()
         {
             this.InitializeComponent();
-            Window.Current.SetTitleBar(AppTitleBar);
+
+            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            Window.Current.CoreWindow.SizeChanged += (s, e) => UpdateAppTitle();
+            coreTitleBar.LayoutMetricsChanged += (s, e) => UpdateAppTitle();
+
+            if (AccountId == null)
+            {
+                AppFrame.Navigate(typeof(LoginView));
+            }
         }
 
+        void UpdateAppTitle()
+        {
+            var full = (ApplicationView.GetForCurrentView().IsFullScreenMode);
+            var left = 12 + (full ? 0 : CoreApplication.GetCurrentView().TitleBar.SystemOverlayLeftInset);
+            AppTitle.Margin = new Thickness(left, 8, 0, 0);
+        }
 
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
@@ -50,11 +70,6 @@ namespace SigfolioWallet
             }
 
             AppFrame.Navigate(navType);
-
-        }
-
-        private void TogglePaneButton_Click(object sender, RoutedEventArgs e)
-        {
 
         }
     }

@@ -9,7 +9,39 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Home" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="48" HorizontalAlignment="Center"/>
+        <StackPanel Margin="25,100,0,0">
+            <TextBlock Name="txtPageTitle" Text="Balances" FontWeight="Bold" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
 
+                <TextBlock Grid.Column="0" Text="Asset"/>
+                <TextBlock Grid.Column="1" Text="Amount"/>
+            </Grid>
+            <GridView Name="gvBalances" IsItemClickEnabled="True" ItemClick="gvBalances_ItemClick">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapGrid Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding Asset}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Amount}"/>
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+
+        </StackPanel>
     </Grid>
 </Page>
