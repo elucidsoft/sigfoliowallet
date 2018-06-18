@@ -1,5 +1,6 @@
 ﻿using stellar_dotnet_sdk;
 using stellar_dotnet_sdk.responses.effects;
+using stellar_dotnet_sdk.responses.operations;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,46 +26,42 @@ namespace SigfolioWallet
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class LedgerPage : Page
-    {
-        public string AccountId { get; set; }
+    {      
         
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            AccountId = (string)e.Parameter;
-
-            txtTitle.Text = String.Format(txtTitle.Text, AccountId);
-
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                PopulateLedger();
-            });
+            var assetParam = (string)e.Parameter;
+            PopulateLedger(assetParam);
         }
 
-        private async void PopulateLedger()
+        private async void PopulateLedger(string assetParam)
         {
-            Network.UsePublicNetwork();
-            var server = new Server("https://horizon.stellar.org/");
+            var assetCode = assetParam == "XLM" ? null : assetParam;
 
-            var effects = await server.Effects
-                                     .ForAccount(KeyPair.FromAccountId(AccountId))
-                                     .Limit(10)
+            var transactions = await AppShell.server.Operations
+                                     .ForAccount(KeyPair.FromAccountId(AppShell.AccountId))
+                                     .Order(stellar_dotnet_sdk.requests.OrderDirection.DESC)
+                                     .Limit(20)
                                      .Execute();
 
-            var result = effects.Records;
+            var result = transactions.Records;
 
-            var credits = result.Where(r => r is AccountCreditedEffectResponse).Select(r => (AccountCreditedEffectResponse)r);
-            //var debits = effects.Records.Where(r => r is AccountDebitedEffectResponse).Select(r => (AccountDebitedEffectResponse)r); ;
 
+            var payments = result.Where(r => r is PaymentOperationResponse && 
+                                            ((PaymentOperationResponse)r).AssetCode == assetCode)
+                                .Select(r => (PaymentOperationResponse)r);
 
             var ledger = new List<LedgerItem>();
 
-            ledger.AddRange(credits.Select(c => new LedgerItem() { Date = DateTime.Now, Account = c.Account.AccountId, Deposits = c.Amount }));
-            //ledger.AddRange(debits.Select(c => new LedgerItem() { Date = DateTime.Now, Account = c.Account.AccountId, Withdrawals = c.Amount }));
+            //ledger.AddRange(created.Select(c => new LedgerItem() { Date = c.CreatedAt, Account = c.Account.AccountId, Deposits = c.StartingBalance }));
+            ledger.AddRange(payments.Where(p => p.To.AccountId == AppShell.AccountId).Select(c => new LedgerItem() { Date = DateTimeOffset.Parse(c.CreatedAt).UtcDateTime, To = c.To.AccountId, From = c.From.AccountId, Deposits = c.Amount }));
+            ledger.AddRange(payments.Where(p => p.From.AccountId == AppShell.AccountId).Select(c => new LedgerItem() { Date = DateTimeOffset.Parse(c.CreatedAt).UtcDateTime, To = c.To.AccountId, From = c.From.AccountId, Withdrawals = c.Amount }));
 
             this.gvTest.ItemsSource = ledger.OrderByDescending(l => l.Date);
-           //this.gvTest
+            //this.gvTest
         }
 
         public LedgerPage()
@@ -78,13 +75,14 @@ namespace SigfolioWallet
     class LedgerItem
     {
         public DateTime Date { get; set; }
-        public String Account { get; set; }
+        public String From { get; set; }
+        public String To { get; set; }
 
         public String Withdrawals { get; set; }
         public String Deposits { get; set; }
         public String Balance { get; set; }
 
-        public String Description { get { return Account; } }
+        //public String Description { get { return Account; } }
 
     }
 }

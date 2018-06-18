@@ -28,7 +28,8 @@ namespace SigfolioWallet
     public sealed partial class AppShell : Page
     {
         public static string AccountId { get; set; }
-        public static readonly Server server = new Server("https://horizon-testnet.stellar.org/");
+        //public static readonly Server server = new Server("https://horizon-testnet.stellar.org/");
+        public static readonly Server server = new Server("https://horizon.stellar.org/");
 
         public AppShell()
         {

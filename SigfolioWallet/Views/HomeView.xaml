@@ -20,7 +20,7 @@
                 <TextBlock Grid.Column="0" Text="Asset"/>
                 <TextBlock Grid.Column="1" Text="Amount"/>
             </Grid>
-            <GridView Name="gvBalances">
+            <GridView Name="gvBalances" IsItemClickEnabled="True" ItemClick="gvBalances_ItemClick">
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapGrid Orientation="Vertical"/>

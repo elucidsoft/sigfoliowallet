@@ -34,7 +34,8 @@ namespace SigfolioWallet
         {
             var details = await AppShell.server.Accounts.Account(KeyPair.FromAccountId(AppShell.AccountId));
 
-            var balances = details.Balances.Select(b => new AssetItem()
+            //Currently restricting to XLM only.
+            var balances = details.Balances.Where(b => b.AssetType == "native").Select(b => new AssetItem()
             {
                 Asset = b.AssetType == "native" ? "XLM" : b.AssetCode,
                 Amount = b.BalanceString
@@ -42,6 +43,13 @@ namespace SigfolioWallet
 
             gvBalances.ItemsSource = balances;
 
+        }
+
+        private void gvBalances_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var rowItem = (AssetItem)e.ClickedItem;
+
+            this.Frame.Navigate(typeof(LedgerPage), rowItem.Asset);
         }
     }
 

@@ -19,13 +19,15 @@
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Text="Date"/>
-                <TextBlock Grid.Column="1" Text="Description"/>
-                <TextBlock Grid.Column="2" Text="Withdrawals"/>
-                <TextBlock Grid.Column="3" Text="Deposits"/>
-                <TextBlock Grid.Column="4" Text="Balance"/>
+                <TextBlock Grid.Column="1" Text="From"/>
+                <TextBlock Grid.Column="2" Text="To"/>
+                <TextBlock Grid.Column="3" Text="Withdrawals"/>
+                <TextBlock Grid.Column="4" Text="Deposits"/>
+                <TextBlock Grid.Column="5" Text="Balance"/>
             </Grid>
             <GridView Name="gvTest">
                 <GridView.ItemsPanel>
@@ -43,13 +45,15 @@
                                 <ColumnDefinition Width="200"/>
                                 <ColumnDefinition Width="200"/>
                                 <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="200"/>
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Text="{Binding Date}"/>
-                            <TextBlock Grid.Column="1" Text="{Binding Description}"/>
-                            <TextBlock Grid.Column="2" Text="{Binding Withdrawals}"/>
-                            <TextBlock Grid.Column="3" Text="{Binding Deposits}"/>
-                            <TextBlock Grid.Column="4" Text="{Binding Balance}"/>
+                            <TextBlock Grid.Column="1" Text="{Binding From}"/>
+                            <TextBlock Grid.Column="2" Text="{Binding To}"/>
+                            <TextBlock Grid.Column="3" Text="{Binding Withdrawals}"/>
+                            <TextBlock Grid.Column="4" Text="{Binding Deposits}"/>
+                            <TextBlock Grid.Column="5" Text="{Binding Balance}"/>
                         </Grid>
                     </DataTemplate>
                 </GridView.ItemTemplate>

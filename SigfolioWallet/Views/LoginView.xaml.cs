@@ -26,7 +26,8 @@ namespace SigfolioWallet.Views
         {
             this.InitializeComponent();
 #if DEBUG
-            txtAccountId.Text = "GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB";
+            //txtAccountId.Text = "GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB";
+            txtAccountId.Text = "GBNBCLOGAIHEXKDF2XGC4WYEXVR4AM3XXCVDZQHVAVG7OIOKVWQF4TP5";
 #endif
         }
 
