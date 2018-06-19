@@ -1,4 +1,4 @@
-﻿using stellar_dotnet_sdk;
+using stellar_dotnet_sdk;
 using SigfolioWallet.Views;
 using System;
 using System.Collections.Generic;
@@ -34,10 +34,7 @@ namespace SigfolioWallet
         public AppShell()
         {
             this.InitializeComponent();
-
-            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
-            Window.Current.CoreWindow.SizeChanged += (s, e) => UpdateAppTitle();
-            coreTitleBar.LayoutMetricsChanged += (s, e) => UpdateAppTitle();
+            Window.Current.SetTitleBar(AppTitleBar);
 
             if (AccountId == null)
             {
@@ -45,12 +42,6 @@ namespace SigfolioWallet
             }
         }
 
-        void UpdateAppTitle()
-        {
-            var full = (ApplicationView.GetForCurrentView().IsFullScreenMode);
-            var left = 12 + (full ? 0 : CoreApplication.GetCurrentView().TitleBar.SystemOverlayLeftInset);
-            AppTitle.Margin = new Thickness(left, 8, 0, 0);
-        }
 
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
