@@ -42,7 +42,7 @@ namespace SigfolioWallet
             var assetCode = assetParam == "XLM" ? null : assetParam;
 
             var transactions = await AppShell.server.Operations
-                                     .ForAccount(KeyPair.FromAccountId(AppShell.AccountId))
+                                     .ForAccount(KeyPair.FromAccountId(AppShell.SelectedAccountId))
                                      .Order(stellar_dotnet_sdk.requests.OrderDirection.DESC)
                                      .Limit(20)
                                      .Execute();
@@ -57,8 +57,8 @@ namespace SigfolioWallet
             var ledger = new List<LedgerItem>();
 
             //ledger.AddRange(created.Select(c => new LedgerItem() { Date = c.CreatedAt, Account = c.Account.AccountId, Deposits = c.StartingBalance }));
-            ledger.AddRange(payments.Where(p => p.To.AccountId == AppShell.AccountId).Select(c => new LedgerItem() { Date = DateTimeOffset.Parse(c.CreatedAt).UtcDateTime, To = c.To.AccountId, From = c.From.AccountId, Deposits = c.Amount }));
-            ledger.AddRange(payments.Where(p => p.From.AccountId == AppShell.AccountId).Select(c => new LedgerItem() { Date = DateTimeOffset.Parse(c.CreatedAt).UtcDateTime, To = c.To.AccountId, From = c.From.AccountId, Withdrawals = c.Amount }));
+            ledger.AddRange(payments.Where(p => p.To.AccountId == AppShell.SelectedAccountId).Select(c => new LedgerItem() { Date = DateTimeOffset.Parse(c.CreatedAt).UtcDateTime, To = c.To.AccountId, From = c.From.AccountId, Deposits = c.Amount }));
+            ledger.AddRange(payments.Where(p => p.From.AccountId == AppShell.SelectedAccountId).Select(c => new LedgerItem() { Date = DateTimeOffset.Parse(c.CreatedAt).UtcDateTime, To = c.To.AccountId, From = c.From.AccountId, Withdrawals = c.Amount }));
 
             this.gvTest.ItemsSource = ledger.OrderByDescending(l => l.Date);
             //this.gvTest

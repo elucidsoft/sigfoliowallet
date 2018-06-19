@@ -32,7 +32,7 @@ namespace SigfolioWallet
 
         private async void LoadAccountDetails()
         {
-            var details = await AppShell.server.Accounts.Account(KeyPair.FromAccountId(AppShell.AccountId));
+            var details = await AppShell.server.Accounts.Account(KeyPair.FromAccountId(AppShell.SelectedAccountId));
 
             //Currently restricting to XLM only.
             var balances = details.Balances.Where(b => b.AssetType == "native").Select(b => new AssetItem()
