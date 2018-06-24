@@ -26,7 +26,6 @@ bld/
 # Windows Store app package directories and files
 AppPackages/
 BundleArtifacts/
-Package.StoreAssociation.xml
 _pkginfo.txt
 
 # Visual Studo 2015 cache/options directory
