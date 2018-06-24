@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="elucidsoftllc.SigfolioWallet" Publisher="CN=50509343-289C-4C8F-BBA9-941C1348B95F" Version="1.1.1.0" />
+  <Identity Name="elucidsoftllc.SigfolioWallet" Publisher="CN=elucidsoft llc" Version="1.1.1.0" />
   <mp:PhoneIdentity PhoneProductId="4f2da140-6818-42e0-b0f6-0d6fb769f252" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Sigfolio Wallet</DisplayName>
