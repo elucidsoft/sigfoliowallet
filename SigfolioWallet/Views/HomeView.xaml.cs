@@ -1,4 +1,5 @@
-﻿using stellar_dotnet_sdk;
+﻿using SigfolioWallet.Utilities;
+using stellar_dotnet_sdk;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,22 +28,6 @@ namespace SigfolioWallet
         {
             this.InitializeComponent();
 
-            LoadAccountDetails();
-        }
-
-        private async void LoadAccountDetails()
-        {
-            var details = await AppShell.server.Accounts.Account(KeyPair.FromAccountId(AppShell.SelectedAccountId));
-
-            //Currently restricting to XLM only.
-            var balances = details.Balances.Where(b => b.AssetType == "native").Select(b => new AssetItem()
-            {
-                Asset = b.AssetType == "native" ? "XLM" : b.AssetCode,
-                Amount = b.BalanceString
-            });
-
-            gvBalances.ItemsSource = balances;
-
         }
 
         private void gvBalances_ItemClick(object sender, ItemClickEventArgs e)
@@ -51,11 +36,5 @@ namespace SigfolioWallet
 
             this.Frame.Navigate(typeof(LedgerPage), rowItem.Asset);
         }
-    }
-
-    class AssetItem
-    {
-        public string Asset { get; set; }
-        public string Amount { get; set; }
     }
 }

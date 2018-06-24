@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using stellar_dotnet_sdk;
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -30,10 +20,12 @@ namespace SigfolioWallet.Views
 #endif
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            AppShell.SelectedAccountId = txtAccountId.Text;
+            var details = await AppShell.server.Accounts.Account(KeyPair.FromAccountId(txtAccountId.Text));
+            AppShell.AccountDetails = new Models.Account(details);
 
+            AppShell.
             this.Frame.Navigate(typeof(HomeView));
         }
     }

@@ -18,6 +18,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SigfolioWallet.Utilities;
+using SigfolioWallet.Models;
+using stellar_dotnet_sdk.responses;
+using SigfolioWallet.ViewModels;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,43 +31,12 @@ namespace SigfolioWallet
     /// </summary>
     public sealed partial class AppShell : Page
     {
-        public static string SelectedAccountId { get; set; }
-        public static readonly Server server = new Server("https://horizon-testnet.stellar.org/");
-        //public static readonly Server server = new Server("https://horizon.stellar.org/");
+        public WalletViewModel Wallet { get; set; }
 
         public AppShell()
         {
             this.InitializeComponent();
             Window.Current.SetTitleBar(AppTitleBar);
-
-            if (SelectedAccountId == null)
-            {
-                AppFrame.Navigate(typeof(LoginView));
-            }
-            else
-            {
-                LoadAccountDetails();
-                AppFrame.Navigate(typeof(HomeView));
-            }
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-
-            if (SelectedAccountId != null)
-            {
-                LoadAccountDetails();
-            }
-        }
-
-        private async void LoadAccountDetails()
-        {
-            var details = await server.Accounts.Account(KeyPair.FromAccountId(AppShell.SelectedAccountId));
-            //Set selected account.
-            var txtAmount = UWPUtilities.FindControlWithName<TextBlock>("txtAccount", NavView);
-            txtAmount.Text = details.Balances.Where(b => b.AssetType == "native").FirstOrDefault().BalanceString;
-           //Load XLM Amount.
         }
 
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)

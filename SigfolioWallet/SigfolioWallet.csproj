@@ -99,7 +99,16 @@
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\AccountResponseService.cs" />
+    <Compile Include="Data\StellarHorizonService.cs" />
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AssetTransactions.cs" />
+    <Compile Include="Models\TransactionDetails.cs" />
+    <Compile Include="Models\Wallet.cs" />
     <Compile Include="Utilities\UWPUtilities.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\NotificationBase.cs" />
+    <Compile Include="ViewModels\WalletViewModel.cs" />
     <Compile Include="Views\HistoryView.xaml.cs">
       <DependentUpon>HistoryView.xaml</DependentUpon>
     </Compile>
@@ -164,6 +173,7 @@
       <Version>2.0.2</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
