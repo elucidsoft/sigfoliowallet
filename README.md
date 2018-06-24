@@ -1,3 +1,5 @@
+[![Build status](https://build.appcenter.ms/v0.1/apps/a1dcb5ae-9aa8-46c9-9ffe-9c0f7dc37029/branches/master/badge)](https://appcenter.ms)
+
 # Sigfolio Wallet
 A wallet for the Stellar Network
 
