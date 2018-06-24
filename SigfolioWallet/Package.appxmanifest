@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="75667bc9-04b3-48aa-be0f-a8851a9d3580" Publisher="CN=eric" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="75667bc9-04b3-48aa-be0f-a8851a9d3580" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="elucidsoftllc.SigfolioWallet" Publisher="CN=50509343-289C-4C8F-BBA9-941C1348B95F" Version="1.1.1.0" />
+  <mp:PhoneIdentity PhoneProductId="4f2da140-6818-42e0-b0f6-0d6fb769f252" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>SigfolioWallet</DisplayName>
-    <PublisherDisplayName>eric</PublisherDisplayName>
+    <DisplayName>Sigfolio Wallet</DisplayName>
+    <PublisherDisplayName>elucidsoft llc</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="SigfolioWallet.App">
-      <uap:VisualElements DisplayName="SigfolioWallet" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="SigfolioWallet" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="Sigfolio Wallet" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="SigfolioWallet" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
