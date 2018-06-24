@@ -32,9 +32,6 @@ namespace SigfolioWallet
 
         private void gvBalances_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var rowItem = (AssetItem)e.ClickedItem;
-
-            this.Frame.Navigate(typeof(LedgerPage), rowItem.Asset);
         }
     }
 }
