@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SigfolioWallet.Models
+namespace SigfolioWallet.ViewModels.Dialogs
 {
-    public class AssetTransactions
+    class SendAssetDialogModel
     {
     }
 }

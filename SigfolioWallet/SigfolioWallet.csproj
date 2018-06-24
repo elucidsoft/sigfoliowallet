@@ -109,12 +109,13 @@
     <Compile Include="Data\AccountResponseService.cs" />
     <Compile Include="Data\StellarHorizonService.cs" />
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\AssetTransactions.cs" />
-    <Compile Include="Models\TransactionDetails.cs" />
+    <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\Wallet.cs" />
     <Compile Include="Utilities\UWPUtilities.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\NotificationBase.cs" />
+    <Compile Include="ViewModels\TransactionsViewModel.cs" />
     <Compile Include="ViewModels\WalletViewModel.cs" />
     <Compile Include="Views\HistoryView.xaml.cs">
       <DependentUpon>HistoryView.xaml</DependentUpon>
@@ -123,11 +124,11 @@
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\LedgerPage.xaml.cs">
-      <DependentUpon>LedgerPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransactionsPage.xaml.cs">
+      <DependentUpon>TransactionsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -165,13 +166,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LedgerPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TransactionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +188,10 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+    <Folder Include="Locallization\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

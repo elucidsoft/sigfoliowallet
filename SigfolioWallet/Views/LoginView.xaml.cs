@@ -22,10 +22,6 @@ namespace SigfolioWallet.Views
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            var details = await AppShell.server.Accounts.Account(KeyPair.FromAccountId(txtAccountId.Text));
-            AppShell.AccountDetails = new Models.Account(details);
-
-            AppShell.
             this.Frame.Navigate(typeof(HomeView));
         }
     }
