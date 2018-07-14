@@ -37,34 +37,40 @@ namespace SigfolioWallet
             this.InitializeComponent();
             Window.Current.SetTitleBar(AppTitleBar);
 
+            NavView.AppFrame.Navigated += AppFrame_Navigated;
             if (SelectedAccountId == null)
             {
-                AppFrame.Navigate(typeof(LoginView));
+                NavView.AppFrame.Navigate(typeof(LoginView));
             }
             else
             {
                 LoadAccountDetails();
-                AppFrame.Navigate(typeof(HomeView));
+                NavView.AppFrame.Navigate(typeof(HomeView));
             }
+        }
+
+        private void AppFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            LoadAccountDetails();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            LoadAccountDetails();
 
-            if (SelectedAccountId != null)
-            {
-                LoadAccountDetails();
-            }
         }
 
         private async void LoadAccountDetails()
         {
-            var details = await server.Accounts.Account(KeyPair.FromAccountId(AppShell.SelectedAccountId));
-            //Set selected account.
-            var txtAmount = UWPUtilities.FindControlWithName<TextBlock>("txtAccount", NavView);
-            txtAmount.Text = details.Balances.Where(b => b.AssetType == "native").FirstOrDefault().BalanceString;
-           //Load XLM Amount.
+            if (SelectedAccountId != null)
+            {
+                var details = await server.Accounts.Account(KeyPair.FromAccountId(AppShell.SelectedAccountId));
+                var balance = details.Balances.Where(b => b.AssetType == "native").FirstOrDefault().BalanceString;
+
+                NavView.SetBalanceText(balance);
+                NavView.SetName(SelectedAccountId);
+            }
         }
 
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -84,7 +90,7 @@ namespace SigfolioWallet
                     break;
             }
 
-            AppFrame.Navigate(navType);
+            NavView.AppFrame.Navigate(navType);
 
         }
     }

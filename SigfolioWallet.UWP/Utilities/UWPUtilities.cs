@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,10 @@ namespace SigfolioWallet.Utilities
         {
             IEnumerable<T> controls = FindVisualChildren<T>(rootControl);
 
-            foreach(var control in controls)
+            foreach (var control in controls)
+                Debug.WriteLine(control.GetValue(FrameworkElement.NameProperty).ToString());
+
+            foreach (var control in controls)
             {
                 if(control.GetValue(FrameworkElement.NameProperty).ToString() == controlName)
                 {

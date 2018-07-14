@@ -1,0 +1,16 @@
+﻿<Application
+    x:Class="SigfolioWallet.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SigfolioWallet"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="SystemAccentColor">#DEE6FF</Color>
+            <SolidColorBrush Color="#fff" x:Key="NavigationViewItemForegroundSelected"></SolidColorBrush>
+            <SolidColorBrush Color="#DEE6FF" x:Key="NavigationViewItemForegroundSelectedPointerOver"></SolidColorBrush>
+            <SolidColorBrush Color="#DEE6FF" x:Key="NavigationViewItemForegroundPointerOver"></SolidColorBrush>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

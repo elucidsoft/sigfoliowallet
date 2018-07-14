@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigfolioWallet.Utilities;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace StellarNowWallet.Views
+namespace SigfolioWallet.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -26,15 +27,20 @@ namespace StellarNowWallet.Views
         {
             this.InitializeComponent();
 #if DEBUG
-            txtAccountId.Text = "GD42RQNXTRIW6YR3E2HXV5T2AI27LBRHOERV2JIYNFMXOBA234SWLQQB";
+            txtAccountId.Text = "GB72RBWW7YDFUR3UIFZUKOTIETBVMVSC4IR7HHEHGTCDTXZ4AETSQMNF";
 #endif
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            AppShell.AccountId = txtAccountId.Text;
+            AppShell.SelectedAccountId = txtAccountId.Text;
 
             this.Frame.Navigate(typeof(HomeView));
+        }
+
+        private void btnTest_Click(object sender, RoutedEventArgs e)
+        {
+           
         }
     }
 }
