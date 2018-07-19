@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigfolioWallet.Core", "Sigf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigfolioWallet.UWP", "SigfolioWallet.UWP\SigfolioWallet.UWP.csproj", "{923EB1FE-CCD1-45A7-A4D9-9D165F4DBF85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigfolioWallet.Test", "SigfolioWallet.Test\SigfolioWallet.Test.csproj", "{018209F9-ACD0-42DA-86BD-E1B0C18435F5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "stellar-dotnetstandard-sdk", "dotnetcore-stellar-sdk_2.0.2\dotnetstandard\stellar-dotnetstandard-sdk.csproj", "{E556806D-2152-46D0-8E19-5C240D9AD429}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,38 @@ Global
 		{923EB1FE-CCD1-45A7-A4D9-9D165F4DBF85}.Release|x86.ActiveCfg = Release|x86
 		{923EB1FE-CCD1-45A7-A4D9-9D165F4DBF85}.Release|x86.Build.0 = Release|x86
 		{923EB1FE-CCD1-45A7-A4D9-9D165F4DBF85}.Release|x86.Deploy.0 = Release|x86
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Debug|ARM.Build.0 = Debug|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Debug|x64.Build.0 = Debug|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Debug|x86.Build.0 = Debug|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Release|ARM.ActiveCfg = Release|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Release|ARM.Build.0 = Release|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Release|x64.ActiveCfg = Release|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Release|x64.Build.0 = Release|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Release|x86.ActiveCfg = Release|Any CPU
+		{018209F9-ACD0-42DA-86BD-E1B0C18435F5}.Release|x86.Build.0 = Release|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Debug|x64.Build.0 = Debug|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Debug|x86.Build.0 = Debug|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Release|ARM.Build.0 = Release|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Release|x64.ActiveCfg = Release|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Release|x64.Build.0 = Release|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Release|x86.ActiveCfg = Release|Any CPU
+		{E556806D-2152-46D0-8E19-5C240D9AD429}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
