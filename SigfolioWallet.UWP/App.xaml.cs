@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Platforms.Uap.Core;
 using MvvmCross.Platforms.Uap.Views;
+using MvvmCross.ViewModels;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;

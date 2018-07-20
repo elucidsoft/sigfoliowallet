@@ -132,7 +132,7 @@ namespace SigfolioWallet
             txtName.Text = publicKey.Substring(publicKey.Length - 4);
         }
 
-        public Frame AppFrame { get { return NavViewAppFrame; } }
+        public Frame AppFrame { get { return PageContent; } }
 
         public NavigationView NavView { get => MyNavView; }
     }

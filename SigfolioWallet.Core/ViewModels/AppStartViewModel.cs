@@ -16,9 +16,9 @@ namespace SigfolioWallet.Core.ViewModels
             _navigationService = navigationService;
         }
 
-        public async Task Open()
+        public Task Open()
         {
-            await _navigationService.Navigate<AppShellViewModel>();
+            return _navigationService.Navigate<AppShellViewModel>();
         }
     }
 }

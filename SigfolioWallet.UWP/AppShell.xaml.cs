@@ -21,6 +21,7 @@ using SigfolioWallet.Utilities;
 using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
 using SigfolioWallet.Core.ViewModels;
+using MvvmCross.Platforms.Uap.Presenters.Attributes;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -32,8 +33,8 @@ namespace SigfolioWallet
     [MvxViewFor(typeof(AppShellViewModel))]
     public sealed partial class AppShell : MvxWindowsPage
     {
-        public static string SelectedAccountId { get; set; }
-        public static readonly Server server = new Server("https://horizon-testnet.stellar.org/");
+    //    public static string SelectedAccountId { get; set; }
+    //    public static readonly Server server = new Server("https://horizon-testnet.stellar.org/");
         //public static readonly Server server = new Server("https://horizon.stellar.org/");
 
         public AppShell()
@@ -42,60 +43,53 @@ namespace SigfolioWallet
             Window.Current.SetTitleBar(AppTitleBar);
 
             NavView.AppFrame.Navigated += AppFrame_Navigated;
-            if (SelectedAccountId == null)
-            {
-                NavView.AppFrame.Navigate(typeof(LoginView));
-            }
-            else
-            {
-                LoadAccountDetails();
-                NavView.AppFrame.Navigate(typeof(HomeView));
-            }
+            NavView.NavView.ItemInvoked += NavView_ItemInvoked;
         }
 
         private void AppFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            LoadAccountDetails();
+           // LoadAccountDetails();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            LoadAccountDetails();
-
         }
 
         private async void LoadAccountDetails()
         {
-            if (SelectedAccountId != null)
-            {
-                var details = await server.Accounts.Account(KeyPair.FromAccountId(AppShell.SelectedAccountId));
-                var balance = details.Balances.Where(b => b.AssetType == "native").FirstOrDefault().BalanceString;
+            //if (SelectedAccountId != null)
+            //{
+            //    var details = await server.Accounts.Account(KeyPair.FromAccountId(AppShell.SelectedAccountId));
+            //    var balance = details.Balances.Where(b => b.AssetType == "native").FirstOrDefault().BalanceString;
 
-                NavView.SetBalanceText(balance);
-                NavView.SetName(SelectedAccountId);
-            }
+            //    NavView.SetBalanceText(balance);
+            //    NavView.SetName(SelectedAccountId);
+            //}
         }
+
+        public new AppShellViewModel ViewModel => (AppShellViewModel)base.ViewModel;
+
 
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            Type navType;
+            //Type navType;
 
-            switch (args.InvokedItem)
-            {
-                case "Home":
-                    navType = typeof(HomeView);
-                    break;
-                case "History":
-                    navType = typeof(HistoryView);
-                    break;
-                default:
-                    navType = typeof(HomeView);
-                    break;
-            }
+            //switch (args.InvokedItem)
+            //{
+            //    case "Home":
+            //        navType = typeof(HomeView);
+            //        break;
+            //    case "History":
+            //        navType = typeof(HistoryView);
+            //        break;
+            //    default:
+            //        navType = typeof(HomeView);
+            //        break;
+            //}
 
-            NavView.AppFrame.Navigate(navType);
-
+            //NavView.AppFrame.Navigate(navType);
+            ViewModel.Navigate();
         }
     }
 }

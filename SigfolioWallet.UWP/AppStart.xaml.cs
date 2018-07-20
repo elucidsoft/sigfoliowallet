@@ -32,9 +32,11 @@ namespace SigfolioWallet
             this.InitializeComponent();
         }
 
+        public new AppStartViewModel ViewModel => (AppStartViewModel)base.ViewModel;
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Task.WaitAll(((AppStartViewModel)ViewModel).Open());
+           ViewModel.Open();
         }
     }
 }

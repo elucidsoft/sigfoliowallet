@@ -394,7 +394,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
-            <Frame x:Name="NavViewAppFrame" Margin="24">
+            <Frame x:Name="PageContent" Margin="24">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
                         <NavigationThemeTransition/>
