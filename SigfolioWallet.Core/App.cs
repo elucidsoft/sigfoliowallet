@@ -11,8 +11,11 @@ namespace SigfolioWallet.Core
     {
         public override void Initialize()
         {
+            Mvx.RegisterSingleton<IStellarHorizonService>(() => new StellarHorizonService("https://horizon-testnet.stellar.org/"));
+
             Mvx.RegisterType<IWalletService, WalletService>();
             Mvx.RegisterType<ILoginService, LoginService>();
+            Mvx.RegisterSingleton<ITransactionService>(() => new TransactionService(Mvx.GetSingleton<IStellarHorizonService>()));
 
             RegisterCustomAppStart<AppStart>();
         }

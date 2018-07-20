@@ -10,6 +10,7 @@ namespace SigfolioWallet.Core.Services
         public StellarHorizonService(string horizonUri)
         {
             HorizonUri = horizonUri;
+            Server = new Server(horizonUri);
         }
 
         public  Server Server { get; set;  }

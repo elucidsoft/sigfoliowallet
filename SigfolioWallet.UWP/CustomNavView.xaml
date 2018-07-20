@@ -320,8 +320,8 @@
                                                             </Button.Resources>
                                                             <Ellipse x:Name="ellName" Fill="White" Height="100" Width="100" />
                                                             <Button.Flyout>
-  
-                                                                    <MenuFlyout x:Name="ellFlyout">
+
+                                                                <MenuFlyout x:Name="ellFlyout">
                                                                     <MenuFlyout.MenuFlyoutPresenterStyle>
                                                                         <Style TargetType="MenuFlyoutPresenter">
                                                                             <Setter Property="MaxWidth" Value="1900" />
@@ -330,8 +330,8 @@
                                                                     </MenuFlyout.MenuFlyoutPresenterStyle>
                                                                     <MenuFlyoutItem Text="GCWZJ52KTQD565BSLHGXMDR4IA2KU6QFPYWXR4F4CQ2R6DZMTD7UO5MV" />
                                                                     <MenuFlyoutItem Text="GB72RBWW7YDFUR3UIFZUKOTIETBVMVSC4IR7HHEHGTCDTXZ4AETSQMNF" />
-                                                                    </MenuFlyout>
-                                                              
+                                                                </MenuFlyout>
+
                                                             </Button.Flyout>
 
                                                         </Button>
@@ -354,11 +354,7 @@
                                         </Grid>
                                         <NavigationViewList x:Name="MenuItemsHost" HorizontalAlignment="Stretch" ItemContainerStyleSelector="{TemplateBinding MenuItemContainerStyleSelector}" ItemContainerStyle="{TemplateBinding MenuItemContainerStyle}" ItemTemplate="{TemplateBinding MenuItemTemplate}" IsItemClickEnabled="True" ItemsSource="{TemplateBinding MenuItemsSource}" ItemTemplateSelector="{TemplateBinding MenuItemTemplateSelector}" Margin="0,0,0,20" Grid.Row="5" SelectionMode="Single" SelectedItem="{TemplateBinding SelectedItem}"/>
                                         <Border x:Name="FooterContentBorder" Child="{TemplateBinding PaneFooter}" Grid.Row="6"/>
-                                        <NavigationViewItem x:Name="SettingsNavPaneItem" Foreground="White" Grid.Row="7">
-                                            <NavigationViewItem.Icon>
-                                                <SymbolIcon Symbol="Setting"/>
-                                            </NavigationViewItem.Icon>
-                                        </NavigationViewItem>
+
                                     </Grid>
                                 </SplitView.Pane>
                                 <Grid x:Name="ContentGrid">
@@ -375,20 +371,94 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="LockUnlockButtonTemplate" TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource ButtonBackground}"/>
+            <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}"/>
+            <Setter Property="Padding" Value="8,4,8,4"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}"/>
+            <Setter Property="FocusVisualMargin" Value="-3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#00C2FF"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#00C2FF"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#fff"/>
+                                            </ObjectAnimationUsingKeyFrames>
+
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#00C2FF"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#00C2FF"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#fff"/>
+                                            </ObjectAnimationUsingKeyFrames>
+
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentTransitions="{TemplateBinding ContentTransitions}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
 
-    <Grid>
-        <NavigationView  Style="{StaticResource NavigationViewStyle1}" MenuItemTemplate="{StaticResource NavigationViewMenuItemTemplate1}" x:Name="MyNavView" Canvas.ZIndex="0" IsBackButtonVisible="Collapsed" IsBackEnabled="False" PaneTitle="Sigfolio Wallet">
+    <Grid x:Name="grid">
+        <Grid.Resources>
+            <Storyboard x:Name="btnLockUnlockWalletStoryboard">
+                <DoubleAnimation x:Name="daLockUnlockStoryBoardAnimation" 
+                EnableDependentAnimation="True"
+                Storyboard.TargetName="btnLockUnlockWallet"
+                Storyboard.TargetProperty="Width"
+                Duration="0:0:0.12" />
+            </Storyboard>
+        </Grid.Resources>
+        <NavigationView Margin="0 0 0 42"  Style="{StaticResource NavigationViewStyle1}" MenuItemTemplate="{StaticResource NavigationViewMenuItemTemplate1}" x:Name="MyNavView" Canvas.ZIndex="0" IsBackButtonVisible="Collapsed" IsBackEnabled="False" PaneTitle="Sigfolio Wallet">
 
             <NavigationView.MenuItems>
 
-                
-                <NavigationViewItem Foreground="White" Content="Transactions" Tag="transactions">
+
+                <NavigationViewItem Foreground="White" Content="Transactions" Tag="Transactions">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE81C;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem Foreground="White" Content="Send or recieve" Tag="sendreceive">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8EB;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Foreground="White" Content="Settings" Tag="sendreceive">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE8EB;"/>
                     </NavigationViewItem.Icon>
@@ -402,6 +472,13 @@
                 </Frame.ContentTransitions>
             </Frame>
         </NavigationView>
+        <Button x:Name="btnLockUnlockWallet" Style="{StaticResource LockUnlockButtonTemplate}" Width="{Binding OpenPaneLength, ElementName=MyNavView}" Canvas.ZIndex="1" Background="#00C2FF" Foreground="#FFF" Height="42" VerticalAlignment="Bottom">
 
+
+            <StackPanel Orientation="Horizontal">
+                <FontIcon HorizontalAlignment="Left" Glyph="&#xE72E;" />
+                <TextBlock x:Name="txtLockUnlockWalletLabel" Padding="12 0 0 0" Text="Lock Wallet"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </UserControl>

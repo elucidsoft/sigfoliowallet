@@ -1,4 +1,8 @@
-﻿using stellar_dotnet_sdk;
+﻿using MvvmCross.Platforms.Uap.Presenters.Attributes;
+using MvvmCross.Platforms.Uap.Views;
+using MvvmCross.ViewModels;
+using SigfolioWallet.Core.ViewModels;
+using stellar_dotnet_sdk;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +25,9 @@ namespace SigfolioWallet
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class HomeView : Page
+    [MvxRegionPresentation("PageContent")]
+    [MvxViewFor(typeof(HomeViewModel))]
+    public sealed partial class HomeView : MvxWindowsPage
     {
         public HomeView()
         {
@@ -29,6 +35,9 @@ namespace SigfolioWallet
 
             LoadAccountDetails();
         }
+
+        public new HomeViewModel ViewModel => (HomeViewModel)base.ViewModel;
+
 
         private async void LoadAccountDetails()
         {
@@ -49,7 +58,7 @@ namespace SigfolioWallet
         {
             var rowItem = (AssetItem)e.ClickedItem;
 
-            this.Frame.Navigate(typeof(LedgerPage), rowItem.Asset);
+            this.Frame.Navigate(typeof(TransactionsView), rowItem.Asset);
         }
     }
 

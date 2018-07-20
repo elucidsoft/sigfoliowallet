@@ -86,6 +86,8 @@ namespace SigfolioWallet
         {
             if (closing)
             {
+               
+
                 txtNameChevron.Margin = new Thickness(0, 18, 0, 0);
                 txtNameChevron.Visibility = Visibility.Collapsed;
 
@@ -100,9 +102,19 @@ namespace SigfolioWallet
 
                 txtAsset.Visibility = Visibility.Collapsed;
                 txtAmount.Visibility = Visibility.Collapsed;
+
+                txtLockUnlockWalletLabel.Visibility = Visibility.Collapsed;
+
+                daLockUnlockStoryBoardAnimation.From = NavView.OpenPaneLength;
+                daLockUnlockStoryBoardAnimation.To = NavView.CompactPaneLength;
+                btnLockUnlockWalletStoryboard.Begin();
             }
             else
             {
+                daLockUnlockStoryBoardAnimation.To = NavView.OpenPaneLength;
+                daLockUnlockStoryBoardAnimation.From = NavView.CompactPaneLength;
+                btnLockUnlockWalletStoryboard.Begin();
+
                 txtNameChevron.Margin = txtNameChevronOriginalMargin;
                 txtNameChevron.Visibility = txtNameChevronOriginalVisibility;
 
@@ -117,6 +129,11 @@ namespace SigfolioWallet
 
                 txtAsset.Visibility = txtAssetOriginalVisibility;
                 txtAmount.Visibility = txtAmountOriginalVisibility;
+
+                btnLockUnlockWallet.Width = NavView.OpenPaneLength;
+                txtLockUnlockWalletLabel.Visibility = Visibility.Visible;
+
+                
             }
         }
 

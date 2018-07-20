@@ -73,23 +73,8 @@ namespace SigfolioWallet
 
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            //Type navType;
-
-            //switch (args.InvokedItem)
-            //{
-            //    case "Home":
-            //        navType = typeof(HomeView);
-            //        break;
-            //    case "History":
-            //        navType = typeof(HistoryView);
-            //        break;
-            //    default:
-            //        navType = typeof(HomeView);
-            //        break;
-            //}
-
-            //NavView.AppFrame.Navigate(navType);
-            ViewModel.Navigate();
+            var appShellMenuItem = Enum.Parse<AppShellViewModel.AppShellMenuItem>(args.InvokedItem.ToString());
+            ViewModel.NavigateMenuItem(appShellMenuItem);
         }
     }
 }

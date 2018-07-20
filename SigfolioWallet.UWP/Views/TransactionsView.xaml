@@ -1,0 +1,58 @@
+﻿<views:MvxWindowsPage
+    xmlns:views="using:MvvmCross.Platforms.Uap.Views"    x:Class="SigfolioWallet.TransactionsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <SplitView DisplayMode="Inline" IsPaneOpen="True" OpenPaneLength="700" Name="SplitView">
+            <SplitView.Pane>
+                <Pivot Title="Transactions">
+                    <PivotItem Header="All">
+                        <Grid HorizontalAlignment="Left">
+                            <ListView x:Name="lvAllTransactions" ItemsSource="{Binding Transactions}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="x:String">
+                                        <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Height="60">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="16"></ColumnDefinition>
+                                                <ColumnDefinition Width="500"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Image HorizontalAlignment="Left" Height="16" VerticalAlignment="Center" Width="16" Grid.Column="0"/>
+                                            <StackPanel HorizontalAlignment="Left" Height="100" VerticalAlignment="Stretch" Grid.Column="1">
+                                                <TextBlock HorizontalAlignment="Left" Text="Bruce Wayne" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"/>
+                                                <TextBlock HorizontalAlignment="Left" Text="For: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad " TextWrapping="Wrap" VerticalAlignment="Center" FontSize="12"/>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding Amount}" Grid.Column="2"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                        </Grid>
+                    </PivotItem>
+                    <PivotItem Header="Sent">
+                        <Grid>
+                            <ListView />
+                        </Grid>
+                    </PivotItem>
+                    <PivotItem Header="Received">
+                        <Grid>
+                            <ListView />
+                        </Grid>
+                    </PivotItem>
+                </Pivot>
+            </SplitView.Pane>
+            <Grid>
+                <TextBlock Text="Transaction Details" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Grid>
+        </SplitView>
+    </Grid></views:MvxWindowsPage>

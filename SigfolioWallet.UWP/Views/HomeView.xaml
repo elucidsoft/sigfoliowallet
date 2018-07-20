@@ -1,5 +1,5 @@
-﻿<Page
-    x:Class="SigfolioWallet.HomeView"
+﻿<views:MvxWindowsPage
+    xmlns:views="using:MvvmCross.Platforms.Uap.Views"    x:Class="SigfolioWallet.HomeView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SigfolioWallet"
@@ -44,4 +44,4 @@
 
         </StackPanel>
     </Grid>
-</Page>
+</views:MvxWindowsPage>

@@ -5,8 +5,7 @@ using System.Text;
 
 namespace SigfolioWallet.Core.ViewModels
 {
-    public class LedgerViewModel : MvxViewModel
+    public class HistoryViewModel : MvxViewModel
     {
-
     }
 }

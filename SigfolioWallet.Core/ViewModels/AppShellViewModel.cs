@@ -12,16 +12,28 @@ namespace SigfolioWallet.Core.ViewModels
     {
         private readonly IMvxNavigationService _navigationService;
 
-        public enum ShellMenuItem { Home, Ledger, History }
+        public enum AppShellMenuItem { Home, Transactions, History }
 
         public AppShellViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
         }
         
-        public void Navigate()
+        public void NavigateMenuItem(AppShellMenuItem menuItem)
         {
-            _navigationService.Navigate<LedgerViewModel>();
+            switch(menuItem)
+            {
+                case AppShellMenuItem.Home:
+                    _navigationService.Navigate<HomeViewModel>();
+                    break;
+                case AppShellMenuItem.History:
+                    _navigationService.Navigate<HistoryViewModel>();
+                    break;
+                case AppShellMenuItem.Transactions:
+                    _navigationService.Navigate<TransactionsViewModel, string>("GB72RBWW7YDFUR3UIFZUKOTIETBVMVSC4IR7HHEHGTCDTXZ4AETSQMNF");
+                    break;
+            }
+
         }
     }
 }
