@@ -18,6 +18,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SigfolioWallet.Utilities;
+using MvvmCross.Platforms.Uap.Views;
+using MvvmCross.ViewModels;
+using SigfolioWallet.Core.ViewModels;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -26,7 +29,8 @@ namespace SigfolioWallet
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AppShell : Page
+    [MvxViewFor(typeof(AppShellViewModel))]
+    public sealed partial class AppShell : MvxWindowsPage
     {
         public static string SelectedAccountId { get; set; }
         public static readonly Server server = new Server("https://horizon-testnet.stellar.org/");
