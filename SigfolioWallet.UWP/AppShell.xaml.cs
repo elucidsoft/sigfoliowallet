@@ -1,4 +1,3 @@
-using stellar_dotnet_sdk;
 using SigfolioWallet.Views;
 using System;
 using System.Collections.Generic;

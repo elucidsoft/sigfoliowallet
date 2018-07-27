@@ -238,10 +238,6 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\dotnetcore-stellar-sdk_2.0.2\dotnetstandard\stellar-dotnetstandard-sdk.csproj">
-      <Project>{e556806d-2152-46d0-8e19-5c240d9ad429}</Project>
-      <Name>stellar-dotnetstandard-sdk</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SigfolioWallet.Core\SigfolioWallet.Core.csproj">
       <Project>{b21fe464-3105-4b27-b421-9c5ea3628d8c}</Project>
       <Name>SigfolioWallet.Core</Name>

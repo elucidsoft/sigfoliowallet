@@ -2,9 +2,6 @@
 using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
 using SigfolioWallet.Core.ViewModels;
-using stellar_dotnet_sdk;
-using stellar_dotnet_sdk.responses.effects;
-using stellar_dotnet_sdk.responses.operations;
 using System;
 using System.Collections.Generic;
 using System.IO;
