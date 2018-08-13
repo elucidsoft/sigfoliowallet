@@ -12,15 +12,24 @@
         <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="#fff" TintOpacity="0.8" FallbackColor="#ccc"/>
     </Page.Background>
 
-    <controls:DropShadowPanel Height="690" Width="500" BlurRadius="40" ShadowOpacity=".2" >
-        <Grid Height="650" Width="500" Background="White" Margin="0 0 0 0">
-            <StackPanel  Padding="30 30 30 30" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
-                <TextBlock Text="Account" FontSize="32" Padding="0 0 0 30" FontWeight="Bold"/>
-                <TextBlock Text="Private Key:"/>
-                <TextBox />
-            </StackPanel>
-            <Button HorizontalAlignment="Right" Background="#275AF0" Foreground="#fff" Width="85" Margin="0 0 20 20" VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Click="Button_Click" >Open</Button>
-        </Grid>
-    </controls:DropShadowPanel>
+    <StackPanel VerticalAlignment="Center">
+        <controls:DropShadowPanel Height="690" Width="400" BlurRadius="40" ShadowOpacity=".2" OffsetX="0" OffsetY="30"  >
+            <Grid Height="650" Width="400" Background="White" Margin="0 0 0 0">
+                <StackPanel  Padding="30 30 30 30" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                    <Image Source="Assets/sigfolio_icon.svg" HorizontalAlignment="Center" Width="70" Height="70"></Image>
+                    <TextBlock Text="Open wallet" FontSize="32" Padding="0 0 0 30" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="To open your wallet provide your private key" FontSize="14" Padding="0 0 0 30" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Private Key:"/>
+                    <TextBox />
+                </StackPanel>
+                <Button HorizontalAlignment="Right" Background="#275AF0" Foreground="#fff" Width="85" Margin="0 0 20 20" VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Click="Button_Click" >Open</Button>
+            </Grid>
+        </controls:DropShadowPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Padding="10" Width="380">
+            <FontIcon  Foreground="#4F4F4F" FontSize="22" Glyph="&#xE72E;"></FontIcon>
+            <TextBlock Padding="12" TextWrapping="WrapWholeWords" Foreground="#4F4F4F" FontSize="12" Width="330" >To keep your account safe, your private key is encrypted locally on your device.</TextBlock>
+
+        </StackPanel>
+    </StackPanel>
 
 </views:MvxWindowsPage>
