@@ -2,6 +2,7 @@
 using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
 using System;
+using System.Linq;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
@@ -10,11 +11,12 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using MvvmCross.Platforms.Uap.Presenters;
 
 namespace SigfolioWallet.UWP
 {
 
-    public abstract class SigfolioWalletApp : MvxApplication<MvxWindowsSetup<Core.App>, Core.App>
+    public abstract class SigfolioWalletApp : MvxApplication<Setup, Core.App>
     {
         public SigfolioWalletApp()
         {
@@ -32,6 +34,20 @@ namespace SigfolioWallet.UWP
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
             titleBar.ButtonForegroundColor = Colors.Black;
+        }
+
+    }
+
+    public class Setup : MvxWindowsSetup<Core.App>
+    {
+        protected override IMvxApplication CreateApp()
+        {
+            return new Core.App();
+        }
+
+        protected override IMvxWindowsViewPresenter CreateViewPresenter(IMvxWindowsFrame rootFrame)
+        {
+            return new ClearBackStackPresenter(rootFrame);
         }
     }
 

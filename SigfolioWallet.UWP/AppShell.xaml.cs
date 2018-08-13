@@ -2,12 +2,12 @@ using SigfolioWallet.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -48,11 +48,6 @@ namespace SigfolioWallet
         private void AppFrame_Navigated(object sender, NavigationEventArgs e)
         {
            // LoadAccountDetails();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
         }
 
         private async void LoadAccountDetails()

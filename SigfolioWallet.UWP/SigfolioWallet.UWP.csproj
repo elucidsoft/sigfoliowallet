@@ -115,6 +115,7 @@
     <Compile Include="AppStart.xaml.cs">
       <DependentUpon>AppStart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ClearBackStackPresenter.cs" />
     <Compile Include="CustomNavView.xaml.cs">
       <DependentUpon>CustomNavView.xaml</DependentUpon>
     </Compile>
