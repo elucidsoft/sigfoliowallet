@@ -1,11 +1,15 @@
 ﻿using SigfolioWallet.Utilities;
 using System;
 using System.Collections.Generic;
+
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -40,11 +44,38 @@ namespace SigfolioWallet
         Visibility txtAssetOriginalVisibility;
         Visibility txtAmountOriginalVisibility;
 
+        private Grid paneContentGrid;
+
+        readonly AcrylicBrush _acrylicBrush = new AcrylicBrush();
+
         public CustomNavView()
         {
+
             this.InitializeComponent();
 
+            _acrylicBrush.TintOpacity = 0.6;
+            _acrylicBrush.BackgroundSource = AcrylicBackgroundSource.HostBackdrop;
+            SetColors();
+
+            UISettings uiSettings = new UISettings();
+            uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
             NavView.Loaded += NavView_Loaded;
+        }
+
+        private void UiSettings_ColorValuesChanged(UISettings sender, object args)
+        {
+            SetColors();
+        }
+
+        private async void SetColors()
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                _acrylicBrush.TintColor = UIUtility.GetAccentColorLow();
+                _acrylicBrush.FallbackColor = UIUtility.GetAccentColorLow();
+
+                btnLockUnlockWallet.Background = new SolidColorBrush(UIUtility.GetAccentColorHigh());
+            });
         }
 
         private void NavView_PaneOpening(NavigationView sender, object args)
@@ -62,6 +93,9 @@ namespace SigfolioWallet
             txtAsset = UWPUtilities.FindControlWithName<TextBlock>("txtAsset", MyNavView);
             txtAmount = UWPUtilities.FindControlWithName<TextBlock>("txtAmount", MyNavView);
 
+            paneContentGrid = UWPUtilities.FindControlWithName<Grid>("PaneContentGrid", MyNavView);
+            paneContentGrid.Background = _acrylicBrush;
+
             txtNameChevronOriginalMargin = txtNameChevron.Margin;
             txtNameChevronOriginalVisibility = txtNameChevron.Visibility;
             ccNameGridOriginalHorizontalAlignment = ccNameGrid.HorizontalAlignment;
@@ -75,6 +109,7 @@ namespace SigfolioWallet
 
             NavView.PaneClosing += NavView_PaneClosing;
             NavView.PaneOpening += NavView_PaneOpening;
+
         }
 
         private void NavView_PaneClosing(NavigationView sender, NavigationViewPaneClosingEventArgs args)

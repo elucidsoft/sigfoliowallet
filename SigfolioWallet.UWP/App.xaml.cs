@@ -10,6 +10,7 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MvvmCross.Platforms.Uap.Presenters;
 
@@ -22,20 +23,20 @@ namespace SigfolioWallet.UWP
         {
 
         }
-
+        
         protected override void OnLaunched(LaunchActivatedEventArgs activationArgs)
         {
             base.OnLaunched(activationArgs);
 
+            Window.Current.Activated += Current_Activated;
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
-            //remove the solid-colored backgrounds behind the caption controls and system back button
-            ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            titleBar.ButtonBackgroundColor = Colors.Transparent;
-            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-
-            titleBar.ButtonForegroundColor = Colors.Black;
+            UIUtility.SetTitleBarColor();
         }
 
+        private void Current_Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
+        {
+            UIUtility.SetTitleBarColor();
+        }
     }
 
     public class Setup : MvxWindowsSetup<Core.App>
@@ -50,6 +51,8 @@ namespace SigfolioWallet.UWP
             return new ClearBackStackPresenter(rootFrame);
         }
     }
+
+
 
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

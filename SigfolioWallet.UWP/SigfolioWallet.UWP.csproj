@@ -120,6 +120,7 @@
       <DependentUpon>CustomNavView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\UWPUtilities.cs" />
+    <Compile Include="UIUtility.cs" />
     <Compile Include="Views\HistoryView.xaml.cs">
       <DependentUpon>HistoryView.xaml</DependentUpon>
     </Compile>
@@ -211,6 +212,10 @@
     <Page Include="CustomNavView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SigfolioIIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\HistoryView.xaml">
       <SubType>Designer</SubType>

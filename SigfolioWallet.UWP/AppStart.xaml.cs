@@ -31,6 +31,23 @@ namespace SigfolioWallet
         public AppStart()
         {
             this.InitializeComponent();
+
+            
+        }
+
+        private void AppStart_GotFocus(object sender, RoutedEventArgs e)
+        {
+            UIUtility.SetTitleBarColor();
+        }
+
+        private void AppStart_FocusEngaged(Control sender, FocusEngagedEventArgs args)
+        {
+            UIUtility.SetTitleBarColor();
+        }
+
+        private void AppStart_ActualThemeChanged(FrameworkElement sender, object args)
+        {
+            AppStart appStart = (AppStart) sender;
         }
 
         public new AppStartViewModel ViewModel => (AppStartViewModel)base.ViewModel;

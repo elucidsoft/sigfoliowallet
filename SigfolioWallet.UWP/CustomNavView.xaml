@@ -10,7 +10,6 @@
     d:DesignWidth="400">
 
     <UserControl.Resources>
-
         <DataTemplate x:Key="NavigationViewMenuItemTemplate1" >
 
         </DataTemplate>
@@ -228,9 +227,9 @@
                             <SplitView x:Name="RootSplitView" Background="{TemplateBinding Background}" CompactPaneLength="{TemplateBinding CompactPaneLength}" DisplayMode="Inline" IsTabStop="False" IsPaneOpen="{Binding IsPaneOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" OpenPaneLength="{TemplateBinding OpenPaneLength}" PaneBackground="{ThemeResource NavigationViewDefaultPaneBackground}">
                                 <SplitView.Pane>
                                     <Grid x:Name="PaneContentGrid">
-                                        <Grid.Background>
-                                            <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="#002BC3" TintOpacity="0.8" FallbackColor="#001D83"/>
-                                        </Grid.Background>
+                                        <!--<Grid.Background>
+                                            <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="{StaticResource NavBackground}" TintOpacity="0.8" FallbackColor="{StaticResource NavBackground}"/>
+                                        </Grid.Background>-->
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="0"/>
@@ -390,7 +389,7 @@
                 Duration="0:0:0.12" />
             </Storyboard>
         </Grid.Resources>
-        <NavigationView Margin="0 0 0 42"  Style="{StaticResource NavigationViewStyle1}" MenuItemTemplate="{StaticResource NavigationViewMenuItemTemplate1}" x:Name="MyNavView" Canvas.ZIndex="0" IsBackButtonVisible="Collapsed" IsBackEnabled="False" PaneTitle="Sigfolio Wallet">
+        <NavigationView Margin="0 0 0 42"  Style="{StaticResource NavigationViewStyle1}" x:Name="MyNavView" Canvas.ZIndex="0" IsBackButtonVisible="Collapsed" IsBackEnabled="False" PaneTitle="Sigfolio Wallet">
 
             <NavigationView.MenuItems>
 
@@ -419,9 +418,7 @@
                 </Frame.ContentTransitions>
             </Frame>
         </NavigationView>
-        <Button x:Name="btnLockUnlockWallet" Style="{StaticResource LockUnlockButtonTemplate}" Width="{Binding OpenPaneLength, ElementName=MyNavView}" Canvas.ZIndex="1" Background="#00C2FF" Foreground="#FFF" Height="42" VerticalAlignment="Bottom">
-
-
+        <Button x:Name="btnLockUnlockWallet" Style="{StaticResource LockUnlockButtonTemplate}" Width="{Binding OpenPaneLength, ElementName=MyNavView}" Canvas.ZIndex="1" Foreground="#FFF" Height="42" VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal">
                 <FontIcon HorizontalAlignment="Left" Glyph="&#xE72E;" />
                 <TextBlock x:Name="txtLockUnlockWalletLabel" Padding="12 0 0 0" Text="Lock Wallet"/>
