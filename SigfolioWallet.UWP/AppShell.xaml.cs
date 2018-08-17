@@ -21,6 +21,7 @@ using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
 using SigfolioWallet.Core.ViewModels;
 using MvvmCross.Platforms.Uap.Presenters.Attributes;
+using SigfolioWallet.Core.Services;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -67,7 +68,7 @@ namespace SigfolioWallet
 
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            var appShellMenuItem = Enum.Parse<AppShellViewModel.AppShellMenuItem>(args.InvokedItem.ToString());
+            var appShellMenuItem = Enum.Parse<NavigationPath>(args.InvokedItem.ToString());
             ViewModel.NavigateMenuItem(appShellMenuItem);
         }
     }

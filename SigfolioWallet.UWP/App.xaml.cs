@@ -28,14 +28,17 @@ namespace SigfolioWallet.UWP
         {
             base.OnLaunched(activationArgs);
 
-            Window.Current.Activated += Current_Activated;
+            UISettings uiSettings = new UISettings();
+            uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
+
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             UIUtility.SetTitleBarColor();
         }
 
-        private void Current_Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
+        private void UiSettings_ColorValuesChanged(UISettings sender, object args)
         {
             UIUtility.SetTitleBarColor();
+
         }
     }
 

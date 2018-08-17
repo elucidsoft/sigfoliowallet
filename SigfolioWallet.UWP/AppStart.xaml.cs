@@ -17,6 +17,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using MvvmCross;
+using SigfolioWallet.Core.Services;
+using SigfolioWallet.Core.UWP;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -30,9 +33,9 @@ namespace SigfolioWallet
     {
         public AppStart()
         {
-            this.InitializeComponent();
+            Mvx.RegisterSingleton<ISettingsService>(() => new SettingsService());
 
-            
+            this.InitializeComponent();
         }
 
         private void AppStart_GotFocus(object sender, RoutedEventArgs e)

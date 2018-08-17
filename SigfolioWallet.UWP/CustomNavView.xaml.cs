@@ -1,57 +1,43 @@
 ﻿using SigfolioWallet.Utilities;
 using System;
-using System.Collections.Generic;
-
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
-
-// The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace SigfolioWallet
 {
     public sealed partial class CustomNavView : UserControl
     {
-        Ellipse ellName;
-        Grid ccNameGrid;
-        ContentControl ccName;
-        TextBlock txtName;
-        FontIcon txtNameChevron;
-        TextBlock txtAsset;
-        TextBlock txtAmount;
+        private Ellipse _ellName;
+        private Grid _ccNameGrid;
+        private ContentControl _ccName;
+        private TextBlock _txtName;
+        private FontIcon _txtNameChevron;
+        private TextBlock _txtAsset;
+        private TextBlock _txtAmount;
 
-        Thickness txtNameChevronOriginalMargin;
-        Visibility txtNameChevronOriginalVisibility;
-        HorizontalAlignment ccNameGridOriginalHorizontalAlignment;
-        HorizontalAlignment ccNameOriginalHorizontalAlignment;
-        Thickness ccNameOriginalMargin;
-        double ellNameOriginalWidth;
-        double ellNameOriginalHeight;
-        double txtNameOriginalFontSize;
-        Visibility txtAssetOriginalVisibility;
-        Visibility txtAmountOriginalVisibility;
+        private Thickness _txtNameChevronOriginalMargin;
+        private Visibility _txtNameChevronOriginalVisibility;
+        private HorizontalAlignment _ccNameGridOriginalHorizontalAlignment;
+        private HorizontalAlignment _ccNameOriginalHorizontalAlignment;
+        private Thickness _ccNameOriginalMargin;
+        private double _ellNameOriginalWidth;
+        private double _ellNameOriginalHeight;
+        private double _txtNameOriginalFontSize;
+        private Visibility _txtAssetOriginalVisibility;
+        private Visibility _txtAmountOriginalVisibility;
 
-        private Grid paneContentGrid;
+        private Grid _paneContentGrid;
 
-        readonly AcrylicBrush _acrylicBrush = new AcrylicBrush();
+        private readonly AcrylicBrush _acrylicBrush = new AcrylicBrush();
 
         public CustomNavView()
         {
 
-            this.InitializeComponent();
+            InitializeComponent();
 
             _acrylicBrush.TintOpacity = 0.6;
             _acrylicBrush.BackgroundSource = AcrylicBackgroundSource.HostBackdrop;
@@ -85,27 +71,27 @@ namespace SigfolioWallet
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
-            ellName = UWPUtilities.FindControlWithName<Ellipse>("ellName", MyNavView);
-            ccNameGrid = UWPUtilities.FindControlWithName<Grid>("ccNameGrid", MyNavView);
-            ccName = UWPUtilities.FindControlWithName<ContentControl>("ccName", MyNavView);
-            txtName = UWPUtilities.FindControlWithName<TextBlock>("txtName", MyNavView);
-            txtNameChevron = UWPUtilities.FindControlWithName<FontIcon>("txtNameChevron", MyNavView);
-            txtAsset = UWPUtilities.FindControlWithName<TextBlock>("txtAsset", MyNavView);
-            txtAmount = UWPUtilities.FindControlWithName<TextBlock>("txtAmount", MyNavView);
+            _ellName = UWPUtilities.FindControlWithName<Ellipse>("ellName", MyNavView);
+            _ccNameGrid = UWPUtilities.FindControlWithName<Grid>("ccNameGrid", MyNavView);
+            _ccName = UWPUtilities.FindControlWithName<ContentControl>("ccName", MyNavView);
+            _txtName = UWPUtilities.FindControlWithName<TextBlock>("txtName", MyNavView);
+            _txtNameChevron = UWPUtilities.FindControlWithName<FontIcon>("txtNameChevron", MyNavView);
+            _txtAsset = UWPUtilities.FindControlWithName<TextBlock>("txtAsset", MyNavView);
+            _txtAmount = UWPUtilities.FindControlWithName<TextBlock>("txtAmount", MyNavView);
 
-            paneContentGrid = UWPUtilities.FindControlWithName<Grid>("PaneContentGrid", MyNavView);
-            paneContentGrid.Background = _acrylicBrush;
+            _paneContentGrid = UWPUtilities.FindControlWithName<Grid>("PaneContentGrid", MyNavView);
+            _paneContentGrid.Background = _acrylicBrush;
 
-            txtNameChevronOriginalMargin = txtNameChevron.Margin;
-            txtNameChevronOriginalVisibility = txtNameChevron.Visibility;
-            ccNameGridOriginalHorizontalAlignment = ccNameGrid.HorizontalAlignment;
-            ccNameOriginalHorizontalAlignment = ccName.HorizontalAlignment;
-            ccNameOriginalMargin = ccName.Margin;
-            ellNameOriginalWidth = ellName.Width;
-            ellNameOriginalHeight = ellName.Height;
-            txtNameOriginalFontSize = txtName.FontSize;
-            txtAssetOriginalVisibility = txtAsset.Visibility;
-            txtAmountOriginalVisibility = txtAmount.Visibility;
+            _txtNameChevronOriginalMargin = _txtNameChevron.Margin;
+            _txtNameChevronOriginalVisibility = _txtNameChevron.Visibility;
+            _ccNameGridOriginalHorizontalAlignment = _ccNameGrid.HorizontalAlignment;
+            _ccNameOriginalHorizontalAlignment = _ccName.HorizontalAlignment;
+            _ccNameOriginalMargin = _ccName.Margin;
+            _ellNameOriginalWidth = _ellName.Width;
+            _ellNameOriginalHeight = _ellName.Height;
+            _txtNameOriginalFontSize = _txtName.FontSize;
+            _txtAssetOriginalVisibility = _txtAsset.Visibility;
+            _txtAmountOriginalVisibility = _txtAmount.Visibility;
 
             NavView.PaneClosing += NavView_PaneClosing;
             NavView.PaneOpening += NavView_PaneOpening;
@@ -121,22 +107,20 @@ namespace SigfolioWallet
         {
             if (closing)
             {
-               
+                _txtNameChevron.Margin = new Thickness(0, 18, 0, 0);
+                _txtNameChevron.Visibility = Visibility.Collapsed;
 
-                txtNameChevron.Margin = new Thickness(0, 18, 0, 0);
-                txtNameChevron.Visibility = Visibility.Collapsed;
+                _ccNameGrid.HorizontalAlignment = HorizontalAlignment.Left;
+                _ccName.HorizontalAlignment = HorizontalAlignment.Left;
+                _ccName.Margin = new Thickness(7, 0, 16, 0);
 
-                ccNameGrid.HorizontalAlignment = HorizontalAlignment.Left;
-                ccName.HorizontalAlignment = HorizontalAlignment.Left;
-                ccName.Margin = new Thickness(7, 0, 16, 0);
+                _ellName.Width = 30;
+                _ellName.Height = 30;
 
-                ellName.Width = 30;
-                ellName.Height = 30;
+                _txtName.FontSize = 10;
 
-                txtName.FontSize = 10;
-
-                txtAsset.Visibility = Visibility.Collapsed;
-                txtAmount.Visibility = Visibility.Collapsed;
+                _txtAsset.Visibility = Visibility.Collapsed;
+                _txtAmount.Visibility = Visibility.Collapsed;
 
                 txtLockUnlockWalletLabel.Visibility = Visibility.Collapsed;
 
@@ -150,25 +134,25 @@ namespace SigfolioWallet
                 daLockUnlockStoryBoardAnimation.From = NavView.CompactPaneLength;
                 btnLockUnlockWalletStoryboard.Begin();
 
-                txtNameChevron.Margin = txtNameChevronOriginalMargin;
-                txtNameChevron.Visibility = txtNameChevronOriginalVisibility;
+                _txtNameChevron.Margin = _txtNameChevronOriginalMargin;
+                _txtNameChevron.Visibility = _txtNameChevronOriginalVisibility;
 
-                ccNameGrid.HorizontalAlignment = ccNameGridOriginalHorizontalAlignment;
-                ccName.HorizontalAlignment = ccNameOriginalHorizontalAlignment;
-                ccName.Margin = ccNameOriginalMargin;
+                _ccNameGrid.HorizontalAlignment = _ccNameGridOriginalHorizontalAlignment;
+                _ccName.HorizontalAlignment = _ccNameOriginalHorizontalAlignment;
+                _ccName.Margin = _ccNameOriginalMargin;
 
-                ellName.Width = ellNameOriginalWidth;
-                ellName.Height = ellNameOriginalHeight;
+                _ellName.Width = _ellNameOriginalWidth;
+                _ellName.Height = _ellNameOriginalHeight;
 
-                txtName.FontSize = txtNameOriginalFontSize;
+                _txtName.FontSize = _txtNameOriginalFontSize;
 
-                txtAsset.Visibility = txtAssetOriginalVisibility;
-                txtAmount.Visibility = txtAmountOriginalVisibility;
+                _txtAsset.Visibility = _txtAssetOriginalVisibility;
+                _txtAmount.Visibility = _txtAmountOriginalVisibility;
 
                 btnLockUnlockWallet.Width = NavView.OpenPaneLength;
                 txtLockUnlockWalletLabel.Visibility = Visibility.Visible;
 
-                
+
             }
         }
 
@@ -184,8 +168,8 @@ namespace SigfolioWallet
             txtName.Text = publicKey.Substring(publicKey.Length - 4);
         }
 
-        public Frame AppFrame { get { return PageContent; } }
+        public Frame AppFrame => PageContent;
 
-        public NavigationView NavView { get => MyNavView; }
+        public NavigationView NavView => MyNavView;
     }
 }

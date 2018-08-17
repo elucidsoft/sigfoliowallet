@@ -4,6 +4,8 @@ using SigfolioWallet.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MvvmCross.IoC;
+using SigfolioWallet.Core.Models;
 
 namespace SigfolioWallet.Core
 {
@@ -13,9 +15,10 @@ namespace SigfolioWallet.Core
         {
             Mvx.RegisterSingleton<IStellarHorizonService>(() => new StellarHorizonService("https://horizon-testnet.stellar.org/"));
 
+            Mvx.RegisterType<INavigationService, NavigationService>();
             Mvx.RegisterType<IWalletService, WalletService>();
             Mvx.RegisterType<ILoginService, LoginService>();
-            Mvx.RegisterSingleton<ITransactionService>(() => new TransactionService(Mvx.GetSingleton<IStellarHorizonService>()));
+            Mvx.RegisterType<ITransactionService, TransactionService>();
 
             RegisterCustomAppStart<AppStart>();
         }
