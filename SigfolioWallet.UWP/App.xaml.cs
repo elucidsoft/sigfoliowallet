@@ -1,29 +1,23 @@
-﻿using MvvmCross.Platforms.Uap.Core;
+﻿using System;
+using MvvmCross.Platforms.Uap.Core;
+using MvvmCross.Platforms.Uap.Presenters;
 using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
-using System;
-using System.Linq;
-using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
-using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using MvvmCross.Platforms.Uap.Presenters;
 
 namespace SigfolioWallet.UWP
 {
 
     public abstract class SigfolioWalletApp : MvxApplication<Setup, Core.App>
     {
-        public SigfolioWalletApp()
-        {
+        private ApplicationView _currentView;
+        private Application _application;
+        private CoreApplicationView _coreApplicationView;
 
-        }
-        
         protected override void OnLaunched(LaunchActivatedEventArgs activationArgs)
         {
             base.OnLaunched(activationArgs);
@@ -31,14 +25,21 @@ namespace SigfolioWallet.UWP
             UISettings uiSettings = new UISettings();
             uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
 
-            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
-            UIUtility.SetTitleBarColor();
+            _coreApplicationView = CoreApplication.GetCurrentView();
+            _coreApplicationView.TitleBar.ExtendViewIntoTitleBar = true;
+
+            _currentView = ApplicationView.GetForCurrentView();
+            _application = Current;
+
+            UIUtility.SetTitleBarColor(_currentView, _application);
         }
 
-        private void UiSettings_ColorValuesChanged(UISettings sender, object args)
+        private async void UiSettings_ColorValuesChanged(UISettings sender, object args)
         {
-            UIUtility.SetTitleBarColor();
-
+            await _coreApplicationView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                UIUtility.SetTitleBarColor(_currentView, _application);
+            });
         }
     }
 
@@ -60,7 +61,7 @@ namespace SigfolioWallet.UWP
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App
+    public sealed partial class App
     {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code

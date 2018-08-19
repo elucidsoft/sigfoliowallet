@@ -57,8 +57,8 @@ namespace SigfolioWallet
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                _acrylicBrush.TintColor = UIUtility.GetAccentColorLow();
-                _acrylicBrush.FallbackColor = UIUtility.GetAccentColorLow();
+                _acrylicBrush.TintColor = UIUtility.GetAccentColorLow(Application.Current);
+                _acrylicBrush.FallbackColor = UIUtility.GetAccentColorLow(Application.Current);
 
                 btnLockUnlockWallet.Background = new SolidColorBrush(UIUtility.GetAccentColorHigh());
             });
