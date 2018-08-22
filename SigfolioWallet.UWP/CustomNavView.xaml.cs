@@ -1,5 +1,6 @@
 ﻿using SigfolioWallet.Utilities;
 using System;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -31,21 +32,33 @@ namespace SigfolioWallet
         private Visibility _txtAmountOriginalVisibility;
 
         private Grid _paneContentGrid;
+        private Rectangle _selectionIndicator;
 
         private readonly AcrylicBrush _acrylicBrush = new AcrylicBrush();
+        private readonly UISettings _uiSettings = new UISettings();
 
         public CustomNavView()
         {
 
             InitializeComponent();
 
-            _acrylicBrush.TintOpacity = 0.6;
+            _acrylicBrush.TintOpacity = 0.8;
             _acrylicBrush.BackgroundSource = AcrylicBackgroundSource.HostBackdrop;
-            SetColors();
+            
+            _uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
 
-            UISettings uiSettings = new UISettings();
-            uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
             NavView.Loaded += NavView_Loaded;
+            Window.Current.Activated += Current_Activated;
+        }
+
+        private void Current_Activated(object sender, WindowActivatedEventArgs e)
+        {
+            //if (!_uiSettings.AdvancedEffectsEnabled)
+            //    return;
+
+            //_selectionIndicator.Fill = e.WindowActivationState == CoreWindowActivationState.Deactivated 
+            //    ? new SolidColorBrush(UIUtility.GetAccentColorHigh()) 
+            //    : new SolidColorBrush(UIUtility.GetAccentColorLow());
         }
 
         private void UiSettings_ColorValuesChanged(UISettings sender, object args)
@@ -55,12 +68,23 @@ namespace SigfolioWallet
 
         private async void SetColors()
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
-                _acrylicBrush.TintColor = UIUtility.GetAccentColorLow(Application.Current);
-                _acrylicBrush.FallbackColor = UIUtility.GetAccentColorLow(Application.Current);
+                _acrylicBrush.TintColor = UIUtility.GetAccentColorLow();
+                _acrylicBrush.FallbackColor = UIUtility.GetAccentColorLow();
 
                 btnLockUnlockWallet.Background = new SolidColorBrush(UIUtility.GetAccentColorHigh());
+
+                if (Application.Current.RequestedTheme == ApplicationTheme.Light)
+                {
+                    _selectionIndicator.Fill = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0));
+                }
+                else
+                {
+                    _selectionIndicator.Fill = new SolidColorBrush(Color.FromArgb(100, 255, 255, 255));
+
+                }
+
             });
         }
 
@@ -80,6 +104,8 @@ namespace SigfolioWallet
             _txtAmount = UWPUtilities.FindControlWithName<TextBlock>("txtAmount", MyNavView);
 
             _paneContentGrid = UWPUtilities.FindControlWithName<Grid>("PaneContentGrid", MyNavView);
+            _selectionIndicator = UWPUtilities.FindControlWithName<Rectangle>("SelectionIndicator", MyNavView);
+
             _paneContentGrid.Background = _acrylicBrush;
 
             _txtNameChevronOriginalMargin = _txtNameChevron.Margin;
@@ -95,6 +121,7 @@ namespace SigfolioWallet
 
             NavView.PaneClosing += NavView_PaneClosing;
             NavView.PaneOpening += NavView_PaneOpening;
+            SetColors();
 
         }
 

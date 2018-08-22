@@ -390,10 +390,7 @@
             </Storyboard>
         </Grid.Resources>
         <NavigationView Margin="0 0 0 42"  Style="{StaticResource NavigationViewStyle1}" x:Name="MyNavView" Canvas.ZIndex="0" IsBackButtonVisible="Collapsed" IsBackEnabled="False" PaneTitle="Sigfolio Wallet">
-
             <NavigationView.MenuItems>
-
-
                 <NavigationViewItem Foreground="White" Content="Transactions" Tag="Transactions">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE81C;" />
@@ -404,9 +401,9 @@
                         <FontIcon Glyph="&#xE8EB;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Foreground="White" Content="Settings" Tag="sendreceive">
+                <NavigationViewItem Foreground="White" Content="Settings" Tag="settings">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE8EB;"/>
+                        <FontIcon Glyph="&#xE713;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>

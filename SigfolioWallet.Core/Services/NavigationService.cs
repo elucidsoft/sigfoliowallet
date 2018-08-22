@@ -22,15 +22,21 @@ namespace SigfolioWallet.Core.Services
                 case NavigationPath.Home:
                     _navigationService.Navigate<HomeViewModel>();
                     break;
-                    case NavigationPath.History:
+                case NavigationPath.Transactions:
+                    _navigationService.Navigate<TransactionsViewModel>();
+                    break;
+                case NavigationPath.History:
                     _navigationService.Navigate<HistoryViewModel>();
+                    break;
+                case NavigationPath.Settings:
+                    _navigationService.Navigate<SettingsViewModel>();
                     break;
             }
         }
 
         public void NavigateTransactions(string publicKey)
         {
-            _navigationService.Navigate<TransactionsViewModel, string>(publicKey);
+            
         }
     }
 }

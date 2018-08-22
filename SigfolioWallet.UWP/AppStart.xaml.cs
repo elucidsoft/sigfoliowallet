@@ -9,6 +9,7 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,24 +23,35 @@ namespace SigfolioWallet
     {
         public AppStart()
         {
-            Mvx.RegisterSingleton<ISettingsService>(() => new SettingsService());
             UISettings uiSettings = new UISettings();
             uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
             InitializeComponent();
 
             SetupColors();
+
+            Loaded += AppStart_Loaded;
+        }
+
+        private void AppStart_Loaded(object sender, RoutedEventArgs e)
+        {
+            cbAccounts.DataContext = ViewModel;
+
+            if (!string.IsNullOrEmpty(ViewModel.Wallet.CurrentAccountId))
+            {
+                cbAccounts.SelectedValue = ViewModel.Wallet.CurrentAccountId;
+            }
         }
 
         private void SetupColors()
         {
-            btnBack.Background = new SolidColorBrush(UIUtility.GetAccentColorLow(Application.Current));
+            btnBack.Background = new SolidColorBrush(UIUtility.GetAccentColorLow());
         }
 
         private async void UiSettings_ColorValuesChanged(UISettings sender, object args)
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                btnBack.Background = new SolidColorBrush(UIUtility.GetAccentColorLow(Application.Current));
+                btnBack.Background = new SolidColorBrush(UIUtility.GetAccentColorLow());
             });
         }
 
@@ -47,7 +59,7 @@ namespace SigfolioWallet
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.Open();
+            ViewModel.Open((string)cbAccounts.SelectedValue);
         }
     }
 }

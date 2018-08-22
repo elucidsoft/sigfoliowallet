@@ -8,6 +8,9 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using MvvmCross;
+using SigfolioWallet.Core.Services;
+using SigfolioWallet.Core.UWP;
 
 namespace SigfolioWallet.UWP
 {
@@ -18,12 +21,14 @@ namespace SigfolioWallet.UWP
         private Application _application;
         private CoreApplicationView _coreApplicationView;
 
+        private readonly UISettings _uiSettings = new UISettings();
+
+
         protected override void OnLaunched(LaunchActivatedEventArgs activationArgs)
         {
             base.OnLaunched(activationArgs);
 
-            UISettings uiSettings = new UISettings();
-            uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
+            _uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
 
             _coreApplicationView = CoreApplication.GetCurrentView();
             _coreApplicationView.TitleBar.ExtendViewIntoTitleBar = true;
@@ -47,6 +52,7 @@ namespace SigfolioWallet.UWP
     {
         protected override IMvxApplication CreateApp()
         {
+            Mvx.RegisterSingleton<ISettingsService>(new SettingsService());
             return new Core.App();
         }
 
@@ -70,6 +76,7 @@ namespace SigfolioWallet.UWP
         public App()
         {
             this.InitializeComponent();
+
         }
     }
 }

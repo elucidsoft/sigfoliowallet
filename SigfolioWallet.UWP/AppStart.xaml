@@ -9,10 +9,9 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d" Background="{ThemeResource SystemControlAcrylicWindowBrush}">
 
-
     <StackPanel VerticalAlignment="Center">
-        <controls:DropShadowPanel Height="690" Width="400" BlurRadius="40" ShadowOpacity=".2" OffsetX="0" OffsetY="30"  >
-            <Grid Height="650" Width="400" Background="{ThemeResource SystemControlPageBackgroundAltMediumBrush}" Margin="0 0 0 0">
+        <controls:DropShadowPanel Height="690" Width="570" BlurRadius="40" ShadowOpacity=".2" OffsetX="0" OffsetY="30"  >
+            <Grid Height="650" Width="570" Background="{ThemeResource SystemControlPageBackgroundAltMediumBrush}" Margin="0 0 0 0">
                 <StackPanel  Padding="30 30 30 30" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
                     <Canvas Name="svg3757" Width="70" Height="70">
                         <Canvas.Resources/>
@@ -29,11 +28,14 @@
                         <Path Name="path3755" Fill="{ThemeResource SystemControlBackgroundAccentBrush}" Opacity="0.65" Data="M12.0331 50.7562C10.7602 50.9876 9.63201 51.1033 8.64844 51.1322C9.89237 53.1569 11.3967 55.0659 13.1324 56.8302C14.8392 58.5368 16.6906 60.0119 18.6867 61.2267C18.947 55.1816 20.972 50.0909 25.2245 44.5664C20.7985 48.0084 16.6327 49.9752 12.0331 50.7562Z"/>
                     </Canvas>
                     <TextBlock Text="Open wallet" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" FontSize="32" Padding="0 0 0 30" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <TextBlock Text="To open your wallet provide your private key" FontSize="14" Padding="0 0 0 30" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Private Key:"/>
-                    <TextBox />
+                    <TextBlock Text="Select your account below to open it. To add a new account to your wallet click on 'Add Account' below." TextWrapping="WrapWholeWords" FontSize="14" Padding="0 0 0 30" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+
+                    <TextBlock Text="Wallet:"/>
+                    <ComboBox Name="cbWallets" HorizontalAlignment="Center" VerticalAlignment="Center" Width="510" />
+                    <TextBlock Margin="0 30 0 0" Text="Accounts:"/>
+                    <ComboBox Name="cbAccounts" HorizontalAlignment="Center" SelectedValuePath="Id" FontFamily="Consolas" ItemsSource="{Binding Wallet.Accounts}" DisplayMemberPath="PublicKey" VerticalAlignment="Center" Width="510" Margin="0,0,0,0" />
                 </StackPanel>
-                <Button HorizontalAlignment="Right" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="#fff" Margin="0,0,10,20" VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Click="Button_Click" Width="115" Content="Open Account"/>
+                <Button HorizontalAlignment="Left" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="#fff" Margin="445,0,0,20" VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Click="Button_Click" Width="115" Content="Open Wallet"/>
                 <Button HorizontalAlignment="Left" Name="btnBack"  Background="{ThemeResource SystemControlBackgroundAccentBrush}" FocusVisualSecondaryBrush="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="#fff" VerticalAlignment="Top" RenderTransformOrigin="0.547,1.467" Click="Button_Click" Width="48" Height="42" >
                     <Button.Resources>
                         <ResourceDictionary>
@@ -52,6 +54,7 @@
 
                     </StackPanel>
                 </Button>
+                <Button HorizontalAlignment="Right" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="#fff"  VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Click="Button_Click" Width="115" Content="Add Account" Margin="0,0,445,20"/>
             </Grid>
         </controls:DropShadowPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Padding="10" Width="380">

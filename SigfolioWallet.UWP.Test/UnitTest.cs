@@ -40,7 +40,7 @@ namespace SigfolioWallet.UWP.Test
             var encryptedWalletString = myApplicationDataContainer.Values["wallet"].ToString();
             Assert.IsFalse(encryptedWalletString.Contains("test"));
 
-            var savedWallet = await localSettings.GetCurrentWallet();
+            var savedWallet = await localSettings.LoadWallet();
 
             Assert.AreEqual(wallet, savedWallet);
         }

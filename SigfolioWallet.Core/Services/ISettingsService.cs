@@ -6,7 +6,11 @@ namespace SigfolioWallet.Core.Services
 {
     public interface ISettingsService
     {
-        Task<Wallet> GetCurrentWallet();
+        Wallet Wallet { get; }
+
+        Task<Wallet> LoadWallet();
+
         Task SaveWallet(Wallet wallet);
+        void ResetSettings();
     }
 }

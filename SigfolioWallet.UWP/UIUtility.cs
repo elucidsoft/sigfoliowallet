@@ -15,12 +15,12 @@ namespace SigfolioWallet
         public static void SetTitleBarColor(ApplicationView currentView, Application application)
         {
             ApplicationViewTitleBar titleBar = currentView.TitleBar;
-            titleBar.ButtonBackgroundColor = GetAccentColorLow(application);
+            titleBar.ButtonBackgroundColor = GetAccentColorLow();
         }
 
-        public static Color GetAccentColorLow(Application application)
+        public static Color GetAccentColorLow()
         {
-            var correctionFactor = application.RequestedTheme == ApplicationTheme.Light ?  0.3f : -0.3f;
+            var correctionFactor = Application.Current.RequestedTheme == ApplicationTheme.Light ?  0.3f : -0.3f;
             return ChangeColorBrightness((Color) Application.Current.Resources["SystemAccentColor"], correctionFactor);
         }
 
