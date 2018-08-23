@@ -42,7 +42,7 @@ namespace SigfolioWallet.Core.ViewModels
             await base.Initialize();
         }
 
-        public Task Open(string selectedAccount)
+        public Task Open(int selectedAccount)
         {
             Wallet.CurrentAccountId = selectedAccount;
             _settingsService.SaveWallet(Wallet);

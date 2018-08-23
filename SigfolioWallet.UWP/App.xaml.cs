@@ -52,7 +52,7 @@ namespace SigfolioWallet.UWP
     {
         protected override IMvxApplication CreateApp()
         {
-            Mvx.RegisterSingleton<ISettingsService>(new SettingsService());
+            Mvx.RegisterSingleton<IStorageService>(new StorageService());
             return new Core.App();
         }
 
@@ -61,9 +61,7 @@ namespace SigfolioWallet.UWP
             return new ClearBackStackPresenter(rootFrame);
         }
     }
-
-
-
+    
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>

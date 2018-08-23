@@ -17,33 +17,33 @@ namespace SigfolioWallet.UWP.Test
             Setup();
         }
 
-        protected override void AdditionalSetup()
-        {
-            Ioc.RegisterSingleton(new SettingsService());
-        }
+        //protected override void AdditionalSetup()
+        //{
+        //    Ioc.RegisterSingleton(new SettingsService());
+        //}
 
-        [TestMethod]
-        public async Task TestSettingsProtectAndUnprotect()
-        {
-            var myApplicationDataContainer = new FakeApplicationDataContainer();
-            var localSettings = new SettingsService((ApplicationDataContainer)myApplicationDataContainer);
+        //[TestMethod]
+        //public async Task TestSettingsProtectAndUnprotect()
+        //{
+        //    var myApplicationDataContainer = new FakeApplicationDataContainer();
+        //    var localSettings = new SettingsService((ApplicationDataContainer)myApplicationDataContainer);
 
-            var wallet = new Wallet { WalletName = "test wallet" };
-            wallet.Accounts.Add(new Account()
-            {
-                Name = "test1",
-                PublicKey = "2153245224365265246236gasgasg"
-            });
+        //    var wallet = new Wallet { WalletName = "test wallet" };
+        //    wallet.Accounts.Add(new Account()
+        //    {
+        //        Name = "test1",
+        //        PublicKey = "2153245224365265246236gasgasg"
+        //    });
 
-            await localSettings.SaveWallet(wallet);
+        //    await localSettings.SaveWallet(wallet);
 
-            var encryptedWalletString = myApplicationDataContainer.Values["wallet"].ToString();
-            Assert.IsFalse(encryptedWalletString.Contains("test"));
+        //    var encryptedWalletString = myApplicationDataContainer.Values["wallet"].ToString();
+        //    Assert.IsFalse(encryptedWalletString.Contains("test"));
 
-            var savedWallet = await localSettings.LoadWallet();
+        //    var savedWallet = await localSettings.LoadWallet();
 
-            Assert.AreEqual(wallet, savedWallet);
-        }
+        //    Assert.AreEqual(wallet, savedWallet);
+        //}
     }
 
     public class FakeApplicationDataContainer

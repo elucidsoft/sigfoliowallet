@@ -20,6 +20,8 @@ namespace SigfolioWallet.Core
             Mvx.RegisterType<ILoginService, LoginService>();
             Mvx.RegisterType<ITransactionService, TransactionService>();
 
+            Mvx.RegisterSingleton<ISettingsService>(new SettingsService(Mvx.Resolve<IStorageService>()));
+
             RegisterCustomAppStart<AppStart>();
         }
     }

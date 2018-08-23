@@ -36,7 +36,7 @@ namespace SigfolioWallet
         {
             cbAccounts.DataContext = ViewModel;
 
-            if (!string.IsNullOrEmpty(ViewModel.Wallet.CurrentAccountId))
+            if (ViewModel.Wallet.CurrentAccountId == 0)
             {
                 cbAccounts.SelectedValue = ViewModel.Wallet.CurrentAccountId;
             }
@@ -59,7 +59,7 @@ namespace SigfolioWallet
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.Open((string)cbAccounts.SelectedValue);
+            ViewModel.Open(Convert.ToInt32(cbAccounts.SelectedValue));
         }
     }
 }

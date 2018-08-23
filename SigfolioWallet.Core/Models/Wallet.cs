@@ -12,7 +12,11 @@ namespace SigfolioWallet.Core.Models
             Accounts = new List<Account>();
         }
 
-        public string CurrentAccountId { get; set; }
+        public int Id { get; set; }
+
+        public int CurrentAccountId { get; set; }
+
+        public bool IsCurrentWallet { get; set; }
 
         public Account CurrentAccount => Accounts.SingleOrDefault(a => a.Id == CurrentAccountId);
 
