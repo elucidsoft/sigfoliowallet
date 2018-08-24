@@ -1,11 +1,7 @@
 ﻿using MvvmCross;
 using MvvmCross.ViewModels;
 using SigfolioWallet.Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using MvvmCross.IoC;
-using SigfolioWallet.Core.Models;
+using SigfolioWallet.Core.Services.Interfaces;
 
 namespace SigfolioWallet.Core
 {
@@ -19,8 +15,16 @@ namespace SigfolioWallet.Core
             Mvx.RegisterType<IWalletService, WalletService>();
             Mvx.RegisterType<ILoginService, LoginService>();
             Mvx.RegisterType<ITransactionService, TransactionService>();
+            Mvx.RegisterType<IEncryptionService, EncryptionService>();
+            Mvx.RegisterType<IAuthenticationService, AuthenticationService>();
 
-            Mvx.RegisterSingleton<ISettingsService>(new SettingsService(Mvx.Resolve<IStorageService>()));
+            //StorageService is Registered in the Application itself since its platform specific (UWP, Android, etc.)
+            Mvx.RegisterSingleton<ISettingsService>(
+                new SettingsService(
+                    Mvx.Resolve<IStorageService>(),
+                    Mvx.Resolve<IEncryptionService>(),
+                    Mvx.Resolve<IAuthenticationService>())
+            );
 
             RegisterCustomAppStart<AppStart>();
         }

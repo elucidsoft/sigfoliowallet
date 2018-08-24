@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using stellar_dotnet_sdk;
+using SigfolioWallet.Core.Services.Interfaces;
 
 namespace SigfolioWallet.Core.Services
 {

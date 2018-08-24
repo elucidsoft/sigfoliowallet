@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LiteDB" Version="4.1.4" />
     <PackageReference Include="MvvmCross" Version="6.1.2" />
     <PackageReference Include="stellar-dotnet-sdk" Version="2.1.0-beta" />
   </ItemGroup>

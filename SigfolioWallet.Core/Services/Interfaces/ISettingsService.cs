@@ -10,7 +10,9 @@ namespace SigfolioWallet.Core.Services
         Task<Wallet> LoadWallet();
 
         Task SaveWallet(Wallet wallet);
+
         void ResetSettings();
+
         Wallet Wallet { get; set; }
     }
 }

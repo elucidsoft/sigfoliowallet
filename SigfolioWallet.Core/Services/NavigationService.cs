@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MvvmCross.Navigation;
+using SigfolioWallet.Core.Services.Interfaces;
 using SigfolioWallet.Core.ViewModels;
 
 namespace SigfolioWallet.Core.Services

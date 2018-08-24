@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using SigfolioWallet.Core.Services;
+using SigfolioWallet.Core.Services.Interfaces;
 
 namespace SigfolioWallet.Core.ViewModels
 {

@@ -1,4 +1,4 @@
-﻿namespace SigfolioWallet.Core.Services
+﻿namespace SigfolioWallet.Core.Services.Interfaces
 {
     public interface INavigationService
     {

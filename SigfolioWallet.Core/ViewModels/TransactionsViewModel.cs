@@ -3,6 +3,7 @@ using SigfolioWallet.Core.Models;
 using SigfolioWallet.Core.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using SigfolioWallet.Core.Services.Interfaces;
 
 namespace SigfolioWallet.Core.ViewModels
 {
