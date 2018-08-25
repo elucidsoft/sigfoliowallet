@@ -15,7 +15,11 @@ namespace SigfolioWallet.Test
         public async Task SaveWalletTest()
         {
             var testStorageService = new TestStorageService();
-            var settingsService = new SettingsService(testStorageService, new EncryptionService(), new AuthenticationService());
+            var authenticationService = new AuthenticationService();
+
+            authenticationService.RequestPassword += (sender, args) => { args.SetPassword("password"); };
+
+            var settingsService = new SettingsService(testStorageService, new EncryptionService(), authenticationService);
 
             var wallet = new Core.Models.Wallet
             {

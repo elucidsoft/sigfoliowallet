@@ -1,19 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SigfolioWallet.Core.Services.Interfaces;
+using System;
+using System.Security.Cryptography;
 using System.Text;
-using SigfolioWallet.Core.Services.Interfaces;
 
 namespace SigfolioWallet.Core.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
+        public event EventHandler<PasswordEventArgs> RequestPassword;
+
         public string GetPassword()
         {
-            //TODO:
-            //This is obviously temporary until the framework can be built out for this, ideally it would call
-            //into a view and request the password via a view which would popup a prompt to the user...
-            
-            return "password";
+            var passwordEventArgs = new PasswordEventArgs();
+            OnRequestPassword(passwordEventArgs);
+
+            return DecodePassword(passwordEventArgs.Password);
+        }
+
+        public static string DecodePassword(byte[] password)
+        {
+            return Encoding.UTF8.GetString(password);
+        }
+
+        public static byte[] EncodePassword(string password)
+        {
+            var sha256 = new SHA256Managed();
+            return sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+        }
+
+        protected virtual void OnRequestPassword(PasswordEventArgs e)
+        {
+            RequestPassword?.Invoke(this, e);
         }
     }
 }
