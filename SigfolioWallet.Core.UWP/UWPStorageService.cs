@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SigfolioWallet.Core.Services.Interfaces;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.DataProtection;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using Newtonsoft.Json;
-using SigfolioWallet.Core.Services;
-using SigfolioWallet.Core.Services.Interfaces;
 
 namespace SigfolioWallet.Core.UWP
 {
@@ -18,9 +13,12 @@ namespace SigfolioWallet.Core.UWP
     {
         private readonly DataProtectionProvider _provider = new DataProtectionProvider("LOCAL = user");
         private readonly ApplicationDataContainer _localSettings;
+        private readonly StorageFolder _localFolder = ApplicationData.Current.LocalCacheFolder;
 
-        private const string SaltKey = "salt";
-        private const string IvKey = "iv";
+
+        private const string SaltKey = "salt_key";
+        private const string IvKey = "iv_key";
+        private const string WalletKey = "wallet";
 
         public StorageService()
         {
@@ -32,31 +30,7 @@ namespace SigfolioWallet.Core.UWP
             _localSettings = applicationDataContainer;
         }
 
-        public async Task SaveEncryptedWalletToStorage(byte[] encryptedWallet)
-        {
-            StorageFolder localFolder = ApplicationData.Current.LocalCacheFolder;
-            var file = await localFolder.CreateFileAsync("wallet", CreationCollisionOption.ReplaceExisting);
-            var stream = await file.OpenAsync(FileAccessMode.ReadWrite);
-
-            using (var writeStream = stream.AsStreamForWrite())
-            {
-                writeStream.Write(encryptedWallet, 0, encryptedWallet.Length);
-            }
-        }
-
-        public async Task StoreSaltAndInitializationVector(byte[] salt, byte[] iv)
-        {
-            IBuffer bufferSalt = CryptographicBuffer.CreateFromByteArray(salt);
-            var protectedBufferSalt = await _provider.ProtectAsync(bufferSalt);
-
-            IBuffer bufferIv = CryptographicBuffer.CreateFromByteArray(salt);
-            var protectedBufferIv = await _provider.ProtectAsync(bufferIv);
-
-            _localSettings.Values[SaltKey] = CryptographicBuffer.EncodeToBase64String(protectedBufferSalt);
-            _localSettings.Values[IvKey] = CryptographicBuffer.EncodeToBase64String(protectedBufferIv);
-        }
-
-        public async Task<(byte[] Salt, byte[] IV)> GetSaltAndInitializationVector()
+        public async Task<(byte[] EncryptedWallet, byte[] Salt, byte[] IV)> GetEncryptedWalletFromStorage()
         {
             IBuffer bufferSalt = CryptographicBuffer.DecodeFromBase64String((string)_localSettings.Values[SaltKey]);
             var unprotectedBufferSalt = await _provider.UnprotectAsync(bufferSalt);
@@ -67,12 +41,48 @@ namespace SigfolioWallet.Core.UWP
             CryptographicBuffer.CopyToByteArray(unprotectedBufferSalt, out var saltBytes);
             CryptographicBuffer.CopyToByteArray(unprotectedBufferIv, out var ivBytes);
 
-            return (Salt: saltBytes, IV: ivBytes);
+            var file = await _localFolder.GetFileAsync(WalletKey);
+            var stream = await file.OpenAsync(FileAccessMode.Read);
+
+            byte[] encrypedWallet = { };
+            using (var readStream = stream.AsStreamForRead())
+            {
+                readStream.Write(encrypedWallet, 0, (int)readStream.Length);
+            }
+            
+            return (EncryptedWallet: encrypedWallet, Salt: saltBytes, IV: ivBytes);
         }
 
-        public Task<byte[]> GetEncryptedWalletFromStorage()
+        public async Task SaveEncryptedWalletToStorage(byte[] encryptedWallet, byte[] salt, byte[] iv)
         {
-            throw new NotImplementedException();
+            await StoreSaltAndInitializationVector(salt, iv);
+
+
+            var file = await _localFolder.CreateFileAsync(WalletKey, CreationCollisionOption.ReplaceExisting);
+            var stream = await file.OpenAsync(FileAccessMode.ReadWrite);
+
+            using (var writeStream = stream.AsStreamForWrite())
+            {
+                writeStream.Write(encryptedWallet, 0, encryptedWallet.Length);
+            }
+        }
+
+        public async Task<bool> WalletExists()
+        {
+            var file = await _localFolder.TryGetItemAsync(WalletKey);
+            return file != null;
+        }
+
+        private async Task StoreSaltAndInitializationVector(byte[] salt, byte[] iv)
+        {
+            IBuffer bufferSalt = CryptographicBuffer.CreateFromByteArray(salt);
+            var protectedBufferSalt = await _provider.ProtectAsync(bufferSalt);
+
+            IBuffer bufferIv = CryptographicBuffer.CreateFromByteArray(salt);
+            var protectedBufferIv = await _provider.ProtectAsync(bufferIv);
+
+            _localSettings.Values[SaltKey] = CryptographicBuffer.EncodeToBase64String(protectedBufferSalt);
+            _localSettings.Values[IvKey] = CryptographicBuffer.EncodeToBase64String(protectedBufferIv);
         }
     }
 }

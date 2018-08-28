@@ -5,12 +5,9 @@ namespace SigfolioWallet.Core.Services.Interfaces
 {
     public interface IStorageService
     {
-        Task StoreSaltAndInitializationVector(byte[] salt, byte[] iv);
+        Task<(byte[] EncryptedWallet, byte[] Salt, byte[] IV)> GetEncryptedWalletFromStorage();
 
-        Task<(byte[] Salt, byte[] IV)> GetSaltAndInitializationVector();
-
-        Task<byte[]> GetEncryptedWalletFromStorage();
-
-        Task SaveEncryptedWalletToStorage(byte[] encryptedWallet);
+        Task SaveEncryptedWalletToStorage(byte[] encryptedWallet, byte[] salt, byte[] iv);
+        Task<bool> WalletExists();
     }
 }

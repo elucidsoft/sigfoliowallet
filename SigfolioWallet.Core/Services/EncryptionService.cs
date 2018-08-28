@@ -38,7 +38,7 @@ namespace SigfolioWallet.Core.Services
             }
         }
 
-        public string Decrypt(string password, byte[] encryptedData, byte[] iv, byte[] salt)
+        public string Decrypt(string password, byte[] encryptedData, byte[] salt, byte[] iv)
         {
             var decryptionAlgorithm = TripleDES.Create();
             var rfc2898DeriveBytes = new Rfc2898DeriveBytes("password", salt, Iterations);

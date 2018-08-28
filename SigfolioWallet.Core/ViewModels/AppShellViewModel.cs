@@ -10,18 +10,18 @@ namespace SigfolioWallet.Core.ViewModels
 
         public MvxInteraction<PasswordEventArgs> PasswordRequested = new MvxInteraction<PasswordEventArgs>();
 
-        public AppShellViewModel(INavigationService navigationService, AuthenticationService authenticationService)
+        public AppShellViewModel(INavigationService navigationService, IAuthenticationService authenticationService)
         {
             _navigationService = navigationService;
 
-            authenticationService.RequestPassword += _authenticationService_RequestPassword;
+           // authenticationService.RequestPassword += _authenticationService_RequestPassword;
         }
 
-        private void _authenticationService_RequestPassword(object sender, PasswordEventArgs e)
-        {
-            var passwordEventArgs = new PasswordEventArgs();
-                PasswordRequested.Raise(passwordEventArgs);
-        }
+        //private void _authenticationService_RequestPassword(object sender, PasswordEventArgs e)
+        //{
+        //    var passwordEventArgs = new PasswordEventArgs();
+        //        PasswordRequested.Raise(passwordEventArgs);
+        //}
 
         //public void UnlockWallet()
         //{

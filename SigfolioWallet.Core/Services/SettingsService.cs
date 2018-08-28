@@ -21,14 +21,18 @@ namespace SigfolioWallet.Core.Services
             _authenticationService = authenticationService;
         }
 
-        public Wallet Wallet { get; set; }
+        public Wallet Wallet { get; private set; }
 
         public async Task<Wallet> LoadWallet()
         {
-            var saltIv = await _storageService.GetSaltAndInitializationVector();
+            if (!await _storageService.WalletExists())
+                return new Wallet();
+
             var encryptedWallet = await _storageService.GetEncryptedWalletFromStorage();
 
-            var decryptedWalletJson = _encryptionService.Decrypt(_authenticationService.GetPassword(), encryptedWallet, saltIv.IV, saltIv.Salt);
+            //var decryptedWalletJson = _encryptionService.Decrypt(_authenticationService.GetPassword(), encryptedWallet.EncryptedWallet, encryptedWallet.Salt, encryptedWallet.IV);
+            //TODO: Undid this for time being while I think about how I want to handle this behavior...
+            var decryptedWalletJson = _encryptionService.Decrypt("password", encryptedWallet.EncryptedWallet, encryptedWallet.Salt, encryptedWallet.IV);
             var wallet = JsonConvert.DeserializeObject<Wallet>(decryptedWalletJson);
 
             return wallet;
@@ -36,11 +40,13 @@ namespace SigfolioWallet.Core.Services
 
         public async Task SaveWallet(Wallet wallet)
         {
-            var walletJson = JsonConvert.SerializeObject(wallet);
-            var encrypted = _encryptionService.Encrypt(_authenticationService.GetPassword(), walletJson);
+            Wallet = wallet;
 
-            await _storageService.StoreSaltAndInitializationVector(encrypted.Salt, encrypted.IV);
-            await _storageService.SaveEncryptedWalletToStorage(encrypted.EncryptedBytes);
+            var walletJson = JsonConvert.SerializeObject(wallet);
+//var encrypted = _encryptionService.Encrypt(_authenticationService.GetPassword(), walletJson);
+            var encrypted = _encryptionService.Encrypt("password", walletJson);
+
+            await _storageService.SaveEncryptedWalletToStorage(encrypted.EncryptedBytes, encrypted.Salt, encrypted.IV);
         }
 
         public async void ResetSettings()

@@ -46,7 +46,7 @@ namespace SigfolioWallet
             NavView.AppFrame.Navigated += AppFrame_Navigated;
             NavView.NavView.ItemInvoked += NavView_ItemInvoked;
 
-            ViewModel.PasswordRequested.Requested += PasswordRequested_Requested;
+            //ViewModel.PasswordRequested.Requested += PasswordRequested_Requested;
         }
 
         private async void PasswordRequested_Requested(object sender, MvvmCross.Base.MvxValueEventArgs<Core.PasswordEventArgs> e)
