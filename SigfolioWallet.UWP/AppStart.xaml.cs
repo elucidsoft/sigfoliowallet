@@ -30,6 +30,8 @@ namespace SigfolioWallet
             SetupColors();
 
             Loaded += AppStart_Loaded;
+
+            
         }
 
         private void AppStart_Loaded(object sender, RoutedEventArgs e)

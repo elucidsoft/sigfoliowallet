@@ -45,6 +45,8 @@ namespace SigfolioWallet.Core.ViewModels
         public Task Open(int selectedAccount)
         {
             Wallet.CurrentAccountId = selectedAccount;
+
+            //TODO: TestWallet is stubbed out for now, need to implement wallet selection logic
             _settingsService.SaveWallet(Wallet);
 
             return _navigationService.Navigate<AppShellViewModel>();

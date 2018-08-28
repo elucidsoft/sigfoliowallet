@@ -54,6 +54,7 @@ namespace SigfolioWallet.UWP
         protected override IMvxApplication CreateApp()
         {
             Mvx.RegisterSingleton<IStorageService>(new StorageService());
+            
             return new Core.App();
         }
 

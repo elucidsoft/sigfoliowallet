@@ -15,7 +15,11 @@ namespace SigfolioWallet.Test
         public async Task SaveWalletTest()
         {
             var testStorageService = new TestStorageService();
-            var settingsService = new SettingsService(testStorageService, new EncryptionService(), new AuthenticationService());
+            var authenticationService = new AuthenticationService();
+
+            authenticationService.RequestPassword += (sender, args) => { args.SetPassword("password"); };
+
+            var settingsService = new SettingsService(testStorageService, new EncryptionService(), authenticationService);
 
             var wallet = new Core.Models.Wallet
             {
@@ -35,7 +39,8 @@ namespace SigfolioWallet.Test
 
             Assert.AreEqual(wallet, loadedWallet);
 
-            using (var encryptedStream = new MemoryStream(testStorageService.EncryptedWallet))
+            var encryptedWallet = testStorageService.GetEncrypedWallet();
+            using (var encryptedStream = new MemoryStream(encryptedWallet))
             using (var reader = new StreamReader(encryptedStream))
             {
                 var encrypedJson = await reader.ReadToEndAsync();
@@ -46,31 +51,32 @@ namespace SigfolioWallet.Test
 
     public class TestStorageService : IStorageService
     {
-        public byte[] EncryptedWallet;
-        public byte[] Salt;
-        public byte[] Iv;
+        private byte[] EncryptedWallet;
+        private byte[] Salt;
+        private byte[] Iv;
 
-        public Task StoreSaltAndInitializationVector(byte[] salt, byte[] iv)
+        public byte[] GetEncrypedWallet()
         {
+            return EncryptedWallet;
+        }
+
+        public Task<(byte[] EncryptedWallet, byte[] Salt, byte[] IV)> GetEncryptedWalletFromStorage()
+        {
+            return Task.FromResult((EncryptedWallet: EncryptedWallet, Salt: Salt, Iv: Iv));
+        }
+
+        public Task SaveEncryptedWalletToStorage(byte[] encryptedWallet, byte[] salt, byte[] iv)
+        {
+            EncryptedWallet = encryptedWallet;
             Salt = salt;
             Iv = iv;
+
             return Task.CompletedTask;
         }
 
-        public Task<(byte[] Salt, byte[] IV)> GetSaltAndInitializationVector()
+        public Task<bool> WalletExists()
         {
-            return Task.FromResult((Salt: Salt, Iv: Iv));
-        }
-
-        public Task<byte[]> GetEncryptedWalletFromStorage()
-        {
-            return Task.FromResult(EncryptedWallet);
-        }
-
-        public async Task SaveEncryptedWalletToStorage(byte[] encryptedWallet)
-        {
-            EncryptedWallet = encryptedWallet;
-            await Task.CompletedTask;
+            return Task.FromResult(EncryptedWallet.Length > 0);
         }
     }
 
