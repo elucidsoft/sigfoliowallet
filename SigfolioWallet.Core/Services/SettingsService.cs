@@ -1,9 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using LiteDB;
 using SigfolioWallet.Core.Models;
 using SigfolioWallet.Core.Services.Interfaces;
-using System;
-using System.IO;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace SigfolioWallet.Core.Services
@@ -13,6 +10,8 @@ namespace SigfolioWallet.Core.Services
         private readonly IStorageService _storageService;
         private readonly IEncryptionService _encryptionService;
         private readonly IAuthenticationService _authenticationService;
+
+        private const string WalletCollectionName = "wallet";
 
         public SettingsService(IStorageService storageService, IEncryptionService encryptionService, IAuthenticationService authenticationService)
         {
@@ -25,33 +24,39 @@ namespace SigfolioWallet.Core.Services
 
         public async Task<Wallet> LoadWallet()
         {
-            if (!await _storageService.WalletExists())
-                return new Wallet();
+            using (var stream = await _storageService.GetStorageStream())
+            using (var db = new LiteDatabase(stream))
+            {
+                var walletColl = db.GetCollection<Wallet>(WalletCollectionName);
 
-            var encryptedWallet = await _storageService.GetEncryptedWalletFromStorage();
+                if (walletColl.Count() == 0)
+                {
+                    walletColl.Insert(new Wallet() { IsCurrentWallet = true });
+                }
 
-            //var decryptedWalletJson = _encryptionService.Decrypt(_authenticationService.GetPassword(), encryptedWallet.EncryptedWallet, encryptedWallet.Salt, encryptedWallet.IV);
-            //TODO: Undid this for time being while I think about how I want to handle this behavior...
-            var decryptedWalletJson = _encryptionService.Decrypt("password", encryptedWallet.EncryptedWallet, encryptedWallet.Salt, encryptedWallet.IV);
-            var wallet = JsonConvert.DeserializeObject<Wallet>(decryptedWalletJson);
+                Wallet = walletColl.FindOne(a => a.IsCurrentWallet);
+            }
 
-            return wallet;
+            return Wallet;
         }
 
         public async Task SaveWallet(Wallet wallet)
         {
-            Wallet = wallet;
-
-            var walletJson = JsonConvert.SerializeObject(wallet);
-//var encrypted = _encryptionService.Encrypt(_authenticationService.GetPassword(), walletJson);
-            var encrypted = _encryptionService.Encrypt("password", walletJson);
-
-            await _storageService.SaveEncryptedWalletToStorage(encrypted.EncryptedBytes, encrypted.Salt, encrypted.IV);
+            using (var stream = await _storageService.GetStorageStream())
+            using (var db = new LiteDatabase(stream))
+            {
+                var walletColl = db.GetCollection<Wallet>(WalletCollectionName);
+                walletColl.Upsert(wallet);
+            }
         }
 
         public async void ResetSettings()
         {
-
+            using (var stream = await _storageService.GetStorageStream())
+            using (var db = new LiteDatabase(stream))
+            {
+                db.DropCollection(WalletCollectionName);
+            }
         }
     }
 }

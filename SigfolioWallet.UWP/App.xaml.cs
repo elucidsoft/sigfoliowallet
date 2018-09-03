@@ -9,7 +9,6 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using MvvmCross;
-using SigfolioWallet.Core.Services;
 using SigfolioWallet.Core.Services.Interfaces;
 using SigfolioWallet.Core.UWP;
 

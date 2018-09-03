@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvvmCross.Tests;
 using SigfolioWallet.Core.Models;
-using SigfolioWallet.Core.UWP;
+
 using Windows.Foundation.Collections;
 using Windows.Storage;
 

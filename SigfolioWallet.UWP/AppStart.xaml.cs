@@ -3,7 +3,7 @@ using MvvmCross;
 using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
 using SigfolioWallet.Core.Services;
-using SigfolioWallet.Core.UWP;
+
 using SigfolioWallet.Core.ViewModels;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -30,8 +30,6 @@ namespace SigfolioWallet
             SetupColors();
 
             Loaded += AppStart_Loaded;
-
-            
         }
 
         private void AppStart_Loaded(object sender, RoutedEventArgs e)
