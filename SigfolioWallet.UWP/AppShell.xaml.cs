@@ -34,9 +34,6 @@ namespace SigfolioWallet
     [MvxViewFor(typeof(AppShellViewModel))]
     public sealed partial class AppShell : MvxWindowsPage
     {
-    //    public static string SelectedAccountId { get; set; }
-    //    public static readonly Server server = new Server("https://horizon-testnet.stellar.org/");
-        //public static readonly Server server = new Server("https://horizon.stellar.org/");
 
         public AppShell()
         {
@@ -56,19 +53,7 @@ namespace SigfolioWallet
 
         private void AppFrame_Navigated(object sender, NavigationEventArgs e)
         {
-           // LoadAccountDetails();
-        }
 
-        private async void LoadAccountDetails()
-        {
-            //if (SelectedAccountId != null)
-            //{
-            //    var details = await server.Accounts.Account(KeyPair.FromAccountId(AppShell.SelectedAccountId));
-            //    var balance = details.Balances.Where(b => b.AssetType == "native").FirstOrDefault().BalanceString;
-
-            //    NavView.SetBalanceText(balance);
-            //    NavView.SetName(SelectedAccountId);
-            //}
         }
 
         public new AppShellViewModel ViewModel => (AppShellViewModel)base.ViewModel;

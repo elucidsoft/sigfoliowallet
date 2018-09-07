@@ -55,19 +55,36 @@ namespace SigfolioWallet
         {
             this.InitializeComponent();
         }
-    }
 
-    class LedgerItem
-    {
-        public DateTime Date { get; set; }
-        public String From { get; set; }
-        public String To { get; set; }
+        private void lvAllTransactions_ItemClick(object sender, ItemClickEventArgs e)
+        {
 
-        public String Withdrawals { get; set; }
-        public String Deposits { get; set; }
-        public String Balance { get; set; }
+        }
 
-        //public String Description { get { return Account; } }
+        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var pivot = (Pivot)sender;
 
+            var pivotItem = (PivotItem)pivot.SelectedItem;
+
+            if(pivotItem.Name == "piSent")
+            {
+                ViewModel.Filter = "debit";
+            }
+            else if(pivotItem.Name == "piReceived")
+            {
+                ViewModel.Filter = "credit";
+            }
+            else
+            {
+                ViewModel.Filter = "all";
+            }
+            
+        }
+
+        private void Pivot_PivotItemLoading(Pivot sender, PivotItemEventArgs args)
+        {
+
+        }
     }
 }

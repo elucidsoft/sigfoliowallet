@@ -1,0 +1,28 @@
+<<<<<<< Updated upstream:SigfolioWallet.Core/Services/Interfaces/ITransactionService.cs
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using SigfolioWallet.Core.Models;
+
+namespace SigfolioWallet.Core.Services.Interfaces
+{
+    public interface ITransactionService
+    {
+        Task<List<Transaction>> GetTransactionsAsync(string publicKey);
+    }
+}
+=======
+﻿using SigfolioWallet.Core.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+
+namespace SigfolioWallet.Core.Services
+{
+    public interface ITransactionService
+    {
+        Task<List<Transaction>> GetTransactionsAsync(string publicKey);
+
+        Task<TransactionDetails> GetTransactionDetails(long operationId);
+    }
+}
+>>>>>>> Stashed changes:SigfolioWallet.Core/Services/ITransactionService.cs

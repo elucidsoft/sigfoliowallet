@@ -1,0 +1,67 @@
+﻿<views:MvxWindowsPage
+<<<<<<< Updated upstream
+    xmlns:views="using:MvvmCross.Platforms.Uap.Views"    x:Class="SigfolioWallet.TransactionsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+=======
+    xmlns:views="using:MvvmCross.Platforms.Uap.Views"    x:Class="SigfolioWallet.TransactionsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:DataType="x:String" x:Key="rowTemplate">
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Height="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16"></ColumnDefinition>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image HorizontalAlignment="Left" Height="16" VerticalAlignment="Center" Width="16" Grid.Column="0"/>
+                <StackPanel HorizontalAlignment="Left" Height="100" VerticalAlignment="Stretch" Grid.Column="1">
+                    <TextBlock HorizontalAlignment="Left" Text="Bruce Wayne" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Left" Text="For: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad " TextWrapping="Wrap" VerticalAlignment="Center" FontSize="12"/>
+                </StackPanel>
+                <TextBlock Text="{Binding Amount}" Grid.Column="2"/>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    
+>>>>>>> Stashed changes
+    <Grid>
+        <SplitView DisplayMode="Inline" IsPaneOpen="True" OpenPaneLength="700" Name="SplitView">
+            <SplitView.Pane>
+                <Pivot Title="Transactions" SelectionChanged="Pivot_SelectionChanged" PivotItemLoading="Pivot_PivotItemLoading">
+                    <PivotItem Header="All" Name="piAll">
+                        <Grid HorizontalAlignment="Left">
+                            <ListView x:Name="lvAllTransactions" ItemsSource="{Binding Transactions, Mode=OneWay}" ItemTemplate="{StaticResource rowTemplate}">
+                            </ListView>
+                        </Grid>
+                    </PivotItem>
+                    <PivotItem Header="Sent" Name="piSent">
+                        <Grid HorizontalAlignment="Left">
+                            <ListView x:Name="lvDebitTransactions" ItemsSource="{Binding Transactions, Mode=OneWay}" ItemTemplate="{StaticResource rowTemplate}">
+                            </ListView>
+                        </Grid>
+                    </PivotItem>
+                    <PivotItem Header="Received" Name="piReceived">
+                        <Grid HorizontalAlignment="Left">
+                            <ListView x:Name="lvCreditTransactions" ItemsSource="{Binding Transactions, Mode=OneWay}" ItemTemplate="{StaticResource rowTemplate}">
+                            </ListView>
+                        </Grid>
+                    </PivotItem>
+                </Pivot>
+            </SplitView.Pane>
+            <Grid>
+               
+            </Grid>
+        </SplitView>
+    </Grid></views:MvxWindowsPage>
