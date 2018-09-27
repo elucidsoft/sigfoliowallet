@@ -1,27 +1,14 @@
-﻿using MvvmCross.Platforms.Uap.Presenters.Attributes;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+using MvvmCross.Platforms.Uap.Presenters.Attributes;
 using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
 using SigfolioWallet.Core.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace SigfolioWallet
+namespace SigfolioWallet.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -55,19 +42,36 @@ namespace SigfolioWallet
         {
             this.InitializeComponent();
         }
-    }
 
-    class LedgerItem
-    {
-        public DateTime Date { get; set; }
-        public String From { get; set; }
-        public String To { get; set; }
+        private void lvAllTransactions_ItemClick(object sender, ItemClickEventArgs e)
+        {
 
-        public String Withdrawals { get; set; }
-        public String Deposits { get; set; }
-        public String Balance { get; set; }
+        }
 
-        //public String Description { get { return Account; } }
+        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var pivot = (Pivot)sender;
 
+            var pivotItem = (PivotItem)pivot.SelectedItem;
+
+            if(pivotItem.Name == "piSent")
+            {
+                ViewModel.Filter = "debit";
+            }
+            else if(pivotItem.Name == "piReceived")
+            {
+                ViewModel.Filter = "credit";
+            }
+            else
+            {
+                ViewModel.Filter = "all";
+            }
+            
+        }
+
+        private void Pivot_PivotItemLoading(Pivot sender, PivotItemEventArgs args)
+        {
+
+        }
     }
 }

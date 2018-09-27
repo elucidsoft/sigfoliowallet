@@ -1,47 +1,21 @@
 ﻿<views:MvxWindowsPage
-    xmlns:views="using:MvvmCross.Platforms.Uap.Views"    x:Class="SigfolioWallet.HomeView"
+    xmlns:views="using:MvvmCross.Platforms.Uap.Views"    x:Class="SigfolioWallet.Views.HomeView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SigfolioWallet"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:controls1="using:SigfolioWallet.Controls"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    Background="{ThemeResource SystemControlBackgroundListLowBrush}">
     <Grid>
-        <StackPanel Margin="25,100,0,0">
-            <TextBlock Name="txtPageTitle" Text="Balances" FontWeight="Bold" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition Width="200"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Column="0" Text="Asset"/>
-                <TextBlock Grid.Column="1" Text="Amount"/>
-            </Grid>
-            <GridView Name="gvBalances" IsItemClickEnabled="True" ItemClick="gvBalances_ItemClick">
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapGrid Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="200"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Column="0" Text="{Binding Asset}"/>
-                            <TextBlock Grid.Column="1" Text="{Binding Amount}"/>
-                        </Grid>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
-
+        <StackPanel VerticalAlignment="Center">
+            <controls1:Card x:Name="Card1" Label="TEST" PrimaryText="100" SubText="STR" />
+            <controls1:Card Label="TEST" PrimaryText="100" SubText="STR" />
+            <controls1:Card Label="TEST" PrimaryText="100" SubText="STR" />
+            <TextBlock x:Name="Number"></TextBlock>
+            <Button Click="ButtonBase_OnClick" HorizontalAlignment="Center">Test</Button>
         </StackPanel>
     </Grid>
 </views:MvxWindowsPage>

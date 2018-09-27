@@ -9,9 +9,10 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using MvvmCross;
-using SigfolioWallet.Core.Services;
 using SigfolioWallet.Core.Services.Interfaces;
 using SigfolioWallet.Core.UWP;
+using MvvmCross.IoC;
+using SigfolioWallet.Utilities;
 
 namespace SigfolioWallet.UWP
 {
@@ -53,7 +54,7 @@ namespace SigfolioWallet.UWP
     {
         protected override IMvxApplication CreateApp()
         {
-            Mvx.RegisterSingleton<IStorageService>(new StorageService());
+            Mvx.IoCProvider.RegisterSingleton<IStorageService>(new StorageService());
             
             return new Core.App();
         }
