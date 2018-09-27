@@ -18,11 +18,11 @@ namespace SigfolioWallet.Core
             _loginService = loginService;
         }
 
-        private void NavigateToViewModel<TViewModel>() where TViewModel : MvxViewModel
+        private async Task NavigateToViewModel<TViewModel>() where TViewModel : MvxViewModel
         {
             try
             {
-                NavigationService.Navigate<TViewModel>().GetAwaiter().GetResult();
+                await NavigationService.Navigate<TViewModel>();
             }
             catch (Exception ex)
             {
@@ -30,9 +30,9 @@ namespace SigfolioWallet.Core
             }
         }
 
-        protected override void NavigateToFirstViewModel(object hint = null)
+        protected override async Task NavigateToFirstViewModel(object hint = null)
         {
-            NavigateToViewModel<AppStartViewModel>();
+            await NavigateToViewModel<AppStartViewModel>();
         }
 
     }

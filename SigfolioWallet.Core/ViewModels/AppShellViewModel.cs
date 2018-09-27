@@ -13,7 +13,6 @@ namespace SigfolioWallet.Core.ViewModels
         public AppShellViewModel(INavigationService navigationService, IAuthenticationService authenticationService)
         {
             _navigationService = navigationService;
-
            // authenticationService.RequestPassword += _authenticationService_RequestPassword;
         }
 

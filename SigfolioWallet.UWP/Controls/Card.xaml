@@ -1,0 +1,30 @@
+﻿<UserControl
+    x:Class="SigfolioWallet.Controls.Card"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SigfolioWallet.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400" DataContext="{Binding RelativeSource={RelativeSource self}}">
+
+    <Grid Margin="8">
+        <StackPanel VerticalAlignment="Center">
+            <controls:DropShadowPanel Name="CardShadow" Height="64" Width="180" BlurRadius="14" ShadowOpacity=".1" OffsetX="3" OffsetY="3" >
+                <Grid Name="CardGrid" Height="64" Width="180" >
+                    <StackPanel Orientation="Vertical" Padding="8">
+                        <TextBlock Name="LabelTextBlock" Text="{Binding Label, Mode=OneWay}" FontSize="10"  Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"></TextBlock>
+                        <StackPanel Orientation="Horizontal" Padding="0 2 0 0">
+                            <TextBlock Name="PrimaryTextBlock"  FontFamily="Bahnschrift" FontSize="28" VerticalAlignment="Bottom" Height="27" ></TextBlock>
+                            <TextBlock Name="SubTextBlock" Text="{Binding SubText, Mode=OneWay}" FontFamily="Bahnschrift" FontSize="10" VerticalAlignment="Bottom"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+
+                </Grid>
+            </controls:DropShadowPanel>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

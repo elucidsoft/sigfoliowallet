@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using MvvmCross.Platforms.Uap.Presenters;
@@ -20,13 +21,12 @@ namespace SigfolioWallet
 
         public Frame RootFrame { get; }
 
-        public override void ChangePresentation(MvxPresentationHint hint)
+        public override async Task<bool> ChangePresentation(MvxPresentationHint hint)
         {
-
             if (RootFrame.BackStack.Any())
                 RootFrame.BackStack.Clear();
 
-            base.ChangePresentation(hint);
+            return await base.ChangePresentation(hint);
         }
 
 

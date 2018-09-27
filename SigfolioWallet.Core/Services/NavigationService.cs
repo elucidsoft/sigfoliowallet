@@ -26,6 +26,9 @@ namespace SigfolioWallet.Core.Services
                 case NavigationPath.Transactions:
                     _navigationService.Navigate<TransactionsViewModel>();
                     break;
+                case NavigationPath.SendReceive:
+                    _navigationService.Navigate<SendReceiveViewModel>();
+                    break;
                 case NavigationPath.History:
                     _navigationService.Navigate<HistoryViewModel>();
                     break;

@@ -7,6 +7,7 @@ using System.Security;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
@@ -24,7 +25,6 @@ using SigfolioWallet.Core.ViewModels;
 using MvvmCross.Platforms.Uap.Presenters.Attributes;
 using SigfolioWallet.Core.Services;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace SigfolioWallet
 {
@@ -40,10 +40,20 @@ namespace SigfolioWallet
             this.InitializeComponent();
             Window.Current.SetTitleBar(AppTitleBar);
 
-            NavView.AppFrame.Navigated += AppFrame_Navigated;
+            //NavView.AppFrame.Navigated += AppFrame_Navigated;
             NavView.NavView.ItemInvoked += NavView_ItemInvoked;
 
-            //ViewModel.PasswordRequested.Requested += PasswordRequested_Requested;
+            Loaded += AppShell_Loaded;
+        }
+
+        private void AppShell_Loaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.NavigateMenuItem(NavigationPath.Home);
+        }
+
+        public void ChangeBackgroundColor(Color color)
+        {
+            Background = new SolidColorBrush(color);
         }
 
         private async void PasswordRequested_Requested(object sender, MvvmCross.Base.MvxValueEventArgs<Core.PasswordEventArgs> e)
@@ -51,10 +61,10 @@ namespace SigfolioWallet
             await new MessageDialog(e.Value.Message).ShowAsync();
         }
 
-        private void AppFrame_Navigated(object sender, NavigationEventArgs e)
-        {
-
-        }
+        //private void AppFrame_Navigated(object sender, NavigationEventArgs e)
+        //{
+        //    ViewModel.NavigateMenuItem(NavigationPath.Home);
+        //}
 
         public new AppShellViewModel ViewModel => (AppShellViewModel)base.ViewModel;
 
@@ -66,3 +76,5 @@ namespace SigfolioWallet
         }
     }
 }
+
+
