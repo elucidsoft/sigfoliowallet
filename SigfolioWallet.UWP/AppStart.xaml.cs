@@ -1,16 +1,12 @@
-﻿using System;
-using MvvmCross;
-using MvvmCross.Platforms.Uap.Views;
+﻿using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
-using SigfolioWallet.Core.Services;
-
 using SigfolioWallet.Core.ViewModels;
+using SigfolioWallet.Utilities;
+using System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using SigfolioWallet.Utilities;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -33,14 +29,17 @@ namespace SigfolioWallet
             Loaded += AppStart_Loaded;
         }
 
-        private void AppStart_Loaded(object sender, RoutedEventArgs e)
+        private async void AppStart_Loaded(object sender, RoutedEventArgs e)
         {
-            cbAccounts.DataContext = ViewModel;
+            await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+             {
+                 cbAccounts.DataContext = ViewModel;
 
-            if (ViewModel.Wallet.CurrentAccountId == 0)
-            {
-                cbAccounts.SelectedValue = ViewModel.Wallet.CurrentAccountId;
-            }
+                 if (ViewModel.Wallet.CurrentAccountId == 0)
+                 {
+                     cbAccounts.SelectedValue = ViewModel.Wallet.CurrentAccountId;
+                 }
+             });
         }
 
         private void SetupColors()
