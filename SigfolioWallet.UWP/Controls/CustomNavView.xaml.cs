@@ -12,6 +12,8 @@ namespace SigfolioWallet.Controls
 {
     public sealed partial class CustomNavView : UserControl
     {
+        private TextBlock _title;
+
         private Ellipse _ellName;
         private Grid _ccNameGrid;
         private ContentControl _ccName;
@@ -95,6 +97,8 @@ namespace SigfolioWallet.Controls
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
+            _title = UWPUtilities.FindControlWithName<TextBlock>("tbTitle", MyNavView);
+            
             _ellName = UWPUtilities.FindControlWithName<Ellipse>("ellName", MyNavView);
             _ccNameGrid = UWPUtilities.FindControlWithName<Grid>("ccNameGrid", MyNavView);
             _ccName = UWPUtilities.FindControlWithName<ContentControl>("ccName", MyNavView);
@@ -198,5 +202,10 @@ namespace SigfolioWallet.Controls
         public Frame AppFrame => PageContent;
 
         public NavigationView NavView => MyNavView;
+
+        public void SetTitle(string viewModelTitle)
+        {
+            _title.Text = viewModelTitle;
+        }
     }
 }

@@ -5,17 +5,53 @@
     xmlns:local="using:SigfolioWallet"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sfw="using:SigfolioWallet.Controls"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:controls1="using:SigfolioWallet.Controls"
+    xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
+
     mc:Ignorable="d"
     Background="{ThemeResource SystemControlBackgroundListLowBrush}">
-    <Grid>
-        <StackPanel VerticalAlignment="Center">
-            <controls1:Card x:Name="Card1" Label="TEST" PrimaryText="100" SubText="STR" />
-            <controls1:Card Label="TEST" PrimaryText="100" SubText="STR" />
-            <controls1:Card Label="TEST" PrimaryText="100" SubText="STR" />
-            <TextBlock x:Name="Number"></TextBlock>
-            <Button Click="ButtonBase_OnClick" HorizontalAlignment="Center">Test</Button>
-        </StackPanel>
-    </Grid>
+    <StackPanel Orientation="Vertical">
+        <controls:WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Vertical">
+                <StackPanel VerticalAlignment="Top"  Orientation="Horizontal" >
+                    <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="6" />
+                    <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="6"/>
+                    <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="6"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Margin="6">
+                    <chart:RadCartesianChart x:Name="lineSeries" PaletteName="None" Width="280" Height="112">
+                        <chart:RadCartesianChart.VerticalAxis>
+                            <chart:LinearAxis Opacity="0"/>
+                        </chart:RadCartesianChart.VerticalAxis>
+                        <chart:RadCartesianChart.HorizontalAxis>
+                            <chart:CategoricalAxis Opacity="0"/>
+                        </chart:RadCartesianChart.HorizontalAxis>
+
+                        <chart:AreaSeries ItemsSource="{Binding}" Stroke="#FF6F6F" StrokeMode="Points">
+                            <chart:AreaSeries.Fill>
+                                <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                                    <GradientStop Color="#7EFF6F6F" Offset="0.0"></GradientStop>
+                                    <GradientStop Color="Transparent" Offset="1"></GradientStop>
+                                </LinearGradientBrush>
+                            </chart:AreaSeries.Fill>
+                            <chart:AreaSeries.ValueBinding>
+                                <chart:PropertyNameDataPointBinding PropertyName="Value"/>
+                            </chart:AreaSeries.ValueBinding>
+                        </chart:AreaSeries>
+                    </chart:RadCartesianChart>
+
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel VerticalAlignment="Top"  Orientation="Horizontal" >
+                    <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="6" />
+                    <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="6" />
+                    <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="6" />
+                </StackPanel>
+                
+            </StackPanel>
+        </controls:WrapPanel>
+    </StackPanel>
+
 </views:MvxWindowsPage>
