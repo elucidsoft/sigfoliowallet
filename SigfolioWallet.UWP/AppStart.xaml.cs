@@ -20,6 +20,7 @@ namespace SigfolioWallet
     {
         public AppStart()
         {
+
             UISettings uiSettings = new UISettings();
             uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
             InitializeComponent();

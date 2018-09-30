@@ -54,62 +54,7 @@ namespace SigfolioWallet.Controls
             set => this.SetValue(SubTextProperty, value);
         }
 
-        public static readonly DependencyProperty PrimaryTextProperty = DependencyProperty.Register("PrimaryText", typeof(string), typeof(Card), new PropertyMetadata(null, PropertyChangedCallback));
-
-        private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            DispatcherTimer timer = new DispatcherTimer();
-
-            var oldNumber = Convert.ToInt64(e.OldValue);
-            var newNumber = Convert.ToInt64(e.NewValue);
-
-            var segment = Math.Max(10, Math.Abs(Math.Max(newNumber, oldNumber) / 100));
-            
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
-
-            long current = oldNumber;
-
-            if (d is Card tb)
-            {
-                timer.Start();
-                timer.Tick += (sender, o) =>
-                {
-                    if (current == newNumber)
-                    {
-                        timer.Stop();
-                        tb.PrimaryTextBlock.Text = newNumber.ToString();
-                        return;
-                    }
-
-                    if (oldNumber > newNumber)
-                    {
-                        if ((current - segment) < newNumber)
-                        {
-                            timer.Stop();
-                            tb.PrimaryTextBlock.Text = newNumber.ToString();
-                            return;
-                        }
-
-                        current = current - segment;
-                    }
-
-                    else
-                    {
-                        if ((current + segment) > newNumber)
-                        {
-                            timer.Stop();
-                            tb.PrimaryTextBlock.Text = newNumber.ToString();
-                            return;
-                        }
-
-                        current = current + segment;
-                    }
-
-                    tb.PrimaryTextBlock.Text = current.ToString();
-                };
-            }
-        }
-
+        public static readonly DependencyProperty PrimaryTextProperty = DependencyProperty.Register("PrimaryText", typeof(string), typeof(Card), new PropertyMetadata(null));
         public string PrimaryText
         {
             get => this.GetValue<string>(PrimaryTextProperty);

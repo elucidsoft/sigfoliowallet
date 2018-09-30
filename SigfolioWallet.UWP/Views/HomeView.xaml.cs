@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -22,27 +24,21 @@ namespace SigfolioWallet.Views
         public HomeView()
         {
             this.InitializeComponent();
-
-
-
-           
+            
             Loaded += HomeView_Loaded;
         }
 
+       
         private void HomeView_Loaded(object sender, RoutedEventArgs e)
         {
-           
+
+          
         }
+
+       
 
         public new HomeViewModel ViewModel => (HomeViewModel) base.ViewModel;
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            Random rnd = new Random();
-            var num = rnd.Next(0, 5000);
-
-            Number.Text = num.ToString();
-            Card1.PrimaryText = num.ToString();
-        }
     }
+
+
 }

@@ -1,29 +1,13 @@
-using SigfolioWallet.Views;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Security;
-using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI;
-using Windows.UI.Core;
-using Windows.UI.Popups;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using SigfolioWallet.Utilities;
 using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
-using SigfolioWallet.Core.ViewModels;
-using MvvmCross.Platforms.Uap.Presenters.Attributes;
 using SigfolioWallet.Core.Services;
+using SigfolioWallet.Core.ViewModels;
+using System;
+using Windows.UI;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 
 namespace SigfolioWallet
@@ -44,10 +28,22 @@ namespace SigfolioWallet
             NavView.NavView.ItemInvoked += NavView_ItemInvoked;
 
             Loaded += AppShell_Loaded;
+            Unloaded += AppShell_Unloaded;
+        }
+
+        private void AppShell_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Navigated -= ViewModel_Navigated;
+        }
+
+        private void ViewModel_Navigated(object sender, NavigationServiceEventArgs e)
+        {
+            NavView.SetTitle(e.Title);
         }
 
         private void AppShell_Loaded(object sender, RoutedEventArgs e)
         {
+            ViewModel.Navigated += ViewModel_Navigated;
             ViewModel.NavigateMenuItem(NavigationPath.Home);
         }
 
@@ -60,11 +56,6 @@ namespace SigfolioWallet
         {
             await new MessageDialog(e.Value.Message).ShowAsync();
         }
-
-        //private void AppFrame_Navigated(object sender, NavigationEventArgs e)
-        //{
-        //    ViewModel.NavigateMenuItem(NavigationPath.Home);
-        //}
 
         public new AppShellViewModel ViewModel => (AppShellViewModel)base.ViewModel;
 

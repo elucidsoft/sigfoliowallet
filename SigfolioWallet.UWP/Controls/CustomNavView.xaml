@@ -5,6 +5,8 @@
     xmlns:local="using:SigfolioWallet"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:SigfolioWallet.Core.ViewModels"
+    xmlns:controls="using:SigfolioWallet.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -344,7 +346,7 @@
                                     <VisualState x:Name="PointerOver">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#00C2FF"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Red"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="#00C2FF"/>
@@ -390,6 +392,11 @@
             </Storyboard>
         </Grid.Resources>
         <NavigationView Margin="0 0 0 42"  Style="{StaticResource NavigationViewStyle1}" x:Name="MyNavView" Canvas.ZIndex="0" IsBackButtonVisible="Collapsed" IsBackEnabled="False" PaneTitle="Sigfolio Wallet">
+            <NavigationView.HeaderTemplate>
+                <DataTemplate x:DataType="controls:CustomNavView">
+                    <TextBlock x:Name="tbTitle" FontSize="32" FontWeight="Bold" Text="TEST" Margin="20 20 0 20"></TextBlock>
+                </DataTemplate>
+            </NavigationView.HeaderTemplate>
             <NavigationView.MenuItems>
                 <NavigationViewItem Foreground="White" Content="Home" Tag="Home">
                     <NavigationViewItem.Icon>
@@ -412,7 +419,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
-            <Frame x:Name="PageContent"  Margin="24">
+            <Frame x:Name="PageContent" Margin="0 -10 0 -40"  Padding="24 0 24 0">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
                         <NavigationThemeTransition/>

@@ -8,17 +8,17 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400" DataContext="{Binding RelativeSource={RelativeSource self}}">
+    d:DesignWidth="400" >
 
-    <Grid Margin="8">
+    <Grid>
         <StackPanel VerticalAlignment="Center">
-            <controls:DropShadowPanel Name="CardShadow" Height="64" Width="180" BlurRadius="14" ShadowOpacity=".1" OffsetX="3" OffsetY="3" >
-                <Grid Name="CardGrid" Height="64" Width="180" >
+            <controls:DropShadowPanel Name="CardShadow" Height="64" Width="183" BlurRadius="14" ShadowOpacity=".1" OffsetX="3" OffsetY="3" >
+                <Grid Name="CardGrid" Height="64" Width="183" >
                     <StackPanel Orientation="Vertical" Padding="8">
-                        <TextBlock Name="LabelTextBlock" Text="{Binding Label, Mode=OneWay}" FontSize="10"  Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"></TextBlock>
+                        <TextBlock Name="LabelTextBlock" Text="{x:Bind Label, Mode=OneWay}" FontSize="10"  Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"></TextBlock>
                         <StackPanel Orientation="Horizontal" Padding="0 2 0 0">
-                            <TextBlock Name="PrimaryTextBlock"  FontFamily="Bahnschrift" FontSize="28" VerticalAlignment="Bottom" Height="27" ></TextBlock>
-                            <TextBlock Name="SubTextBlock" Text="{Binding SubText, Mode=OneWay}" FontFamily="Bahnschrift" FontSize="10" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Name="PrimaryTextBlock" Text="{x:Bind PrimaryText, Mode=OneWay}"  FontFamily="Bahnschrift" FontSize="28" VerticalAlignment="Bottom" Height="27" ></TextBlock>
+                            <TextBlock Name="SubTextBlock" Text="{x:Bind SubText, Mode=OneWay}" FontFamily="Bahnschrift" FontSize="10" VerticalAlignment="Bottom"></TextBlock>
                         </StackPanel>
                     </StackPanel>
 

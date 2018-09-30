@@ -26,6 +26,22 @@ namespace SigfolioWallet.Utilities
             return null;
         }
 
+        public static IEnumerable<T> FindControlsWithName<T>(String controlName, DependencyObject rootControl) where T : DependencyObject
+        {
+            IEnumerable<T> controls = FindVisualChildren<T>(rootControl);
+
+            foreach (var control in controls)
+                Debug.WriteLine(control.GetValue(FrameworkElement.NameProperty).ToString());
+
+            foreach (var control in controls)
+            {
+                if (control.GetValue(FrameworkElement.NameProperty).ToString() == controlName)
+                {
+                    yield return control;
+                }
+            }
+        }
+
         public static T FindParent<T>(DependencyObject dependencyObject) where T : DependencyObject
         {
             var parent = VisualTreeHelper.GetParent(dependencyObject);

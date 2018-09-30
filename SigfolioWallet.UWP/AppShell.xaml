@@ -341,6 +341,7 @@
     <Grid>
         <Rectangle Canvas.ZIndex="100" x:Name="AppTitleBar" Fill="Transparent" Height="32" VerticalAlignment="Top" />
         <controls:CustomNavView x:Name="NavView" />
+        
     </Grid>
 
 </views:MvxWindowsPage>

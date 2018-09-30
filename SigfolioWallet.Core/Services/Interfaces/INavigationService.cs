@@ -3,5 +3,7 @@
     public interface INavigationService
     {
         void NavigatePath(NavigationPath navigationPath);
+
+        string Title { get; set; }
     }
 }
