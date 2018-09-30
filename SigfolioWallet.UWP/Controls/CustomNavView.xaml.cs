@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -34,7 +35,7 @@ namespace SigfolioWallet.Controls
         private Visibility _txtAmountOriginalVisibility;
 
         private Grid _paneContentGrid;
-        private Rectangle _selectionIndicator;
+        private IEnumerable<Rectangle> _selectionIndicators;
 
         private readonly AcrylicBrush _acrylicBrush = new AcrylicBrush();
         private readonly UISettings _uiSettings = new UISettings();
@@ -50,17 +51,6 @@ namespace SigfolioWallet.Controls
             _uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
 
             NavView.Loaded += NavView_Loaded;
-            Window.Current.Activated += Current_Activated;
-        }
-
-        private void Current_Activated(object sender, WindowActivatedEventArgs e)
-        {
-            //if (!_uiSettings.AdvancedEffectsEnabled)
-            //    return;
-
-            //_selectionIndicator.Fill = e.WindowActivationState == CoreWindowActivationState.Deactivated 
-            //    ? new SolidColorBrush(UIUtility.GetAccentColorHigh()) 
-            //    : new SolidColorBrush(UIUtility.GetAccentColorLow());
         }
 
         private void UiSettings_ColorValuesChanged(UISettings sender, object args)
@@ -77,14 +67,16 @@ namespace SigfolioWallet.Controls
 
                 btnLockUnlockWallet.Background = new SolidColorBrush(UIUtility.GetAccentColorHigh());
 
-                if (Application.Current.RequestedTheme == ApplicationTheme.Light)
+                foreach (var si in _selectionIndicators)
                 {
-                    _selectionIndicator.Fill = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0));
-                }
-                else
-                {
-                    _selectionIndicator.Fill = new SolidColorBrush(Color.FromArgb(100, 255, 255, 255));
-
+                    if (Application.Current.RequestedTheme == ApplicationTheme.Light)
+                    {
+                        si.Fill = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0));
+                    }
+                    else
+                    {
+                        si.Fill = new SolidColorBrush(Color.FromArgb(100, 255, 255, 255));
+                    }
                 }
 
             });
@@ -108,7 +100,7 @@ namespace SigfolioWallet.Controls
             _txtAmount = UWPUtilities.FindControlWithName<TextBlock>("txtAmount", MyNavView);
 
             _paneContentGrid = UWPUtilities.FindControlWithName<Grid>("PaneContentGrid", MyNavView);
-            _selectionIndicator = UWPUtilities.FindControlWithName<Rectangle>("SelectionIndicator", MyNavView);
+            _selectionIndicators = UWPUtilities.FindControlsWithName<Rectangle>("SelectionIndicator", MyNavView);
 
             _paneContentGrid.Background = _acrylicBrush;
 

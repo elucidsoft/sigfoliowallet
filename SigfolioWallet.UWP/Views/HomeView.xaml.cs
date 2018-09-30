@@ -28,59 +28,17 @@ namespace SigfolioWallet.Views
             Loaded += HomeView_Loaded;
         }
 
-        public ObservableCollection<Data> data { get; set; }
-
+       
         private void HomeView_Loaded(object sender, RoutedEventArgs e)
         {
 
-           data = new  ObservableCollection<Data>();
-
-            data.Add(new Data() { Value = 2 });
-            data.Add(new Data() { Value = 9 });
-            data.Add(new Data() { Value = 8 });
-            data.Add(new Data() { Value = 2 });
-            data.Add(new Data() { Value = 8 });
-            data.Add(new Data() { Value = 4 });
-            data.Add(new Data() { Value = 4 });
-            data.Add(new Data() { Value = 5 });
-            data.Add(new Data() { Value = 2 });
-            data.Add(new Data() { Value = 3 });
-            data.Add(new Data() { Value = 5 });
-            data.Add(new Data() { Value = 8 });
-            data.Add(new Data() { Value = 5 });
-            data.Add(new Data() { Value = 5 });
-            data.Add(new Data() { Value = 9 });
-            data.Add(new Data() { Value = 12 });
-            data.Add(new Data() { Value = 4 });
-            data.Add(new Data() { Value = 2 });
-            data.Add(new Data() { Value = 8 });
-            data.Add(new Data() { Value = 3 });
-
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            Random rnd = new Random();
-            timer.Tick += (o, o1) =>
-            {
-               Add(rnd.Next(1, 20));
-            };
-
-            timer.Start();
-            lineSeries.DataContext = data;
+          
         }
 
-        private void Add(double value)
-        {
-            data.RemoveAt(0);
-            data.Add(new Data() { Value = value });
-        }
+       
 
         public new HomeViewModel ViewModel => (HomeViewModel) base.ViewModel;
     }
 
-    public class Data
-    {
-        public string Category { get; set; }
 
-        public double Value { get; set; }
-    }
 }
