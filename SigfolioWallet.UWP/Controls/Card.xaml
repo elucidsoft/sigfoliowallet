@@ -12,8 +12,8 @@
 
     <Grid>
         <StackPanel VerticalAlignment="Center">
-            <controls:DropShadowPanel Name="CardShadow" Height="64" Width="180" BlurRadius="14" ShadowOpacity=".1" OffsetX="3" OffsetY="3" >
-                <Grid Name="CardGrid" Height="64" Width="180" >
+            <controls:DropShadowPanel Name="CardShadow" Height="64" Width="183" BlurRadius="14" ShadowOpacity=".1" OffsetX="3" OffsetY="3" >
+                <Grid Name="CardGrid" Height="64" Width="183" >
                     <StackPanel Orientation="Vertical" Padding="8">
                         <TextBlock Name="LabelTextBlock" Text="{x:Bind Label, Mode=OneWay}" FontSize="10"  Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"></TextBlock>
                         <StackPanel Orientation="Horizontal" Padding="0 2 0 0">

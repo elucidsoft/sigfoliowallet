@@ -2,12 +2,14 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using Color = Windows.UI.Color;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -59,6 +61,17 @@ namespace SigfolioWallet.Controls
             }
             lineSeries.DataContext = data;
 
+            sasSeries.Stroke = new SolidColorBrush(Color);
+
+            var color1 = Color;
+            color1.A = 94;
+
+            var color2 = Color;
+            color2.A = 0;
+
+            gs1Color.Color = color1;
+            gs2Color.Color = color2;
+            
             data.CollectionChanged += Data_CollectionChanged;
         }
 
@@ -67,15 +80,8 @@ namespace SigfolioWallet.Controls
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
                 var firstValue = data[0].Value.ToString(CultureInfo.InvariantCulture);
-                //var trimmedSeries = data.Take(data.Count - 1).ToList();
 
                 var newValue = data[e.NewStartingIndex - 1].Value;
-
-                //if (LowValue == null)
-                //    LowValue = newValue;
-
-                //LowValue = newValue < LowValue ? newValue : LowValue;
-                //HighValue = newValue > HighValue ? newValue : HighValue;
 
                 LowValue = data.Min(a => a.Value);
                 HighValue = data.Max(a => a.Value);
@@ -84,7 +90,7 @@ namespace SigfolioWallet.Controls
                     LowTextBlock.Text = $"{LowValue}/{newValue}";
 
                 if(HighValue != ((Data)e.NewItems[0]).Value)
-                    HighTextBlock.Text = $"{HighValue}/{firstValue}";
+                    HighTextBlock.Text = $"{firstValue}/{HighValue}";
                 
             }
         }
@@ -98,6 +104,13 @@ namespace SigfolioWallet.Controls
         {
             get => this.GetValue<string>(LabelProperty);
             set => this.SetValue(LabelProperty, value);
+        }
+
+        public static readonly DependencyProperty ColorProperty = DependencyProperty.Register("Color", typeof(Color), typeof(CardChart), new PropertyMetadata(null));
+        public Color Color
+        {
+            get => this.GetValue<Color>(ColorProperty);
+            set => this.SetValue(ColorProperty, value);
         }
 
         public ObservableCollection<Data> data { get; set; }

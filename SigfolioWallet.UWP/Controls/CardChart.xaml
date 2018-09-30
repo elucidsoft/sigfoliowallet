@@ -16,10 +16,10 @@
         <StackPanel VerticalAlignment="Center">
             <controls:DropShadowPanel Name="CardShadow" Height="112" Width="280" BlurRadius="14" ShadowOpacity=".1" OffsetX="3" OffsetY="3" >
                 <Grid Name="CardGrid" Height="112" Width="280"  >
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                        <TextBlock Name="LabelTextBlock" Text="{x:Bind Label, Mode=OneWay}" FontSize="12" FontWeight="Bold" Margin="7,0,0,0"  Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"></TextBlock>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock Name="LabelTextBlock" Text="{x:Bind Label, Mode=OneWay}" FontSize="12" FontWeight="Bold" Margin="7,0,0,0" Padding="0 8 0 2"  Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"></TextBlock>
                         <TextBlock Name="HighTextBlock" FontSize="10" Opacity=".5" HorizontalAlignment="Left" Margin="7,0,0,0" VerticalAlignment="Stretch"></TextBlock>
-                        <chart:RadCartesianChart x:Name="lineSeries" PaletteName="None"  MinHeight="52" MinWidth="270" Margin="7,0,5,0">
+                        <chart:RadCartesianChart x:Name="lineSeries" PaletteName="None"  MinHeight="52" MinWidth="270" Margin="7,-2,5,0">
 
                             <chart:RadCartesianChart.VerticalAxis>
                                 <chart:LinearAxis Visibility="Collapsed"/>
@@ -27,7 +27,7 @@
                             <chart:RadCartesianChart.HorizontalAxis>
                                 <chart:CategoricalAxis Visibility="Collapsed" />
                             </chart:RadCartesianChart.HorizontalAxis>
-                            <chart:SplineAreaSeries ItemsSource="{Binding}" Stroke="#FF6F6F" StrokeThickness="1" StrokeMode="Points" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <chart:SplineAreaSeries x:Name="sasSeries" ItemsSource="{Binding}" StrokeThickness="1" StrokeMode="Points" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <chart:SplineAreaSeries.DataPoints>
                                     <charting:CategoricalDataPoint Value="0"/>
                                     <charting:CategoricalDataPoint Value="12"/>
@@ -64,8 +64,8 @@
 
                                 <chart:AreaSeries.Fill>
                                     <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
-                                        <GradientStop Color="#5EFF6F6F" Offset="0.4"></GradientStop>
-                                        <GradientStop Color="#00FF6F6F" Offset="1"></GradientStop>
+                                        <GradientStop x:Name="gs1Color" Offset="0.4"></GradientStop>
+                                        <GradientStop x:Name="gs2Color" Offset="1"></GradientStop>
                                     </LinearGradientBrush>
                                 </chart:AreaSeries.Fill>
                                 <chart:AreaSeries.ValueBinding>

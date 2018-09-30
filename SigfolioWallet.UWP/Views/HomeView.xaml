@@ -15,12 +15,25 @@
         <controls:WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
             <StackPanel Orientation="Vertical">
                 <StackPanel VerticalAlignment="Top"  Orientation="Horizontal" >
-                    <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="6" />
-                    <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="6"/>
-                    <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="6"/>
+                    <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="10" />
+                    <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="10"/>
+                    <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="10"/>
                 </StackPanel>
-                <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Margin="6">
-                    <sfw:CardChart Label="Closing Time"></sfw:CardChart>
+                <StackPanel VerticalAlignment="Top" Orientation="Horizontal" >
+                    <sfw:CardChart Label="Closing Time" Margin="10 12 14 12" Color="#FF6F6F"/>
+                    <sfw:CardChart Label="New Accounts"  Margin="15 12 0 12" Color="#2CDDF5"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Top" Orientation="Horizontal" >
+                    <sfw:CardChart Label="Transactions and Operations" Margin="10 12 14 12" Color="#2C5FF5"/>
+                    <sfw:CardChart Label="Payments"   Margin="15 12 0 12" Color="#00DAB1"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Top" Orientation="Horizontal" >
+                    <sfw:CardChart Label="Fees in Stroops" Margin="10 12 14 12" Color="#8F5BDB"/>
+                    <sfw:CardChart Label="Offers"   Margin="15 12 0 12" Color="#FFA800"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Top" Orientation="Horizontal" >
+                    <sfw:CardChart Label="Money Volume" Margin="10 12 14 12" Color="#FF4FAE"/>
+                    <sfw:CardChart Label="Options"  Margin="15 12 0 12" Color="#2C5FF5"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Vertical">
@@ -29,7 +42,7 @@
                     <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="6" />
                     <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" Margin="6" />
                 </StackPanel>
-                
+
             </StackPanel>
         </controls:WrapPanel>
     </StackPanel>
