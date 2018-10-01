@@ -1,4 +1,5 @@
-﻿using stellar_dotnet_sdk;
+﻿using SigfolioWallet.Core.Models;
+using stellar_dotnet_sdk;
 using stellar_dotnet_sdk.responses.operations;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,54 @@ namespace SigfolioWallet.Core.Services
             _stellarHorizonService = stellarHorizonService;
         }
 
+        public async Task<TransactionDetails> GetTransactionDetails(long operationId)
+        {
+            var operation = await _stellarHorizonService.Server.Operations.Operation(operationId).Execute();
+            
+
+            var operationDetail = operation.Records.FirstOrDefault();
+            
+          
+            if( operationDetail is PaymentOperationResponse)
+            {
+                return GetPaymentOperationReponseTransactionDetails(operationDetail);
+            }
+            //TODO: Eventually implement the other operationResponses here.
+            else
+            {
+                return null;
+            }
+
+        }
+
+        private TransactionDetails GetPaymentOperationReponseTransactionDetails(OperationResponse operationDetail)
+        {
+            var paymentOpResp = (PaymentOperationResponse)operationDetail;
+
+            //Get some other transaction details we might need, like the Memo if there is one.
+            var transTask = _stellarHorizonService.Server.Transactions.Transaction(operationDetail.TransactionHash);
+            var transResult = transTask.Result;
+
+            var transDetails = new TransactionDetails()
+            {
+                CreatedAt = DateTimeOffset.Parse(paymentOpResp.CreatedAt).UtcDateTime,
+                Id = paymentOpResp.Id,
+                Memo = transResult.MemoStr,
+                Payee = paymentOpResp.To.AccountId,
+                Payor = paymentOpResp.SourceAccount.AccountId,
+                TransactionType = paymentOpResp.Type
+            };
+
+            return transDetails;
+
+        }
+
         public async Task<List<Models.Transaction>> GetTransactionsAsync(string publicKey)
         {
             var operations = await _stellarHorizonService.Server.Operations
                                      .ForAccount(KeyPair.FromAccountId(publicKey))
                                      .Order(stellar_dotnet_sdk.requests.OrderDirection.DESC)
-                                     .Limit(20)
+                                     //.Limit(20)
                                      .Execute();
 
 
@@ -37,8 +80,12 @@ namespace SigfolioWallet.Core.Services
 
             var transactions = new List<Models.Transaction>();
 
-            transactions.AddRange(payments.Where(p => p.To.AccountId == publicKey).Select(c => new Models.Transaction() { Date = DateTimeOffset.Parse(c.CreatedAt).UtcDateTime, To = c.To.AccountId, From = c.From.AccountId, Amount = c.Amount }));
-            transactions.AddRange(payments.Where(p => p.From.AccountId == publicKey).Select(c => new Models.Transaction() { Date = DateTimeOffset.Parse(c.CreatedAt).UtcDateTime, To = c.To.AccountId, From = c.From.AccountId, Amount = c.Amount }));
+
+            //Credits
+            transactions.AddRange(payments.Where(p => p.To.AccountId == publicKey).Select(c => new Models.Transaction() { TransactionType = "credit",  Id = c.Id,  Date = DateTimeOffset.Parse(c.CreatedAt).UtcDateTime, To = c.To.AccountId, From = c.From.AccountId, Amount = c.Amount }));
+
+            //Debits
+            transactions.AddRange(payments.Where(p => p.From.AccountId == publicKey).Select(c => new Models.Transaction() { TransactionType = "debit", Id = c.Id, Date = DateTimeOffset.Parse(c.CreatedAt).UtcDateTime, To = c.To.AccountId, From = c.From.AccountId, Amount = c.Amount }));
 
 
             return transactions;

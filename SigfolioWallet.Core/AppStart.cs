@@ -1,12 +1,10 @@
 ﻿using MvvmCross.Exceptions;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using SigfolioWallet.Core.Services.Interfaces;
 using SigfolioWallet.Core.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using SigfolioWallet.Core.Services.Interfaces;
 
 namespace SigfolioWallet.Core
 {
@@ -20,11 +18,11 @@ namespace SigfolioWallet.Core
             _loginService = loginService;
         }
 
-        private void NavigateToViewModel<TViewModel>() where TViewModel : MvxViewModel
+        private async Task NavigateToViewModel<TViewModel>() where TViewModel : MvxViewModel
         {
             try
             {
-                NavigationService.Navigate<TViewModel>().GetAwaiter().GetResult();
+                await NavigationService.Navigate<TViewModel>();
             }
             catch (Exception ex)
             {
@@ -32,20 +30,11 @@ namespace SigfolioWallet.Core
             }
         }
 
-        protected override void NavigateToFirstViewModel(object hint = null)
+        protected override async Task NavigateToFirstViewModel(object hint = null)
         {
-            var tcs = new TaskCompletionSource<bool>();
-            Task.Run(async () => tcs.SetResult(await _loginService.IsAuthenticated()));
-            var isAuthenticated = tcs.Task.Result;
-
-            if (isAuthenticated)
-            {
-                NavigateToViewModel<AppShellViewModel>();
-            }
-            else
-            {
-                NavigateToViewModel<AppStartViewModel>();
-            }
+            await NavigateToViewModel<AppStartViewModel>();
         }
+
     }
 }
+

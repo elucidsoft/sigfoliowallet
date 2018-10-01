@@ -2,6 +2,7 @@
 using SigfolioWallet.Core.Models;
 using SigfolioWallet.Core.Services;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using SigfolioWallet.Core.Services.Interfaces;
 
@@ -25,11 +26,13 @@ namespace SigfolioWallet.Core.ViewModels
         {
             Transactions = await _transactionsService.GetTransactionsAsync(_settingsService.Wallet.CurrentAccount.PublicKey);
             await base.Initialize();
+            
         }
 
         public override void Start()
         {
             base.Start();
+            Filter = "";
             IsLoading = true;
         }
 
@@ -39,10 +42,21 @@ namespace SigfolioWallet.Core.ViewModels
             set { _isLoading = value; RaisePropertyChanged(() => IsLoading); }
         }
 
+        private string _filter;
+        public string Filter
+        {
+            get { return _filter; }
+            set { _filter = value; RaisePropertyChanged(() => Transactions); }
+        }
+
         public List<Transaction> Transactions
         {
-            get => _transactions;
+            get //{ return _transactions; }
+            {
+                if (Filter == "all" || _transactions == null) { return _transactions; }
+                else { return _transactions.Where(t => t.TransactionType == Filter).ToList(); }
+            }
             set => SetProperty(ref _transactions, value);
-        }
+            }
     }
 }

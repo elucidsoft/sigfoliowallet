@@ -9,21 +9,21 @@ namespace SigfolioWallet.Core
     {
         public override void Initialize()
         {
-            Mvx.RegisterSingleton<IStellarHorizonService>(() => new StellarHorizonService("https://horizon-testnet.stellar.org/"));
+            Mvx.IoCProvider.RegisterSingleton<IStellarHorizonService>(() => new StellarHorizonService("https://horizon-testnet.stellar.org/"));
 
-            Mvx.RegisterType<INavigationService, NavigationService>();
-            Mvx.RegisterType<IWalletService, WalletService>();
-            Mvx.RegisterType<ILoginService, LoginService>();
-            Mvx.RegisterType<ITransactionService, TransactionService>();
-            Mvx.RegisterType<IEncryptionService, EncryptionService>();
-            Mvx.RegisterType<IAuthenticationService, AuthenticationService>();
+            Mvx.IoCProvider.RegisterType<INavigationService, NavigationService>();
+            Mvx.IoCProvider.RegisterType<IWalletService, WalletService>();
+            Mvx.IoCProvider.RegisterType<ILoginService, LoginService>();
+            Mvx.IoCProvider.RegisterType<ITransactionService, TransactionService>();
+            Mvx.IoCProvider.RegisterType<IEncryptionService, EncryptionService>();
+            Mvx.IoCProvider.RegisterType<IAuthenticationService, AuthenticationService>();
 
             //StorageService is Registered in the Application itself since its platform specific (UWP, Android, etc.)
-            Mvx.RegisterSingleton<ISettingsService>(
+            Mvx.IoCProvider.RegisterSingleton<ISettingsService>(
                 new SettingsService(
-                    Mvx.Resolve<IStorageService>(),
-                    Mvx.Resolve<IEncryptionService>(),
-                    Mvx.Resolve<IAuthenticationService>())
+                    Mvx.IoCProvider.Resolve<IStorageService>(),
+                    Mvx.IoCProvider.Resolve<IEncryptionService>(),
+                    Mvx.IoCProvider.Resolve<IAuthenticationService>())
             );
 
             RegisterCustomAppStart<AppStart>();

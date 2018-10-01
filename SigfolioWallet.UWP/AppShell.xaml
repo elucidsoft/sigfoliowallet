@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:SigfolioWallet.Controls"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="NavigationViewMenuItemTemplate1" >
@@ -339,7 +340,8 @@
 
     <Grid>
         <Rectangle Canvas.ZIndex="100" x:Name="AppTitleBar" Fill="Transparent" Height="32" VerticalAlignment="Top" />
-        <my:CustomNavView x:Name="NavView" />
+        <controls:CustomNavView x:Name="NavView" />
+        
     </Grid>
 
 </views:MvxWindowsPage>

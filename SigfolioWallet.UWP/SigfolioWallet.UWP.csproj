@@ -17,12 +17,12 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>SigfolioWallet.UWP_StoreKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>EE862393715C3F6E53FA5BB2EE7B2F0ED05D10AE</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>SigfolioWallet.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>F43181A2A8EC8470D07747E713DBB8A046BF850E</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
     <HockeyAppResourceId>c9fec7d5d241482fabeec0171259cbb8</HockeyAppResourceId>
@@ -88,6 +88,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -116,14 +117,17 @@
       <DependentUpon>AppStart.xaml</DependentUpon>
     </Compile>
     <Compile Include="ClearBackStackPresenter.cs" />
-    <Compile Include="CustomNavView.xaml.cs">
+    <Compile Include="Controls\CardChart.xaml.cs">
+      <DependentUpon>CardChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Card.xaml.cs">
+      <DependentUpon>Card.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomNavView.xaml.cs">
       <DependentUpon>CustomNavView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\UWPUtilities.cs" />
-    <Compile Include="UIUtility.cs" />
-    <Compile Include="Views\BalancesView.xaml.cs">
-      <DependentUpon>BalancesView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Utilities\UIUtility.cs" />
     <Compile Include="Views\HistoryView.xaml.cs">
       <DependentUpon>HistoryView.xaml</DependentUpon>
     </Compile>
@@ -133,6 +137,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SendReceive.xaml.cs">
+      <DependentUpon>SendReceive.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TransactionsView.xaml.cs">
       <DependentUpon>TransactionsView.xaml</DependentUpon>
@@ -145,6 +152,7 @@
     <None Include="app.config" />
     <None Include="Connected Services\HockeyApp\ConnectedService.json" />
     <None Include="SigfolioWallet.UWP_StoreKey.pfx" />
+    <None Include="SigfolioWallet.UWP_TemporaryKey.pfx" />
     <None Include="SigfolioWallet_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -215,13 +223,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomNavView.xaml">
+    <Page Include="Controls\CardChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Card.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BalancesView.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Controls\CustomNavView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HistoryView.xaml">
       <SubType>Designer</SubType>
@@ -235,6 +247,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SendReceive.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\TransactionsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -244,11 +260,23 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.7</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
+      <Version>4.0.0</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>4.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid">
       <Version>4.0.0</Version>
     </PackageReference>
     <PackageReference Include="NETStandard.Library">
       <Version>2.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Telerik.UI.for.UniversalWindowsPlatform">
+      <Version>1.0.1.1</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.23.0</Version>

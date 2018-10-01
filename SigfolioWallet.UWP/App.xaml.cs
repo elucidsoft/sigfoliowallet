@@ -1,4 +1,5 @@
 ﻿using System;
+
 using MvvmCross.Platforms.Uap.Core;
 using MvvmCross.Platforms.Uap.Presenters;
 using MvvmCross.Platforms.Uap.Views;
@@ -9,9 +10,11 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using MvvmCross;
-using SigfolioWallet.Core.Services;
 using SigfolioWallet.Core.Services.Interfaces;
 using SigfolioWallet.Core.UWP;
+using MvvmCross.IoC;
+using SigfolioWallet.Utilities;
+using Windows.Foundation;
 
 namespace SigfolioWallet.UWP
 {
@@ -27,7 +30,9 @@ namespace SigfolioWallet.UWP
 
         protected override void OnLaunched(LaunchActivatedEventArgs activationArgs)
         {
-            base.OnLaunched(activationArgs);
+            
+            ApplicationView.PreferredLaunchViewSize = new Size(1520, 800);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             _uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
 
@@ -38,6 +43,7 @@ namespace SigfolioWallet.UWP
             _application = Current;
 
             UIUtility.SetTitleBarColor(_currentView, _application);
+            base.OnLaunched(activationArgs);
         }
 
         private async void UiSettings_ColorValuesChanged(UISettings sender, object args)
@@ -53,7 +59,7 @@ namespace SigfolioWallet.UWP
     {
         protected override IMvxApplication CreateApp()
         {
-            Mvx.RegisterSingleton<IStorageService>(new StorageService());
+            Mvx.IoCProvider.RegisterSingleton<IStorageService>(new StorageService());
             
             return new Core.App();
         }

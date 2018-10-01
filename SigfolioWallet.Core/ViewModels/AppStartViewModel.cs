@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using MvvmCross;
+using MvvmCross.Base;
 using SigfolioWallet.Core.Models;
 using SigfolioWallet.Core.Services;
 
@@ -29,6 +31,8 @@ namespace SigfolioWallet.Core.ViewModels
 
         public override async Task Initialize()
         {
+            
+
             Wallet = await _settingsService.LoadWallet();
 
 #if (DEBUG)
@@ -38,7 +42,6 @@ namespace SigfolioWallet.Core.ViewModels
                 Name = "Dev Test 1"
             });
 #endif
-
             await base.Initialize();
         }
 

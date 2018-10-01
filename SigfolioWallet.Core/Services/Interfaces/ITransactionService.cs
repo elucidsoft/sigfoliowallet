@@ -7,5 +7,7 @@ namespace SigfolioWallet.Core.Services.Interfaces
     public interface ITransactionService
     {
         Task<List<Transaction>> GetTransactionsAsync(string publicKey);
+
+        //Task<TransactionDetails> GetTransactionDetails(long operationId);
     }
 }

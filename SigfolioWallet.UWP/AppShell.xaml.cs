@@ -1,30 +1,14 @@
-using SigfolioWallet.Views;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Security;
-using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Core;
-using Windows.UI.Popups;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using SigfolioWallet.Utilities;
 using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
-using SigfolioWallet.Core.ViewModels;
-using MvvmCross.Platforms.Uap.Presenters.Attributes;
 using SigfolioWallet.Core.Services;
+using SigfolioWallet.Core.ViewModels;
+using System;
+using Windows.UI;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace SigfolioWallet
 {
@@ -34,41 +18,43 @@ namespace SigfolioWallet
     [MvxViewFor(typeof(AppShellViewModel))]
     public sealed partial class AppShell : MvxWindowsPage
     {
-    //    public static string SelectedAccountId { get; set; }
-    //    public static readonly Server server = new Server("https://horizon-testnet.stellar.org/");
-        //public static readonly Server server = new Server("https://horizon.stellar.org/");
 
         public AppShell()
         {
             this.InitializeComponent();
             Window.Current.SetTitleBar(AppTitleBar);
 
-            NavView.AppFrame.Navigated += AppFrame_Navigated;
+            //NavView.AppFrame.Navigated += AppFrame_Navigated;
             NavView.NavView.ItemInvoked += NavView_ItemInvoked;
 
-            //ViewModel.PasswordRequested.Requested += PasswordRequested_Requested;
+            Loaded += AppShell_Loaded;
+            Unloaded += AppShell_Unloaded;
+        }
+
+        private void AppShell_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Navigated -= ViewModel_Navigated;
+        }
+
+        private void ViewModel_Navigated(object sender, NavigationServiceEventArgs e)
+        {
+            NavView.SetTitle(e.Title);
+        }
+
+        private void AppShell_Loaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Navigated += ViewModel_Navigated;
+            ViewModel.NavigateMenuItem(NavigationPath.Home);
+        }
+
+        public void ChangeBackgroundColor(Color color)
+        {
+            Background = new SolidColorBrush(color);
         }
 
         private async void PasswordRequested_Requested(object sender, MvvmCross.Base.MvxValueEventArgs<Core.PasswordEventArgs> e)
         {
             await new MessageDialog(e.Value.Message).ShowAsync();
-        }
-
-        private void AppFrame_Navigated(object sender, NavigationEventArgs e)
-        {
-           // LoadAccountDetails();
-        }
-
-        private async void LoadAccountDetails()
-        {
-            //if (SelectedAccountId != null)
-            //{
-            //    var details = await server.Accounts.Account(KeyPair.FromAccountId(AppShell.SelectedAccountId));
-            //    var balance = details.Balances.Where(b => b.AssetType == "native").FirstOrDefault().BalanceString;
-
-            //    NavView.SetBalanceText(balance);
-            //    NavView.SetName(SelectedAccountId);
-            //}
         }
 
         public new AppShellViewModel ViewModel => (AppShellViewModel)base.ViewModel;
@@ -81,3 +67,5 @@ namespace SigfolioWallet
         }
     }
 }
+
+
