@@ -7,5 +7,6 @@ namespace SigfolioWallet.Core.ViewModels
 {
     public class BalancesViewModel : MvxViewModel
     {
+        //TODO SOON
     }
 }

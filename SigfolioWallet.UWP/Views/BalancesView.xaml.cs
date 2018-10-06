@@ -35,5 +35,14 @@ namespace SigfolioWallet.Views
 
         public new BalancesViewModel ViewModel => (BalancesViewModel)base.ViewModel;
 
+        private void AssetCard_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Icon_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
