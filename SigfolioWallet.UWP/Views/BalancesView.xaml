@@ -13,14 +13,14 @@
     <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
         <GridView Margin="60,172,134,0" Padding="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <sfw:AssetCard Amount="9,084.9999300" AssetCode="XLM" BgColor="#2C5FF5"  Domain="Stellar Network" IssuerAddress="Native Lumens" Margin="0,0,10,5"/>
-            <sfw:AssetCard Amount="250.0000000" AssetCode="CNY" BgColor="#FF6F6F"  Domain="ripplefox.com" IssuerAddress="GAREELUB ... HM43RFOX" Margin="5,0,0,5"/>
+            <sfw:AssetCard Amount="250.0000000" AssetCode="CNY" BgColor="#FF6F6F"  Domain="ripplefox.com" IssuerAddress="GAREELUB ... HM43RFOX" Margin="5,0,5,5"/>
             <sfw:AddCard Margin="5,0,0,5"/>
         </GridView>
         <Border BorderBrush="Black" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="120" Margin="190,123,0,0" CornerRadius="2,2,2,2" Background="#FFCCCCCC">
             <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
                 <Rectangle Margin="0,0,0,0"/>
                 <TextBlock x:Name="Icon" HorizontalAlignment="Left" Text="&#xE148;" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="12,0,0,0" FontSize="14" Foreground="#FF2C5FF5" RenderTransformOrigin="0.473,-0.036" SelectionChanged="Icon_SelectionChanged"/>
-                <TextBlock Text="Trade assets" TextWrapping="Wrap" Margin="35,0,12,0" FontSize="12" FontFamily="Segoe UI Semibold" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Width="73" Height="16"/>
+                <TextBlock Text="Trade assets" TextWrapping="Wrap" Margin="35,0,12,0" FontSize="12" FontFamily="Segoe UI" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Width="73" Height="16" FontWeight="SemiBold"/>
             </Grid>
         </Border>
         <TextBlock HorizontalAlignment="Left" Text="Balances" TextWrapping="Wrap" VerticalAlignment="Top" Margin="60,60,0,0" FontSize="32" FontWeight="Bold"/>
@@ -28,7 +28,7 @@
             <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
                 <Rectangle Margin="0,0,0,0"/>
                 <TextBlock x:Name="Icon1" HorizontalAlignment="Left" Text="&#xE109;" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="12,0,0,0" FontSize="14" Foreground="#FF2C5FF5" RenderTransformOrigin="0.473,-0.036"/>
-                <TextBlock Text="Add Trustline" TextWrapping="Wrap" Margin="35,0,12,0" FontSize="12" FontFamily="Segoe UI Semibold" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Width="73" Height="16"/>
+                <TextBlock Text="Add Trustline" TextWrapping="Wrap" Margin="35,0,12,0" FontSize="12" FontFamily="Segoe UI" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Width="73" Height="16" FontWeight="SemiBold"/>
             </Grid>
         </Border>
     </Grid>

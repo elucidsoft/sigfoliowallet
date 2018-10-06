@@ -17,7 +17,7 @@
                     <RowDefinition Height="0*"/>
                 </Grid.RowDefinitions>
                 <TextBlock x:Name="IconBlock" HorizontalAlignment="Center" Text="&#xE109;" TextWrapping="Wrap" VerticalAlignment="Center" Margin="136,66,136,86" FontFamily="Segoe MDL2 Assets" FontSize="48" Foreground="#FF2C5FF5"/>
-                <TextBlock x:Name="LabelBlock" HorizontalAlignment="Center" Text="Add Trustline" TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,150,0,27" FontFamily="Segoe UI Semibold" FontSize="14" Foreground="#FF2C5FF5"/>
+                <TextBlock x:Name="LabelBlock" HorizontalAlignment="Center" Text="Add Trustline" TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,150,0,27" FontFamily="Segoe UI" FontSize="14" Foreground="#FF2C5FF5" FontWeight="SemiBold"/>
             </Grid>
         </Border>
     </Grid>
