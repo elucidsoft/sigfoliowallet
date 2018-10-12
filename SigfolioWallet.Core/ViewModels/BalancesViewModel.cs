@@ -36,10 +36,22 @@ namespace SigfolioWallet.Core.ViewModels
             for (int i = 0; i < accountResponse.Balances.Length; i++)
             {
                 stellar_dotnet_sdk.responses.Balance balance = accountResponse.Balances[i];
+
                 Balance balanceCard = new Balance();
+
                 balanceCard.Amount = balance.BalanceString;
-                balanceCard.AssetCode = balance.AssetCode;
-                balanceCard.IssuerAddress = balance.AssetIssuer.AccountId;
+
+                if (balance.AssetType == "native")
+                {
+                    balanceCard.AssetCode = "XLM";
+                    balanceCard.IssuerAddress = "Native Lumens";
+                }
+                else
+                {
+                    balanceCard.AssetCode = balance.AssetCode;
+                    balanceCard.IssuerAddress = balance.AssetIssuer.AccountId;
+                }
+
                 balanceCard.BgColor = "#275AF0";
                 _balances.Add(balanceCard);
             }
