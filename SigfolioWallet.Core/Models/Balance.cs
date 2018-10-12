@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using stellar_dotnet_sdk;
 
 namespace SigfolioWallet.Core.Models
 {
@@ -8,8 +9,9 @@ namespace SigfolioWallet.Core.Models
     {
         public string Amount { get; set; }
         public string AssetCode { get; set; }
-        public string AssetType { get; set; }
+        public Asset AssetType { get; set; }
         public string IssuerAddress { get; set; }
+        public string BgColor { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -25,7 +27,7 @@ namespace SigfolioWallet.Core.Models
             var hashCode = -1441087147;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Amount);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(AssetCode);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(AssetType);
+            hashCode = hashCode * -1521134295 + AssetType.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(IssuerAddress);
             return hashCode;
         }

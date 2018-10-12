@@ -26,6 +26,10 @@ namespace SigfolioWallet.Core.Services
                     Title = "Dashboard";
                     _navigationService.Navigate<HomeViewModel>();
                     break;
+                case NavigationPath.Balances:
+                    Title = "Balances";
+                    _navigationService.Navigate<BalancesViewModel>();
+                    break;
                 case NavigationPath.Transactions:
                     Title = "Transactions";
                     _navigationService.Navigate<TransactionsViewModel>();

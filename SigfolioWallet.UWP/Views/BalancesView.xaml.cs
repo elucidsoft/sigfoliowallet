@@ -4,6 +4,7 @@ using MvvmCross.ViewModels;
 using SigfolioWallet.Core.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -35,12 +36,12 @@ namespace SigfolioWallet.Views
 
         public new BalancesViewModel ViewModel => (BalancesViewModel)base.ViewModel;
 
-        private void AssetCard_Loaded(object sender, RoutedEventArgs e)
+        private void AddTrustlineButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
-        private void Icon_SelectionChanged(object sender, RoutedEventArgs e)
+        private void TradeAssetsButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

@@ -6,30 +6,24 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sfw="using:SigfolioWallet.Controls"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls">
 
     <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
-        <GridView Margin="60,172,134,0" Padding="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <sfw:AssetCard Amount="9,084.9999300" AssetCode="XLM" BgColor="#2C5FF5"  Domain="Stellar Network" IssuerAddress="Native Lumens" Margin="0,0,10,5"/>
-            <sfw:AssetCard Amount="250.0000000" AssetCode="CNY" BgColor="#FF6F6F"  Domain="ripplefox.com" IssuerAddress="GAREELUB ... HM43RFOX" Margin="5,0,5,5"/>
-            <sfw:AddCard Margin="5,0,0,5"/>
+        <StackPanel HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Margin="0,19,0,0" Orientation="Horizontal">
+            <Button x:Name="AddTrustlineButton" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource ButtonRounded}" Background="#FFCCCCCC" Height="30">
+                <Grid Margin="-10,0,-10,0" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <TextBlock x:Name="Icon1" HorizontalAlignment="Left" Text="&#xE109;" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="12,0,0,0" FontSize="14" Foreground="#FF2C5FF5" RenderTransformOrigin="0.473,-0.036" Height="16" Width="14"/>
+                    <TextBlock Text="Add Trustline" TextWrapping="Wrap" Margin="35,0,12,0" FontSize="12" FontFamily="Segoe UI" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="17" FontWeight="SemiBold"/>
+                </Grid>
+            </Button>
+            <Button x:Name="TradeAssetsButton" HorizontalAlignment="Stretch" Margin="10,0,0,0" VerticalAlignment="Center" Style="{StaticResource ButtonRounded}" Background="#FFCCCCCC" Height="30">
+                <Grid Margin="-10,0,-10,0" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <TextBlock x:Name="Icon2" HorizontalAlignment="Left" Text="&#xE148;" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="12,0,0,0" FontSize="14" Foreground="#FF2C5FF5" RenderTransformOrigin="0.473,-0.036" Height="16" Width="14"/>
+                    <TextBlock Text="Trade Assets" TextWrapping="Wrap" Margin="35,0,12,0" FontSize="12" FontFamily="Segoe UI" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="17" FontWeight="SemiBold"/>
+                </Grid>
+            </Button>
+        </StackPanel>
+        <GridView Margin="0,73,60,96" Padding="0,0,0,0" ItemsSource="{x:Bind ViewModel.Balances}" ItemTemplate="{StaticResource AssetCardTemplate}" SelectionMode="None">
         </GridView>
-        <Border BorderBrush="Black" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="120" Margin="190,123,0,0" CornerRadius="2,2,2,2" Background="#FFCCCCCC">
-            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
-                <Rectangle Margin="0,0,0,0"/>
-                <TextBlock x:Name="Icon" HorizontalAlignment="Left" Text="&#xE148;" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="12,0,0,0" FontSize="14" Foreground="#FF2C5FF5" RenderTransformOrigin="0.473,-0.036" SelectionChanged="Icon_SelectionChanged"/>
-                <TextBlock Text="Trade assets" TextWrapping="Wrap" Margin="35,0,12,0" FontSize="12" FontFamily="Segoe UI" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Width="73" Height="16" FontWeight="SemiBold"/>
-            </Grid>
-        </Border>
-        <TextBlock HorizontalAlignment="Left" Text="Balances" TextWrapping="Wrap" VerticalAlignment="Top" Margin="60,60,0,0" FontSize="32" FontWeight="Bold"/>
-        <Border BorderBrush="Black" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="120" Margin="61,123,0,0" CornerRadius="2,2,2,2" Background="#FFCCCCCC">
-            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
-                <Rectangle Margin="0,0,0,0"/>
-                <TextBlock x:Name="Icon1" HorizontalAlignment="Left" Text="&#xE109;" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="12,0,0,0" FontSize="14" Foreground="#FF2C5FF5" RenderTransformOrigin="0.473,-0.036"/>
-                <TextBlock Text="Add Trustline" TextWrapping="Wrap" Margin="35,0,12,0" FontSize="12" FontFamily="Segoe UI" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Width="73" Height="16" FontWeight="SemiBold"/>
-            </Grid>
-        </Border>
     </Grid>
 </views:MvxWindowsPage>
