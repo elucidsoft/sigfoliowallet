@@ -132,6 +132,7 @@
     <Compile Include="Controls\CustomNavView.xaml.cs">
       <DependentUpon>CustomNavView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\IDToShortID.cs" />
     <Compile Include="Utilities\UWPUtilities.cs" />
     <Compile Include="Utilities\UIUtility.cs" />
     <Compile Include="Views\BalancesView.xaml.cs">

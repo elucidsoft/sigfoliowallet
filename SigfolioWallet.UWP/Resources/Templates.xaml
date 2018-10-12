@@ -1,12 +1,16 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SigfolioWallet.Resources">
-
+    xmlns:local="using:SigfolioWallet.Resources"
+    xmlns:converters="using:SigfolioWallet.Converters"
+    >
+    
+    <converters:IDToShortID x:Key="IDToShortID"/>
+    
     <DataTemplate x:Key="AssetCardTemplate">
         <Grid>
-            <Border x:Name="CardBorder" BorderBrush="Black" Margin="0,0,0,0" CornerRadius="10,10,10,10" Height="200" Width="320" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{Binding BgColor}">
-                <Grid Margin="0,0,0,0">
+            <Border x:Name="CardBorder" BorderBrush="Black" Margin="10" CornerRadius="10,10,10,10" Height="200" Width="320" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{Binding BgColor}">
+                <Grid Margin="0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="0*"/>
@@ -19,7 +23,7 @@
                     <TextBlock x:Name="DomainBlock" HorizontalAlignment="Left" Text="{Binding Path=Domain}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="79,31,0,0" Foreground="White" FontSize="14" Height="19" Width="94"/>
                     <TextBlock x:Name="AmountBlock" HorizontalAlignment="Left" Text="{Binding Path=Amount}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="30,55,0,104" Foreground="White" FontFamily="Bahnschrift Light" FontSize="34" FontStretch="Normal" OpticalMarginAlignment="None" TextTrimming="None" UseLayoutRounding="True" RequestedTheme="Default" Height="41" FontWeight="SemiBold"/>
                     <TextBlock x:Name="EllipsisBlock" HorizontalAlignment="Right" Text="&#xE10C;" TextWrapping="NoWrap" VerticalAlignment="Top" Margin="0,29,30,0" FontFamily="Segoe MDL2 Assets" FontSize="18" Padding="0,0,0,0" Foreground="White" UseLayoutRounding="True"/>
-                    <TextBlock x:Name="IssuerBlock" HorizontalAlignment="Left" Text="{Binding Path=IssuerAddress}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="30,154,0,27" FontWeight="SemiBold" Foreground="White" FontSize="14"/>
+                    <TextBlock x:Name="IssuerBlock" HorizontalAlignment="Left" Text="{Binding Path=IssuerAddress, Converter={StaticResource IDToShortID}}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="30,154,0,27" FontWeight="SemiBold" Foreground="White" FontSize="14"/>
                     <Border BorderBrush="Black" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="50" CornerRadius="10,10,10,10" Margin="240,120,30,30" Background="White">
                         <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
                             <Image x:Name="Logo" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" FocusVisualPrimaryBrush="Black"/>
