@@ -23,7 +23,12 @@
                 </Grid>
             </Button>
         </StackPanel>
-        <GridView Margin="0,73,60,96" Padding="0,0,0,0" ItemsSource="{x:Bind ViewModel.Balances}" ItemTemplate="{StaticResource AssetCardTemplate}" SelectionMode="None">
+        <GridView Margin="0,73,60,96" Padding="0,0,0,0" ItemsSource="{x:Bind ViewModel.AssetsCards}" ItemTemplate="{StaticResource AssetCardTemplate}" SelectionMode="None">
+            <GridView.ItemContainerStyle>
+                <Style TargetType="FrameworkElement">
+                    <Setter Property="Margin" Value="0 0 20 20"/>
+                </Style>
+            </GridView.ItemContainerStyle>
         </GridView>
     </Grid>
 </views:MvxWindowsPage>

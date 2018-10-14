@@ -12,11 +12,19 @@ namespace SigfolioWallet.Core.ViewModels
 {
     public class BalancesViewModel : MvxViewModel
     {
-        private ObservableCollection<Balance> _balances = new ObservableCollection<Balance>();
-
-        public ObservableCollection<Balance> Balances
+        public class AssetCard
         {
-            get { return this._balances; }
+            public Balance Balance { get; set; }
+            public string BgColor { get; set; }
+            public string Logo { get; set; }
+            public bool IsAddCard { get; set; }
+        }
+
+        private ObservableCollection<AssetCard> _assetsCards = new ObservableCollection<AssetCard>();
+
+        public ObservableCollection<AssetCard> AssetsCards
+        {
+            get { return this._assetsCards; }
         }
 
         private readonly ISettingsService _settingsService;
@@ -28,7 +36,6 @@ namespace SigfolioWallet.Core.ViewModels
 
         public override async Task Initialize()
         {
-            Console.WriteLine("Enter");
             Server server = new Server("https://horizon-testnet.stellar.org/");
             KeyPair accountKeyPair = KeyPair.FromAccountId("GA6ASBGPYDVGSADNXZ7EWIJLA3I7MT4DQNYTLDIMX33SEYJUNRC74LXR");
             stellar_dotnet_sdk.responses.AccountResponse accountResponse = await server.Accounts.Account(accountKeyPair);
@@ -37,41 +44,32 @@ namespace SigfolioWallet.Core.ViewModels
             {
                 stellar_dotnet_sdk.responses.Balance balance = accountResponse.Balances[i];
 
-                Balance balanceCard = new Balance();
+                AssetCard assetCard = new AssetCard();
 
-                balanceCard.Amount = balance.BalanceString;
+                //Set AssetCard Balance
+                Balance assetCardBalance = new Balance();
+                assetCard.Balance = assetCardBalance;
+                assetCardBalance.Amount = balance.BalanceString;
 
+                //Check if it's native or not
                 if (balance.AssetType == "native")
                 {
-                    balanceCard.AssetCode = "XLM";
-                    balanceCard.IssuerAddress = "Native Lumens";
+                    assetCardBalance.AssetCode = "XLM";
+                    assetCardBalance.IssuerAddress = "Native Lumens";
                 }
                 else
                 {
-                    balanceCard.AssetCode = balance.AssetCode;
-                    balanceCard.IssuerAddress = balance.AssetIssuer.AccountId;
+                    assetCardBalance.AssetCode = balance.AssetCode;
+                    assetCardBalance.IssuerAddress = balance.AssetIssuer.AccountId;
                 }
 
-                balanceCard.BgColor = "#275AF0";
-                _balances.Add(balanceCard);
+                //Set AssetCard Other
+                
+                assetCard.BgColor = "#275AF0";
+
+                //Add it to the list
+                _assetsCards.Add(assetCard);
             }
-
-            /*
-            Balance balance = new Balance();
-            balance.Amount = "9000";
-            balance.AssetCode = "XLM";
-            balance.AssetType = new AssetTypeNative();
-            balance.BgColor = "#275AF0";
-            Balances.Add(balance);
-            */
-        }
-
-        private async Task Stream(Server server)
-        {
-            /*await server.Ledgers
-                .Cursor("now")
-                .Stream((sender, response) => { ShowOperationResponse(server, sender, response); })
-                .Connect();*/
         }
     }
 }

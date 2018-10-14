@@ -11,7 +11,6 @@ namespace SigfolioWallet.Core.Models
         public string AssetCode { get; set; }
         public Asset AssetType { get; set; }
         public string IssuerAddress { get; set; }
-        public string BgColor { get; set; }
 
         public override bool Equals(object obj)
         {
