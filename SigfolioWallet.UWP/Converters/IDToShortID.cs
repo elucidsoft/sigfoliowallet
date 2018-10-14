@@ -13,20 +13,22 @@ namespace SigfolioWallet.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            //Get Parameter StartLength|EndLength
+            //Get Parameters -> StartLength|EndLength|Separator
             int charactersStart = 5;
             int charactersEnd = 4;
+            string separator = "...";
 
             string parameterString = parameter as string;
             if (!string.IsNullOrEmpty(parameterString))
             {
-                string[] parameters = parameterString.Split(new char[] { '|' });
+                string[] parameters = parameterString.Split(new char[] { '|' }, StringSplitOptions.None);
                 charactersStart = int.Parse(parameters[0]);
                 charactersEnd = int.Parse(parameters[1]);
+                separator = parameters[2].ToString();
             }
 
             string id = (string)value;
-            string shortedID = StellarSDKExtensions.ShortAddress(id, charactersStart, charactersEnd);
+            string shortedID = StellarSDKExtensions.ShortAddress(id, charactersStart, charactersEnd, separator);
             if(id.Length == 56)
             {
                 return shortedID;
