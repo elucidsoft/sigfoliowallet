@@ -1,4 +1,4 @@
-[![Build status](https://elucidsoft2.visualstudio.com/_apis/public/build/definitions/6e62beb4-c829-4c0f-87a7-96929f870e94/8/badge)](https://appcenter.ms)
+[![Build status](https://ci.appveyor.com/api/projects/status/fmd74m78vh0prv8q?svg=true)](https://ci.appveyor.com/project/elucidsoft/sigfoliowallet)
 
 # Sigfolio Wallet
 A wallet for the Stellar Network
