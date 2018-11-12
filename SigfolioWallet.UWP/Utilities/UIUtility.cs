@@ -25,6 +25,11 @@ namespace SigfolioWallet.Utilities
             return ChangeColorBrightness((Color)Application.Current.Resources["SystemAccentColor"], correctionFactor);
         }
 
+        public static Color GetAccentColor()
+        {
+            return (Color) Application.Current.Resources["SystemAccentColor"];
+        }
+
         /// <summary>
         /// Creates color with corrected brightness.
         /// </summary>
@@ -56,5 +61,7 @@ namespace SigfolioWallet.Utilities
 
             return Color.FromArgb(color.A, (byte)red, (byte)green, (byte)blue);
         }
+
+       
     }
 }
