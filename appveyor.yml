@@ -14,9 +14,9 @@ assembly_info:
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
 before_build:
-- cmd: pushd . nuget restore && popd
+- cmd: nuget restore
 build:
-  project: src\CodeCutterUK.AppVeyor.Example.sln
+  project: SigfolioWallet.sln
   parallel: true
   verbosity: minimal
 deploy: off
