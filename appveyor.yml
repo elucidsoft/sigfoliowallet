@@ -20,7 +20,5 @@ build:
   parallel: true
   verbosity: minimal
 deploy: off
-test:
-    assemblies:
-        only:
-         - SigfolioWallet.Test.dll
+test_script: 
+ cmd: dotnet test SigfolioWallet.Test -c Debug --no-build --no-restore
