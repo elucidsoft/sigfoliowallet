@@ -20,3 +20,7 @@ build:
   parallel: true
   verbosity: minimal
 deploy: off
+test:
+    assemblies:
+        only:
+         - SigfolioWallet.Test.dll
