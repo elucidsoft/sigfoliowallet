@@ -117,6 +117,9 @@
       <DependentUpon>AppStart.xaml</DependentUpon>
     </Compile>
     <Compile Include="ClearBackStackPresenter.cs" />
+    <Compile Include="Controls\CardBarChart.xaml.cs">
+      <DependentUpon>CardBarChart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CardChart.xaml.cs">
       <DependentUpon>CardChart.xaml</DependentUpon>
     </Compile>
@@ -222,6 +225,10 @@
     <Page Include="AppStart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CardBarChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\CardChart.xaml">
       <Generator>MSBuild:Compile</Generator>

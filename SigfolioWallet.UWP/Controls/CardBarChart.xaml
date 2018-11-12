@@ -1,0 +1,114 @@
+﻿<UserControl
+    x:Class="SigfolioWallet.Controls.CardBarChart"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SigfolioWallet.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
+    xmlns:system="using:System"
+    xmlns:charting="using:Telerik.Charting"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400" Name="control">
+    <Grid>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+            <controls:DropShadowPanel Name="CardShadow" Height="250" Width="590" BlurRadius="14" ShadowOpacity=".1" OffsetX="3" OffsetY="3" >
+                <Grid Name="CardGrid" Height="250" Width="590"  >
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <TextBlock Name="LabelTextBlock" Text="{x:Bind Label, Mode=OneWay}" FontSize="12" FontWeight="Bold" Margin="7,0,0,0" Padding="0 8 0 2"  Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"></TextBlock>
+                        <TextBlock Name="HighTextBlock" FontSize="10" Opacity=".5" HorizontalAlignment="Left" Margin="7,0,0,0" VerticalAlignment="Stretch"></TextBlock>
+                        <chart:RadCartesianChart Name="chart" PaletteName="None"  Height="188" Margin="10 0 10 0" HorizontalAlignment="Stretch">
+                            <chart:SplineAreaSeries ItemsSource="{Binding}" Canvas.ZIndex="0" >
+                                <chart:SplineAreaSeries.Stroke>
+                                    <SolidColorBrush x:Name="sbLineBrush" Opacity=".4" Color="{ThemeResource SystemAccentColor}"></SolidColorBrush>
+                                </chart:SplineAreaSeries.Stroke>
+                                <chart:SplineAreaSeries.HorizontalAxis>
+                                    <chart:CategoricalAxis Visibility="Collapsed"/>
+                                </chart:SplineAreaSeries.HorizontalAxis>
+                                <chart:SplineAreaSeries.VerticalAxis>
+                                    <chart:LinearAxis Visibility="Collapsed"/>
+                                </chart:SplineAreaSeries.VerticalAxis>
+                                <chart:SplineAreaSeries.CategoryBinding>
+                                    <chart:PropertyNameDataPointBinding PropertyName="LineCategory"/>
+                                </chart:SplineAreaSeries.CategoryBinding>
+                                <chart:SplineAreaSeries.ValueBinding>
+                                    <chart:PropertyNameDataPointBinding PropertyName="LineValue"/>
+                                </chart:SplineAreaSeries.ValueBinding>
+                                <chart:SplineAreaSeries.PointTemplate>
+                                    <DataTemplate>
+                                        <Ellipse Width="20" Height="20"/>
+                                    </DataTemplate>
+                                </chart:SplineAreaSeries.PointTemplate>
+                                <chart:SplineAreaSeries.Fill>
+                                    <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1" Opacity=".6">
+                                        <GradientStop x:Name="gs1Color" Offset="0.4"></GradientStop>
+                                        <GradientStop x:Name="gs2Color" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </chart:SplineAreaSeries.Fill>
+                            </chart:SplineAreaSeries>
+
+                            <chart:BarSeries x:Name="BarSeries" ItemsSource="{Binding}" Canvas.ZIndex="1">
+                                <chart:BarSeries.DefaultVisualStyle>
+                                    
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background" >
+                                            <Setter.Value>
+                                                <SolidColorBrush x:Name="sbColor1" Color="{ThemeResource SystemAccentColor}"></SolidColorBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="BorderThickness" Value="2" />
+                                    </Style>
+                                </chart:BarSeries.DefaultVisualStyle>
+                                <chart:BarSeries.HorizontalAxis>
+                                    <chart:DateTimeCategoricalAxis Visibility="Collapsed"/>
+                                </chart:BarSeries.HorizontalAxis>
+                                <chart:BarSeries.VerticalAxis>
+                                    <chart:LinearAxis  Visibility="Collapsed"/>
+                                </chart:BarSeries.VerticalAxis>
+                                <chart:BarSeries.CategoryBinding>
+                                    <chart:PropertyNameDataPointBinding PropertyName="BarCategory"/>
+                                </chart:BarSeries.CategoryBinding>
+                                <chart:BarSeries.ValueBinding>
+                                    <chart:PropertyNameDataPointBinding PropertyName="BarValue1"/>
+                                </chart:BarSeries.ValueBinding>
+                            </chart:BarSeries>
+
+                            <chart:BarSeries  ItemsSource="{Binding}" Canvas.ZIndex="1" >
+                                <chart:BarSeries.DefaultVisualStyle>
+
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background" >
+                                            <Setter.Value>
+                                                <SolidColorBrush x:Name="sbColor2" Color="{ThemeResource SystemAccentColor}"></SolidColorBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="BorderThickness" Value="2" />
+
+                                    </Style>
+                                </chart:BarSeries.DefaultVisualStyle>
+                                <chart:BarSeries.HorizontalAxis>
+                                    <chart:DateTimeCategoricalAxis Visibility="Collapsed"/>
+                                </chart:BarSeries.HorizontalAxis>
+                                <chart:BarSeries.VerticalAxis>
+                                    <chart:LinearAxis  Visibility="Collapsed"/>
+                                </chart:BarSeries.VerticalAxis>
+                                <chart:BarSeries.CategoryBinding>
+                                    <chart:PropertyNameDataPointBinding PropertyName="BarCategory"/>
+                                </chart:BarSeries.CategoryBinding>
+                                <chart:BarSeries.ValueBinding>
+                                    <chart:PropertyNameDataPointBinding PropertyName="BarValue2"/>
+                                </chart:BarSeries.ValueBinding>
+                            </chart:BarSeries>
+
+                        </chart:RadCartesianChart>
+                        <TextBlock x:Name="LowTextBlock" FontSize="10" Opacity=".5" HorizontalAlignment="Left" TextAlignment="Left" Width="267" Margin="5,0,0,0" HorizontalTextAlignment="Right"/>
+                    </StackPanel>
+
+                </Grid>
+            </controls:DropShadowPanel>
+
+        </StackPanel>
+    </Grid>
+</UserControl>
