@@ -20,5 +20,3 @@ build:
   parallel: true
   verbosity: minimal
 deploy: off
-test_script: 
- cmd: dotnet test SigfolioWallet.Test -c Debug --no-build --no-restore
