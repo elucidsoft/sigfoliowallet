@@ -20,7 +20,7 @@ build:
   parallel: true
   verbosity: minimal
 deploy: off
-test:	test_script: 
-    assemblies:	 cmd: dotnet test SigfolioWallet.Test -c Debug --no-build --no-restore 
-        only:	
+test:
+    assemblies:
+        only:
          -  C:\projects\sigfoliowallet\SigfolioWallet.Test\bin\Debug\netcoreapp2.1\SigfolioWallet.Test.dll
