@@ -21,4 +21,4 @@ deploy: off
 test:
     assemblies:
         only:
-         -  SigfolioWallet.Test\bin\Debug\netcoreapp2.1\SigfolioWallet.Test.dll
+         -  SigfolioWallet.Test.dll
