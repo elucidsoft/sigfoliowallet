@@ -120,7 +120,13 @@
     <Compile Include="Controls\AddCard.xaml.cs">
       <DependentUpon>AddCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AssetCard.xaml.cs">
+    <Compile Include="Controls\AddTrustPopup.xaml.cs">
+      <DependentUpon>AddTrustPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Previews\TrustlineCard.xaml.cs">
+      <DependentUpon>TrustlineCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Previews\AssetCard.xaml.cs">
       <DependentUpon>AssetCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CardChart.xaml.cs">
@@ -280,7 +286,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\AssetCard.xaml">
+    <Page Include="Controls\AddTrustPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Previews\TrustlineCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Previews\AssetCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
