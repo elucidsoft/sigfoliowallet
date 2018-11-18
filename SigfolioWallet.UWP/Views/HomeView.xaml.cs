@@ -26,9 +26,13 @@ namespace SigfolioWallet.Views
             this.InitializeComponent();
             
             Loaded += HomeView_Loaded;
+
+           
         }
 
-       
+
+
+
         private void HomeView_Loaded(object sender, RoutedEventArgs e)
         {
 

@@ -117,17 +117,8 @@
       <DependentUpon>AppStart.xaml</DependentUpon>
     </Compile>
     <Compile Include="ClearBackStackPresenter.cs" />
-    <Compile Include="Controls\AddCard.xaml.cs">
-      <DependentUpon>AddCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\AddTrustPopup.xaml.cs">
-      <DependentUpon>AddTrustPopup.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Previews\TrustlineCard.xaml.cs">
-      <DependentUpon>TrustlineCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Previews\AssetCard.xaml.cs">
-      <DependentUpon>AssetCard.xaml</DependentUpon>
+    <Compile Include="Controls\CardBarChart.xaml.cs">
+      <DependentUpon>CardBarChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CardChart.xaml.cs">
       <DependentUpon>CardChart.xaml</DependentUpon>
@@ -138,12 +129,8 @@
     <Compile Include="Controls\CustomNavView.xaml.cs">
       <DependentUpon>CustomNavView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\IDToShortID.cs" />
     <Compile Include="Utilities\UWPUtilities.cs" />
     <Compile Include="Utilities\UIUtility.cs" />
-    <Compile Include="Views\BalancesView.xaml.cs">
-      <DependentUpon>BalancesView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\HistoryView.xaml.cs">
       <DependentUpon>HistoryView.xaml</DependentUpon>
     </Compile>
@@ -183,49 +170,6 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
-    <Content Include="Assets\Logos\anclax.com.png" />
-    <Content Include="Assets\Logos\astral9.io.png" />
-    <Content Include="Assets\Logos\charnatoken.top.png" />
-    <Content Include="Assets\Logos\coins.asia.png" />
-    <Content Include="Assets\Logos\collective21.org.png" />
-    <Content Include="Assets\Logos\cowrie.exchange.png" />
-    <Content Include="Assets\Logos\cryptomover.com.png" />
-    <Content Include="Assets\Logos\cryptotari.io.png" />
-    <Content Include="Assets\Logos\equid.co.png" />
-    <Content Include="Assets\Logos\flutterwave.com.png" />
-    <Content Include="Assets\Logos\frasindo.com.png" />
-    <Content Include="Assets\Logos\gft.network.png" />
-    <Content Include="Assets\Logos\golix.io.png" />
-    <Content Include="Assets\Logos\irene.energy.png" />
-    <Content Include="Assets\Logos\liquido.i-server.org.png" />
-    <Content Include="Assets\Logos\mobius.network.png" />
-    <Content Include="Assets\Logos\moni.com.png" />
-    <Content Include="Assets\Logos\naobtc.com.png" />
-    <Content Include="Assets\Logos\nezly.com.png" />
-    <Content Include="Assets\Logos\old.repocoin.io.png" />
-    <Content Include="Assets\Logos\old.sureremit.co.png" />
-    <Content Include="Assets\Logos\papayame.com.png" />
-    <Content Include="Assets\Logos\pedity.com.png" />
-    <Content Include="Assets\Logos\pr.network.png" />
-    <Content Include="Assets\Logos\repocoin.io.png" />
-    <Content Include="Assets\Logos\ripplefox.com.png" />
-    <Content Include="Assets\Logos\six.network.png" />
-    <Content Include="Assets\Logos\smartlands.io.png" />
-    <Content Include="Assets\Logos\stellar.png" />
-    <Content Include="Assets\Logos\stemchain.io.png" />
-    <Content Include="Assets\Logos\stronghold.co.png" />
-    <Content Include="Assets\Logos\superlumen.org.png" />
-    <Content Include="Assets\Logos\sureremit.co.png" />
-    <Content Include="Assets\Logos\tempo.eu.com.png" />
-    <Content Include="Assets\Logos\ternio.io.png" />
-    <Content Include="Assets\Logos\thefutbolcoin.io.png" />
-    <Content Include="Assets\Logos\tonaira.com.png" />
-    <Content Include="Assets\Logos\tontinetrust.com.png" />
-    <Content Include="Assets\Logos\unknown.png" />
-    <Content Include="Assets\Logos\vcbear.net.png" />
-    <Content Include="Assets\Logos\winsome.gift.png" />
-    <Content Include="Assets\Logos\ximcoin.com.png" />
-    <Content Include="Assets\Logos\xirkle.com.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />
@@ -282,21 +226,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\AddCard.xaml">
+    <Page Include="Controls\CardBarChart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\AddTrustPopup.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\Previews\TrustlineCard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\Previews\AssetCard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\CardChart.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -309,18 +241,6 @@
     <Page Include="Controls\CustomNavView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Buttons.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Templates.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\BalancesView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\HistoryView.xaml">
       <SubType>Designer</SubType>
@@ -345,25 +265,25 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.1.7</Version>
+      <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp">
-      <Version>4.0.0</Version>
+      <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
-      <Version>4.0.0</Version>
+      <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>4.0.0</Version>
+      <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid">
-      <Version>4.0.0</Version>
+      <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="NETStandard.Library">
       <Version>2.0.3</Version>
     </PackageReference>
     <PackageReference Include="Telerik.UI.for.UniversalWindowsPlatform">
-      <Version>1.0.1.1</Version>
+      <Version>1.0.1.2</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.23.0</Version>
