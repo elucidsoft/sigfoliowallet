@@ -5,38 +5,27 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:sfw="using:SigfolioWallet.Controls"
     x:Class="SigfolioWallet.Controls.AddTrustPopup"
     mc:Ignorable="d"
     d:DesignHeight="582"
     d:DesignWidth="400">
+    
     <Grid HorizontalAlignment="Center" Height="582" Margin="0,0,0,0" VerticalAlignment="Center" Width="400" Background="White">
         <TextBlock HorizontalAlignment="Left" Text="Add Trust" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold" FontSize="36" Margin="40,34,0,0"/>
         <TextBox HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Height="32" Width="319" Margin="40,139,0,0" PlaceholderText="Filter by federation URL"/>
         <TextBlock HorizontalAlignment="Left" Text="&#xE10A;" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" Width="16" Height="16" Margin="354,30,0,0" FontSize="16" Foreground="#FF2C5FF5"/>
         <GridView HorizontalAlignment="Center" Margin="0,181,0,0" Width="340" Padding="10,5,0,5" VerticalAlignment="Top" Height="401">
-            <Custom:DropShadowPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="82" Margin="0,0,0,0" BlurRadius="10" OffsetY="2" Color="#26000000">
-                <Border x:Name="CardBorder" BorderBrush="Black" Margin="0,0,0,0" CornerRadius="2,2,2,2" Background="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="82" Width="320">
-                    <Grid Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="320" Height="82">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition Height="0*"/>
-                        </Grid.RowDefinitions>
-                        <Border BorderBrush="Black" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="42" CornerRadius="2,2,2,2" Margin="20,20,0,20" Background="#FFC4C4C4">
-                            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
-                                <Image x:Name="Logo" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" FocusVisualPrimaryBrush="Black" Source="97e78f8c-ed26-4867-8dd3-8144d0cf6d5c"/>
-                            </Grid>
-                        </Border>
-                        <Border BorderBrush="Black" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="39" Margin="91,17,0,0" CornerRadius="5,5,5,5" Background="#FFEBEBEB">
-                            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
-                                <TextBlock x:Name="AssetCodeBlock" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF333333" FontSize="14" Text="CNY" FontFamily="Bahnschrift Light" FocusVisualPrimaryBrush="#FF333333"/>
-                            </Grid>
-                        </Border>
-                        <TextBlock HorizontalAlignment="Left" Margin="141,17,0,0" Text="ripplefox.com" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Foreground="#FF333333"/>
-                        <TextBlock HorizontalAlignment="Left" Margin="93,44,0,0" Text="GAREELUB ... HM43RFOX" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Width="159" Height="19" Foreground="#FF333333"/>
-                        <TextBlock HorizontalAlignment="Left" Margin="284,33,0,0" Text="&#xE109;" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Width="16" Height="16" Foreground="#FF2C5FF5" FontFamily="Segoe MDL2 Assets"/>
-                    </Grid>
-                </Border>
-            </Custom:DropShadowPanel>
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <sfw:TrustlineCard/>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+            <GridView.ItemContainerStyle>
+                <Style TargetType="FrameworkElement">
+                    <Setter Property="Margin" Value="0 0 20 20"/>
+                </Style>
+            </GridView.ItemContainerStyle>
         </GridView>
     </Grid>
 </UserControl>
