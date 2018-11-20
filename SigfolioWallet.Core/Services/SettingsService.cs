@@ -22,6 +22,11 @@ namespace SigfolioWallet.Core.Services
 
         public Wallet Wallet { get; private set; }
 
+        public string GetPrivateKey(string password)
+        {
+            _encryptionService.Decrypt(password, Wallet.CurrentAccount.EncryptedPrivateKey, null);
+        }
+
         public async Task<Wallet> LoadWallet()
         {
             using (var stream = await _storageService.GetStorageStream())
@@ -40,7 +45,7 @@ namespace SigfolioWallet.Core.Services
             return Wallet;
         }
 
-        public async Task SaveWallet(Wallet wallet)
+        public async Task SaveWallet(Wallet wallet, string password)
         {
             using (var stream = await _storageService.GetStorageStream())
             using (var db = new LiteDatabase(stream))

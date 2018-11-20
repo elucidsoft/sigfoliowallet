@@ -15,6 +15,8 @@ namespace SigfolioWallet.Core.Models
 
         public byte[] EncryptedPrivateKey { get; set; }
 
+        public EncryptionKeys EncryptionKeys { get; set; }
+
         public override bool Equals(object obj)
         {
             return obj is Account account &&
