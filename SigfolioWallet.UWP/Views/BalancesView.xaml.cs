@@ -38,7 +38,7 @@ namespace SigfolioWallet.Views
 
         private void AddTrustlineButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void TradeAssetsButton_Click(object sender, RoutedEventArgs e)

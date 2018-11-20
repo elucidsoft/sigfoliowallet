@@ -31,7 +31,6 @@ namespace SigfolioWallet.Controls
             set => this.SetValue(AmountProperty, value);
         }
 
-
         public static readonly DependencyProperty AssetCodeProperty = DependencyProperty.Register("AssetCode", typeof(string), typeof(AssetCard), new PropertyMetadata(null));
         public string AssetCode
         {
