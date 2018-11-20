@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SigfolioWallet.Core.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,6 +12,8 @@ namespace SigfolioWallet.Core.Models
         public string Name { get; set; }
 
         public string PublicKey { get; set; }
+
+        public byte[] EncryptedPrivateKey { get; set; }
 
         public override bool Equals(object obj)
         {
