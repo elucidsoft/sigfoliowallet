@@ -36,8 +36,11 @@ namespace SigfolioWallet.Core.ViewModels
 
         public override async Task Initialize()
         {
+            //TODO
+            //Change this
+
             Server server = new Server("https://horizon-testnet.stellar.org/");
-            KeyPair accountKeyPair = KeyPair.FromAccountId("GA6ASBGPYDVGSADNXZ7EWIJLA3I7MT4DQNYTLDIMX33SEYJUNRC74LXR");
+            KeyPair accountKeyPair = KeyPair.FromAccountId("GDLIITOORUA7DN3DDFEGNCGNFVRFKJKFOXJOE2FO4FYMFQF5LRT5YL7U");
             stellar_dotnet_sdk.responses.AccountResponse accountResponse = await server.Accounts.Account(accountKeyPair);
 
             for (int i = 0; i < accountResponse.Balances.Length; i++)

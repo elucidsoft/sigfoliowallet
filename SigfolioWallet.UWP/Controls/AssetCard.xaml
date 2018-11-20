@@ -5,11 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:converters="using:SigfolioWallet.Converters"
     x:Class="SigfolioWallet.Controls.AssetCard"
     mc:Ignorable="d"
     d:DesignHeight="200"
     d:DesignWidth="320">
 
+    <UserControl.Resources>
+        <converters:IDToShortID x:Key="IDToShortID"/>
+    </UserControl.Resources>
+    
     <Custom:DropShadowPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="209" Margin="0,0,0,0" Width="320" BlurRadius="20" OffsetY="5" Color="#26000000">
         <Border x:Name="CardBorder" BorderBrush="Black" Margin="0" CornerRadius="10,10,10,10" Height="200" Width="320" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{Binding Path=BgColor}">
             <Grid Margin="0">
