@@ -10,7 +10,7 @@
 
     <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
         <StackPanel HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Margin="0,19,0,0" Orientation="Horizontal">
-            <Button x:Name="AddTrustlineButton" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource ButtonRounded}" Background="#FFCCCCCC" Height="30">
+            <Button x:Name="AddTrustlineButton" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Center" Style="{StaticResource ButtonRounded}" Background="#FFCCCCCC" Height="30" Click="AddTrustlineButton_Click">
                 <Grid Margin="-10,0,-10,0" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                     <TextBlock x:Name="Icon1" HorizontalAlignment="Left" Text="&#xE109;" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Margin="12,0,0,0" FontSize="14" Foreground="#FF2C5FF5" RenderTransformOrigin="0.473,-0.036" Height="16" Width="14"/>
                     <TextBlock Text="Add Trustline" TextWrapping="Wrap" Margin="35,0,12,0" FontSize="12" FontFamily="Segoe UI" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="17" FontWeight="SemiBold"/>

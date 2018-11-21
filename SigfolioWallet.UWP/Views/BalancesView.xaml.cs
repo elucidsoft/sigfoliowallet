@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Platforms.Uap.Presenters.Attributes;
 using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
+using SigfolioWallet.Controls;
 using SigfolioWallet.Core.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -29,16 +30,27 @@ namespace SigfolioWallet.Views
     [MvxViewFor(typeof(BalancesViewModel))]
     public sealed partial class BalancesView : MvxWindowsPage
     {
+        private AddTrustPopup addTrustPopup;
+
         public BalancesView()
         {
             this.InitializeComponent();
+            addTrustPopup = new AddTrustPopup();
         }
 
         public new BalancesViewModel ViewModel => (BalancesViewModel)base.ViewModel;
 
         private void AddTrustlineButton_Click(object sender, RoutedEventArgs e)
         {
+            MvxWindowsContentDialog window = new MvxWindowsContentDialog
+            {
+                Title = "Control Dialog",
+                Content = addTrustPopup
+            };
 
+            addTrustPopup.ViewModel = ViewModel;
+
+            window.ShowAsync();
         }
 
         private void TradeAssetsButton_Click(object sender, RoutedEventArgs e)

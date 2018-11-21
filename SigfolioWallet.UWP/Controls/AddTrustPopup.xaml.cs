@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SigfolioWallet.Core.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -19,6 +21,8 @@ namespace SigfolioWallet.Controls
 {
     public sealed partial class AddTrustPopup : UserControl
     {
+        public BalancesViewModel ViewModel;
+
         public AddTrustPopup()
         {
             this.InitializeComponent();
