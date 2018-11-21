@@ -403,6 +403,11 @@
                         <FontIcon Glyph="&#xE80F;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem Foreground="White" Content="Balances" Tag="Balance">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE80F;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItem Foreground="White" Content="Transactions" Tag="Transactions">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE81C;" />
