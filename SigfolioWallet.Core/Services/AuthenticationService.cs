@@ -9,17 +9,24 @@ namespace SigfolioWallet.Core.Services
     {
         public event EventHandler<PasswordEventArgs> RequestPassword;
 
-        public string GetPassword()
-        {
-            var passwordEventArgs = new PasswordEventArgs();
-            OnRequestPassword(passwordEventArgs);
+        private byte[] _password;
 
-            return DecodePassword(passwordEventArgs.Password);
+        public byte[] GetPassword()
+        {
+            if (_password.Length == 0)
+            {
+                var passwordEventArgs = new PasswordEventArgs();
+                OnRequestPassword(passwordEventArgs);
+
+                _password = passwordEventArgs.Password;
+            }
+
+            return _password;
         }
 
-        public static string DecodePassword(byte[] password)
+        public void SetPassword(string password)
         {
-            return Encoding.UTF8.GetString(password);
+            _password = EncodePassword(password);
         }
 
         public static byte[] EncodePassword(string password)
@@ -27,6 +34,13 @@ namespace SigfolioWallet.Core.Services
             var sha256 = new SHA256Managed();
             return sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
         }
+
+        public void ClearPassword()
+        {
+            Array.Clear(_password, 0, _password.Length);
+        }
+
+        public bool IsAuthenticated => _password.Length > 0;
 
         protected virtual void OnRequestPassword(PasswordEventArgs e)
         {

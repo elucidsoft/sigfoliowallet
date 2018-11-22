@@ -19,6 +19,9 @@ namespace SigfolioWallet.Core
             Mvx.IoCProvider.RegisterType<IAuthenticationService, AuthenticationService>();
 
             //StorageService is Registered in the Application itself since its platform specific (UWP, Android, etc.)
+
+            Mvx.IoCProvider.RegisterSingleton<IAuthenticationService>(new AuthenticationService());
+
             Mvx.IoCProvider.RegisterSingleton<ISettingsService>(
                 new SettingsService(
                     Mvx.IoCProvider.Resolve<IStorageService>(),
