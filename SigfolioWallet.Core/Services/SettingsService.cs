@@ -70,7 +70,6 @@ namespace SigfolioWallet.Core.Services
             using (var stream = await _storageService.GetStorageStream())
             using (var db = new LiteDatabase(stream))
             {
-               
                 var walletColl = db.GetCollection<Wallet>(WalletCollectionName);
                 walletColl.Upsert(wallet);
             }
