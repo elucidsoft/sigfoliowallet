@@ -23,7 +23,7 @@
             </GridView.ItemTemplate>
             <GridView.ItemContainerStyle>
                 <Style TargetType="FrameworkElement">
-                    <Setter Property="Margin" Value="0 0 20 20"/>
+                    <Setter Property="Margin" Value="0 0 10 10"/>
                 </Style>
             </GridView.ItemContainerStyle>
         </GridView>

@@ -42,12 +42,9 @@ namespace SigfolioWallet.Views
 
         private void AddTrustlineButton_Click(object sender, RoutedEventArgs e)
         {
-            MvxWindowsContentDialog window = new MvxWindowsContentDialog
-            {
-                Title = "Control Dialog",
-                Content = addTrustPopup
-            };
-
+            TrustlineContentDialog window = new TrustlineContentDialog();
+            window.Content = addTrustPopup;
+            
             addTrustPopup.ViewModel = ViewModel;
 
             window.ShowAsync();
