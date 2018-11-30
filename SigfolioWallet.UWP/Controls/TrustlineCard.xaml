@@ -10,7 +10,7 @@
     d:DesignHeight="82"
     d:DesignWidth="320">
 
-    <Custom:DropShadowPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="82" Margin="0,0,0,0" Width="320" BlurRadius="10" OffsetY="2">
+    <Custom:DropShadowPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="82" Margin="0,0,0,0" Width="320" BlurRadius="10" OffsetY="2" Color="#26000000">
         <Border x:Name="CardBorder" BorderBrush="Black" Margin="0,0,0,0" CornerRadius="2,2,2,2" Width="320" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Height="82">
             <Grid Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="320" Height="82">
                 <Grid.RowDefinitions>
@@ -24,11 +24,11 @@
                 </Border>
                 <Border BorderBrush="Black" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="39" Margin="91,17,0,0" CornerRadius="5,5,5,5" Background="#FFEBEBEB">
                     <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
-                        <TextBlock x:Name="AssetCodeBlock" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF333333" FontSize="14" Text="CNY" FontFamily="Bahnschrift Light" FocusVisualPrimaryBrush="#FF333333"/>
+                        <TextBlock x:Name="AssetCodeBlock" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF333333" FontSize="14" Text="{Binding Path=Trustline.AssetCode}" FontFamily="Bahnschrift Light" FocusVisualPrimaryBrush="#FF333333"/>
                     </Grid>
                 </Border>
-                <TextBlock HorizontalAlignment="Left" Margin="141,17,0,0" Text="ripplefox.com" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Foreground="#FF333333"/>
-                <TextBlock HorizontalAlignment="Left" Margin="93,44,0,0" Text="GAREELUB ... HM43RFOX" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Width="159" Height="19" Foreground="#FF333333"/>
+                <TextBlock HorizontalAlignment="Left" Margin="141,17,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Foreground="#FF333333"/>
+                <TextBlock HorizontalAlignment="Left" Margin="93,44,0,0" Text="{Binding Path=Trustline.IssuerAddress}" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" FontWeight="SemiBold" Width="159" Height="19" Foreground="#FF333333"/>
                 <TextBlock HorizontalAlignment="Left" Margin="284,33,0,0" Text="&#xE109;" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="SemiBold" Width="16" Height="16" Foreground="#FF2C5FF5" FontFamily="Segoe MDL2 Assets"/>
             </Grid>
         </Border>

@@ -1,7 +1,9 @@
-﻿using SigfolioWallet.Core.ViewModels;
+﻿using MvvmCross.Base;
+using MvvmCross.Platforms.Uap.Views;
+using MvvmCross.ViewModels;
+using MvvmCross.Views;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -15,15 +17,11 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// La plantilla de elemento Control de usuario está documentada en https://go.microsoft.com/fwlink/?LinkId=234236
-
 namespace SigfolioWallet.Controls
 {
-    public sealed partial class AddTrustPopup : UserControl
+    public sealed partial class TrustlineContentDialog : MvxWindowsContentDialog
     {
-        public BalancesViewModel ViewModel;
-
-        public AddTrustPopup()
+        public TrustlineContentDialog()
         {
             this.InitializeComponent();
         }
