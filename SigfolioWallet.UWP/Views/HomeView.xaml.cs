@@ -8,7 +8,9 @@ using Windows.UI.Xaml.Media;
 using MvvmCross.Platforms.Uap.Presenters.Attributes;
 using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
+using SigfolioWallet.Core;
 using SigfolioWallet.Core.ViewModels;
+using SigfolioWallet.UWP;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,11 +29,18 @@ namespace SigfolioWallet.Views
             
             Loaded += HomeView_Loaded;
 
-           
+            Window.Current.SizeChanged += Current_SizeChanged;           
         }
 
+        private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            CardBarChart.Visibility = e.Size.Width < SigfolioWalletApp.DefaultWindowWidth ? Visibility.Collapsed : Visibility.Visible;
 
+        }
 
+        private void PnlMain_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+        }
 
         private void HomeView_Loaded(object sender, RoutedEventArgs e)
         {

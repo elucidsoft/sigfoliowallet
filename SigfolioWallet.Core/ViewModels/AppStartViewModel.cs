@@ -31,18 +31,18 @@ namespace SigfolioWallet.Core.ViewModels
 
         public override async Task Initialize()
         {
-            
+            // Task.Delay(100);
 
-            Wallet = await _settingsService.LoadWallet();
+//            Wallet = await _settingsService.LoadWallet();
 
-#if (DEBUG)
-            Wallet.Accounts.Add(new Account()
-            {
-                PublicKey = "GB72RBWW7YDFUR3UIFZUKOTIETBVMVSC4IR7HHEHGTCDTXZ4AETSQMNF",
-                Name = "Dev Test 1"
-            });
-#endif
-            await base.Initialize();
+//#if (DEBUG)
+//            Wallet.Accounts.Add(new Account()
+//            {
+//                PublicKey = "GB72RBWW7YDFUR3UIFZUKOTIETBVMVSC4IR7HHEHGTCDTXZ4AETSQMNF",
+//                Name = "Dev Test 1"
+//            });
+//#endif
+           await base.Initialize();
         }
 
         public Task Open(int selectedAccount)
