@@ -391,7 +391,7 @@
                 Duration="0:0:0.12" />
             </Storyboard>
         </Grid.Resources>
-        <NavigationView Margin="0 0 0 42"  Style="{StaticResource NavigationViewStyle1}" x:Name="MyNavView" Canvas.ZIndex="0" IsBackButtonVisible="Collapsed" IsBackEnabled="False" PaneTitle="Sigfolio Wallet">
+        <NavigationView Margin="0 0 0 42"  Style="{StaticResource NavigationViewStyle1}" x:Name="MyNavView" Canvas.ZIndex="0" ExpandedModeThresholdWidth="800" IsBackButtonVisible="Collapsed" IsBackEnabled="False" PaneTitle="Sigfolio Wallet">
             <NavigationView.HeaderTemplate>
                 <DataTemplate x:DataType="controls:CustomNavView">
                     <TextBlock x:Name="tbTitle" FontSize="32" FontWeight="Bold" Text="TEST" Margin="20 20 0 20"></TextBlock>

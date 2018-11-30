@@ -20,14 +20,13 @@ namespace SigfolioWallet
     {
         public AppStart()
         {
+            UISettings uiSettings = new UISettings();
+            uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
+            InitializeComponent();
 
-            //UISettings uiSettings = new UISettings();
-            //uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
-            //InitializeComponent();
+            SetupColors();
 
-            //SetupColors();
-
-            //Loaded += AppStart_Loaded;
+            Loaded += AppStart_Loaded;
         }
 
         private async void AppStart_Loaded(object sender, RoutedEventArgs e)

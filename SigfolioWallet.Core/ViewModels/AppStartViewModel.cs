@@ -29,20 +29,27 @@ namespace SigfolioWallet.Core.ViewModels
             _settingsService = settingsService;
         }
 
+        //TEMP Fix until new MVVMCross nuget package is released to fix startup hang with async
         public override async Task Initialize()
         {
-            // Task.Delay(100);
+            var loadWalletTask = Task.Run(() =>
+            {
+                Task.Delay(500);
 
-//            Wallet = await _settingsService.LoadWallet();
+                Wallet = _settingsService.LoadWallet().Result;
 
-//#if (DEBUG)
-//            Wallet.Accounts.Add(new Account()
-//            {
-//                PublicKey = "GB72RBWW7YDFUR3UIFZUKOTIETBVMVSC4IR7HHEHGTCDTXZ4AETSQMNF",
-//                Name = "Dev Test 1"
-//            });
-//#endif
-           await base.Initialize();
+#if (DEBUG)
+                Wallet.Accounts.Add(new Account()
+                {
+                    PublicKey = "GB72RBWW7YDFUR3UIFZUKOTIETBVMVSC4IR7HHEHGTCDTXZ4AETSQMNF",
+                    Name = "Dev Test 1"
+                });
+#endif
+            });
+
+            var initTask = base.Initialize();
+
+            Task.WaitAll(loadWalletTask, initTask);
         }
 
         public Task Open(int selectedAccount)
