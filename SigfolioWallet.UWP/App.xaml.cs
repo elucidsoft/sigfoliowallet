@@ -27,22 +27,23 @@ namespace SigfolioWallet.UWP
 
         private readonly UISettings _uiSettings = new UISettings();
 
+        public static readonly int DefaultWindowWidth = 708;
 
         protected override void OnLaunched(LaunchActivatedEventArgs activationArgs)
         {
             
-            ApplicationView.PreferredLaunchViewSize = new Size(1520, 800);
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            //ApplicationView.PreferredLaunchViewSize = new Size(DefaultWindowWidth, 800);
+            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-            _uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
+            //_uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
 
-            _coreApplicationView = CoreApplication.GetCurrentView();
-            _coreApplicationView.TitleBar.ExtendViewIntoTitleBar = true;
+            //_coreApplicationView = CoreApplication.GetCurrentView();
+            //_coreApplicationView.TitleBar.ExtendViewIntoTitleBar = true;
 
-            _currentView = ApplicationView.GetForCurrentView();
-            _application = Current;
+            //_currentView = ApplicationView.GetForCurrentView();
+            //_application = Current;
 
-            UIUtility.SetTitleBarColor(_currentView, _application);
+            //UIUtility.SetTitleBarColor(_currentView, _application);
             base.OnLaunched(activationArgs);
         }
 

@@ -10,7 +10,8 @@ namespace SigfolioWallet.Utilities
         public static void SetTitleBarColor(ApplicationView currentView, Application application)
         {
             ApplicationViewTitleBar titleBar = currentView.TitleBar;
-            titleBar.ButtonBackgroundColor = GetAccentColorLow();
+            titleBar.ButtonBackgroundColor = Colors.Transparent;
+            titleBar.ButtonForegroundColor = GetAccentColor();
         }
 
         public static Color GetAccentColorLow()

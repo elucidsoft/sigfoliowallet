@@ -6,6 +6,10 @@ namespace SigfolioWallet.Core.Services.Interfaces
 {
     public interface IAuthenticationService
     {
-        string GetPassword();
+        byte[] GetPassword();
+
+        void SetPassword(string password);
+
+        bool IsAuthenticated { get; }
     }
 }

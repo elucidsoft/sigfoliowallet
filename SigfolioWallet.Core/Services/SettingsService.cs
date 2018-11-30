@@ -1,6 +1,8 @@
 ﻿using LiteDB;
 using SigfolioWallet.Core.Models;
 using SigfolioWallet.Core.Services.Interfaces;
+
+using System;
 using System.Threading.Tasks;
 
 namespace SigfolioWallet.Core.Services
@@ -10,6 +12,8 @@ namespace SigfolioWallet.Core.Services
         private readonly IStorageService _storageService;
         private readonly IEncryptionService _encryptionService;
         private readonly IAuthenticationService _authenticationService;
+
+        public EventHandler<PasswordEventArgs> OnPasswordRequested;
 
         private const string WalletCollectionName = "wallet";
 
@@ -21,6 +25,11 @@ namespace SigfolioWallet.Core.Services
         }
 
         public Wallet Wallet { get; private set; }
+
+        public string GetPrivateKey()
+        {
+           return _encryptionService.Decrypt(_authenticationService.GetPassword(), Wallet.CurrentAccount.EncryptedPrivateKey, null);
+        }
 
         public async Task<Wallet> LoadWallet()
         {
@@ -38,6 +47,22 @@ namespace SigfolioWallet.Core.Services
             }
 
             return Wallet;
+        }
+
+        public Account CreateAccount(string privateKey)
+        {
+            var password = _authenticationService.GetPassword();
+            var encryptionResults = _encryptionService.Encrypt(password, privateKey);
+
+            var keyPair = stellar_dotnet_sdk.KeyPair.FromSecretSeed(privateKey);
+            var account = new Account
+            {
+                EncryptedPrivateKey = encryptionResults.EncryptedBytes,
+                EncryptionKeys = encryptionResults.EncryptionKeys,
+                PublicKey = stellar_dotnet_sdk.StrKey.EncodeStellarAccountId(keyPair.PublicKey)
+            };
+
+            return account;
         }
 
         public async Task SaveWallet(Wallet wallet)

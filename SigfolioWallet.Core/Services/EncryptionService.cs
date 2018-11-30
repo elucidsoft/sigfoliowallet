@@ -12,7 +12,7 @@ namespace SigfolioWallet.Core.Services
     {
         private const int Iterations = 1000000;
 
-        public (byte[] EncryptedBytes, EncryptionKeys EncryptionKeys) Encrypt(string password, string secret)
+        public (byte[] EncryptedBytes, EncryptionKeys EncryptionKeys) Encrypt(byte[] password, string secret)
         {
             var salt = new byte[64];
             using (var rngCsp = new RNGCryptoServiceProvider())
@@ -20,7 +20,7 @@ namespace SigfolioWallet.Core.Services
                 rngCsp.GetBytes(salt);
             }
 
-            var rfc2898DeriveBytes = new Rfc2898DeriveBytes("password", salt, Iterations);
+            var rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, salt, Iterations);
 
             var encryptionAlgorithm = TripleDES.Create();
             encryptionAlgorithm.Key = rfc2898DeriveBytes.GetBytes(16);
@@ -39,10 +39,10 @@ namespace SigfolioWallet.Core.Services
             }
         }
 
-        public string Decrypt(string password, byte[] encryptedData, EncryptionKeys encryptionKeys)
+        public string Decrypt(byte[] password, byte[] encryptedData, EncryptionKeys encryptionKeys)
         {
             var decryptionAlgorithm = TripleDES.Create();
-            var rfc2898DeriveBytes = new Rfc2898DeriveBytes("password", encryptionKeys.SaltBytes, Iterations);
+            var rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, encryptionKeys.SaltBytes, Iterations);
 
             decryptionAlgorithm.Key = rfc2898DeriveBytes.GetBytes(16);
             decryptionAlgorithm.IV = encryptionKeys.IvBytes;

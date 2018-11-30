@@ -11,8 +11,7 @@
     xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
     xmlns:interop="using:Windows.UI.Xaml.Interop"
    
-    mc:Ignorable="d"
-    Background="{ThemeResource SystemControlBackgroundListLowBrush}">
+    mc:Ignorable="d">
 
     <Page.Resources>
         <Style TargetType="sfw:Card">
@@ -25,42 +24,39 @@
             <Setter Property="Margin" Value="15 12 0 12"></Setter>
         </Style>
     </Page.Resources>
-    <ScrollViewer>
-        <StackPanel Orientation="Vertical">
-            <controls:WrapPanel Orientation="Horizontal">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <StackPanel x:Name="pnlMain" Orientation="Vertical">
+            <controls:WrapPanel Orientation="Horizontal" >
                 <StackPanel Orientation="Vertical">
                     <StackPanel VerticalAlignment="Top"  Orientation="Horizontal" >
                         <sfw:Card Label="TEST" PrimaryText="100" SubText="STR"/>
                         <sfw:Card Label="TEST" PrimaryText="100" SubText="STR"/>
                         <sfw:Card Label="TEST" PrimaryText="100" SubText="STR"/>
                     </StackPanel>
-                    <StackPanel VerticalAlignment="Top" Orientation="Horizontal" >
+                    <sfw:CardBarChart x:Name="CardBarChart" HorizontalAlignment="Stretch" Height="260" Margin="11 12 11 11" VerticalAlignment="Stretch" Width="600" Color="#8F5BDB"/>
+
+                </StackPanel>
+
+                    <controls:WrapPanel Orientation="Vertical" >
                         <sfw:CardChart Label="Closing Time" Style="{StaticResource ChardChartStyleFirst}" Color="#FF6F6F"/>
                         <sfw:CardChart Label="New Accounts" Style="{StaticResource ChardChartStyleSecond}"  Color="#2CDDF5"/>
-                    </StackPanel>
-                    <StackPanel VerticalAlignment="Top" Orientation="Horizontal" >
+                    </controls:WrapPanel>
+
+                    <controls:WrapPanel Orientation="Vertical" >
                         <sfw:CardChart Label="Transactions and Operations" Style="{StaticResource ChardChartStyleFirst}"  Color="#2C5FF5"/>
                         <sfw:CardChart Label="Payments" Style="{StaticResource ChardChartStyleSecond}" Color="#00DAB1"/>
-                    </StackPanel>
-                    <StackPanel VerticalAlignment="Top" Orientation="Horizontal" >
-                        <sfw:CardChart Label="Fees in Stroops" Style="{StaticResource ChardChartStyleFirst}"  Color="#8F5BDB"/>
-                        <sfw:CardChart Label="Offers" Style="{StaticResource ChardChartStyleSecond}" Color="#FFA800"/>
-                    </StackPanel>
-                    <StackPanel VerticalAlignment="Top" Orientation="Horizontal" >
-                        <sfw:CardChart Label="Money Volume" Style="{StaticResource ChardChartStyleFirst}"  Color="#FF4FAE"/>
-                        <sfw:CardChart Label="Options"  Margin="15 12 0 12" Color="#2C5FF5"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <StackPanel VerticalAlignment="Top"  Orientation="Horizontal" >
-                        <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" />
-                        <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" />
-                        <sfw:Card Label="TEST" PrimaryText="100" SubText="STR" />
-                    </StackPanel>
-                    <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
-                        <sfw:CardBarChart HorizontalAlignment="Stretch" Height="260" Margin="11 12 11 11" VerticalAlignment="Stretch" Width="600" Color="#8F5BDB"/>
-                    </StackPanel>
-                </StackPanel>
+                    </controls:WrapPanel>
+
+                <controls:WrapPanel Orientation="Vertical" >
+                    <sfw:CardChart Label="Fees in Stroops" Style="{StaticResource ChardChartStyleFirst}"  Color="#8F5BDB"/>
+                    <sfw:CardChart Label="Offers" Style="{StaticResource ChardChartStyleSecond}" Color="#FFA800"/>
+                </controls:WrapPanel>
+
+                <controls:WrapPanel Orientation="Vertical" >
+                    <sfw:CardChart Label="Money Volume" Style="{StaticResource ChardChartStyleFirst}"  Color="#FF4FAE"/>
+                    <sfw:CardChart Label="Options"  Margin="15 12 0 12" Color="#2C5FF5"/>
+                </controls:WrapPanel>
+
             </controls:WrapPanel>
         </StackPanel>
     </ScrollViewer>

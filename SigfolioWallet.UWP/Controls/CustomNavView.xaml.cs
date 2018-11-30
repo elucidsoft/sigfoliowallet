@@ -118,7 +118,7 @@ namespace SigfolioWallet.Controls
             NavView.PaneClosing += NavView_PaneClosing;
             NavView.PaneOpening += NavView_PaneOpening;
             SetColors();
-
+            TogglePane(!NavView.IsPaneOpen);
         }
 
         private void NavView_PaneClosing(NavigationView sender, NavigationViewPaneClosingEventArgs args)

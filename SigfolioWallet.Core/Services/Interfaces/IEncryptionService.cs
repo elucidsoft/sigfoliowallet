@@ -5,8 +5,8 @@ namespace SigfolioWallet.Core.Services.Interfaces
 {
     public interface IEncryptionService
     {
-        (byte[] EncryptedBytes, EncryptionKeys EncryptionKeys) Encrypt(string password, string secret);
+        (byte[] EncryptedBytes, EncryptionKeys EncryptionKeys) Encrypt(byte[] password, string secret);
 
-        string Decrypt(string password, byte[] encryptedData, EncryptionKeys encryptionKeys);
+        string Decrypt(byte[] password, byte[] encryptedData, EncryptionKeys encryptionKeys);
     }
 }
