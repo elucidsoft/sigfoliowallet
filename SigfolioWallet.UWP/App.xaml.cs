@@ -31,8 +31,8 @@ namespace SigfolioWallet.UWP
 
         protected override void OnLaunched(LaunchActivatedEventArgs activationArgs)
         {
-            //ApplicationView.PreferredLaunchViewSize = new Size(DefaultWindowWidth, 800);
-            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            ApplicationView.PreferredLaunchViewSize = new Size(DefaultWindowWidth, 850);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             _uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
 
