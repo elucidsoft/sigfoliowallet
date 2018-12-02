@@ -3,23 +3,7 @@ using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
 using SigfolioWallet.Controls;
 using SigfolioWallet.Core.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SigfolioWallet.Views
 {
@@ -30,24 +14,21 @@ namespace SigfolioWallet.Views
     [MvxViewFor(typeof(BalancesViewModel))]
     public sealed partial class BalancesView : MvxWindowsPage
     {
-        private AddTrustPopup addTrustPopup;
-
         public BalancesView()
         {
             this.InitializeComponent();
-            addTrustPopup = new AddTrustPopup();
         }
 
         public new BalancesViewModel ViewModel => (BalancesViewModel)base.ViewModel;
 
         private void AddTrustlineButton_Click(object sender, RoutedEventArgs e)
         {
-            TrustlineContentDialog window = new TrustlineContentDialog();
-            window.Content = addTrustPopup;
-            
-            addTrustPopup.ViewModel = ViewModel;
-
-            window.ShowAsync();
+            BlankContentDialog dialog = new BlankContentDialog();
+            TrustlineDialog trustlineDialog = new TrustlineDialog();
+            trustlineDialog.viewModel = ViewModel;
+            trustlineDialog.dialog = dialog;
+            dialog.Content = trustlineDialog;
+            dialog.ShowAsync();
         }
 
         private void TradeAssetsButton_Click(object sender, RoutedEventArgs e)

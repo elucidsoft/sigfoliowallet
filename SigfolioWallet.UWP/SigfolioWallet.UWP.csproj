@@ -120,8 +120,8 @@
     <Compile Include="Controls\AddCard.xaml.cs">
       <DependentUpon>AddCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AddTrustPopup.xaml.cs">
-      <DependentUpon>AddTrustPopup.xaml</DependentUpon>
+    <Compile Include="Controls\TrustlineDialog.xaml.cs">
+      <DependentUpon>TrustlineDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CardBarChart.xaml.cs">
       <DependentUpon>CardBarChart.xaml</DependentUpon>
@@ -141,8 +141,8 @@
     <Compile Include="Controls\TrustlineCard.xaml.cs">
       <DependentUpon>TrustlineCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TrustlineContentDialog.xaml.cs">
-      <DependentUpon>TrustlineContentDialog.xaml</DependentUpon>
+    <Compile Include="Dialogs\BlankContentDialog.xaml.cs">
+      <DependentUpon>BlankContentDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\IDToShortID.cs" />
     <Compile Include="Utilities\UWPUtilities.cs" />
@@ -292,7 +292,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\AddTrustPopup.xaml">
+    <Page Include="Controls\TrustlineDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -320,7 +320,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\TrustlineContentDialog.xaml">
+    <Page Include="Dialogs\BlankContentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

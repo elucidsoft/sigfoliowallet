@@ -1,9 +1,7 @@
-﻿using MvvmCross.Base;
-using MvvmCross.Platforms.Uap.Views;
-using MvvmCross.ViewModels;
-using MvvmCross.Views;
+﻿using SigfolioWallet.Core.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -19,11 +17,20 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SigfolioWallet.Controls
 {
-    public sealed partial class TrustlineContentDialog : MvxWindowsContentDialog
+    public sealed partial class TrustlineDialog : UserControl
     {
-        public TrustlineContentDialog()
+        public BalancesViewModel viewModel;
+        public BlankContentDialog dialog;
+
+        public TrustlineDialog()
         {
             this.InitializeComponent();
+        }
+
+        private void OnClickExit(object sender, PointerRoutedEventArgs e)
+        {
+            dialog.Hide();
+            dialog.Dispose();
         }
     }
 }
