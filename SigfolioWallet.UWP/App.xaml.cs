@@ -1,20 +1,18 @@
-﻿using System;
-
+﻿using MvvmCross;
 using MvvmCross.Platforms.Uap.Core;
 using MvvmCross.Platforms.Uap.Presenters;
 using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
+using SigfolioWallet.Core.Services.Interfaces;
+using SigfolioWallet.Core.UWP;
+using SigfolioWallet.Utilities;
+using System;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
+using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using MvvmCross;
-using SigfolioWallet.Core.Services.Interfaces;
-using SigfolioWallet.Core.UWP;
-using MvvmCross.IoC;
-using SigfolioWallet.Utilities;
-using Windows.Foundation;
 
 namespace SigfolioWallet.UWP
 {
@@ -60,7 +58,7 @@ namespace SigfolioWallet.UWP
         protected override IMvxApplication CreateApp()
         {
             Mvx.IoCProvider.RegisterSingleton<IStorageService>(new StorageService());
-            
+
             return new Core.App();
         }
 
@@ -69,7 +67,7 @@ namespace SigfolioWallet.UWP
             return new ClearBackStackPresenter(rootFrame);
         }
     }
-    
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
@@ -81,8 +79,7 @@ namespace SigfolioWallet.UWP
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
-
+            InitializeComponent();
         }
     }
 }
