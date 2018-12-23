@@ -31,14 +31,12 @@ namespace SigfolioWallet.Core.ViewModels
         }
 
         private ObservableCollection<AssetCard> _assetsCards = new ObservableCollection<AssetCard>();
-
         public ObservableCollection<AssetCard> AssetsCards
         {
             get { return this._assetsCards; }
         }
 
         private ObservableCollection<TrustlineCard> _trustlineCards = new ObservableCollection<TrustlineCard>();
-
         public ObservableCollection<TrustlineCard> TrustlineCards
         {
             get { return this._trustlineCards; }
@@ -119,7 +117,6 @@ namespace SigfolioWallet.Core.ViewModels
 
                     _trustlineCards.Add(trustlineCard);
                 }
-
             }
         }
     }

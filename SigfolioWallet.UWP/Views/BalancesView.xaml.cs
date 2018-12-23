@@ -27,6 +27,7 @@ namespace SigfolioWallet.Views
             TrustlineDialog trustlineDialog = new TrustlineDialog();
             trustlineDialog.viewModel = ViewModel;
             trustlineDialog.dialog = dialog;
+            trustlineDialog.Setup();
             dialog.Content = trustlineDialog;
             dialog.ShowAsync();
         }
