@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="SigfolioWallet.Views.OpenWallet"
+    x:Class="SigfolioWallet.Views.GettingStarted"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SigfolioWallet.Views"
@@ -25,15 +25,17 @@
                 <Path Name="path3753" Fill="{ThemeResource SystemControlBackgroundAccentBrush}" Opacity="0.35" Data="M20.906 44.4526C19.2571 44.5683 14.6285 44.6262 10.8389 42.5436C6.64422 40.2297 4.44565 36.0357 4.06958 35.2837C4.04065 35.2547 4.01172 35.1969 4.01172 35.168C4.04065 39.7669 5.11101 44.3369 7.16494 48.5598C12.2853 48.5309 16.4799 47.3161 20.906 44.4526Z"/>
                 <Path Name="path3755" Fill="{ThemeResource SystemControlBackgroundAccentBrush}" Opacity="0.65" Data="M12.0331 50.7562C10.7602 50.9876 9.63201 51.1033 8.64844 51.1322C9.89237 53.1569 11.3967 55.0659 13.1324 56.8302C14.8392 58.5368 16.6906 60.0119 18.6867 61.2267C18.947 55.1816 20.972 50.0909 25.2245 44.5664C20.7985 48.0084 16.6327 49.9752 12.0331 50.7562Z"/>
             </Canvas>
-            <TextBlock Text="Open wallet" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" FontSize="32" Padding="0 0 0 30" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBlock Text="Select your account below to open it. To add a new account to your wallet click on 'Add Account' below." TextWrapping="WrapWholeWords" FontSize="14" Padding="0 0 0 30" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+            <TextBlock Text="Getting started" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" FontSize="32" Padding="0 10 0 30" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Text="Thank you for choosing Sigfolio Wallet as your Stellar Wallet. This wizard will guide you through the process of creating your wallet." TextWrapping="WrapWholeWords" FontSize="20" Padding="0 0 0 30" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+            <StackPanel Margin="20 30 0 0">
+                <TextBlock Text="Things you will need: " TextWrapping="WrapWholeWords" FontSize="20" Padding="0 0 0 10" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                <TextBlock Text="•   About 5 minutes" FontSize="20" Margin="12 0 0 4"/>
+                <TextBlock Text="•   Pen and paper, or a printer." Margin="12 0 0 0" FontSize="20"/>
+            </StackPanel>
 
-            <TextBlock Text="Wallet:"/>
-            <ComboBox Name="cbWallets" HorizontalAlignment="Center" VerticalAlignment="Center" Width="510" />
-            <TextBlock Margin="0 30 0 0" Text="Accounts:"/>
-            <ComboBox Name="cbAccounts" HorizontalAlignment="Center" SelectedValuePath="Id" FontFamily="Consolas" ItemsSource="{Binding Wallet.Accounts}" DisplayMemberPath="PublicKey" VerticalAlignment="Center" Width="510" Margin="0,0,0,0" />
         </StackPanel>
-        <Button HorizontalAlignment="Left" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="#fff" Margin="445,0,0,20" VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Width="115" Content="Open Wallet"/>
-        <Button HorizontalAlignment="Right" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="#fff"  VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Width="115" Content="Add Account" Margin="0,0,445,20"/>
+        <ProgressBar VerticalAlignment="Bottom" Margin="0 0 0 90" Width="550" Value="10" ></ProgressBar>
+        <Button HorizontalAlignment="Left" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="#fff" Margin="445,0,0,20" VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Width="115" Content="Next"/>
+        <Button HorizontalAlignment="Right" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="#fff"  VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Width="120" Content="Import Existing" Margin="10,0,440,20"/>
     </Grid>
 </Page>

@@ -28,7 +28,7 @@ namespace SigfolioWallet
             SetupColors();
 
             //Loaded += AppStart_Loaded;
-            RootFrame.Navigate(typeof(OpenWallet));
+            RootFrame.Navigate(typeof(GettingStarted));
         }
 
         //private async void AppStart_Loaded(object sender, RoutedEventArgs e)
