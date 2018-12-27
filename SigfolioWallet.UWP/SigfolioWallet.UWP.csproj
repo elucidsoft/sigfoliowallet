@@ -113,7 +113,7 @@
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppStart.xaml.cs">
+    <Compile Include="Views\AppStartup\AppStart.xaml.cs">
       <DependentUpon>AppStart.xaml</DependentUpon>
     </Compile>
     <Compile Include="ClearBackStackPresenter.cs" />
@@ -157,10 +157,10 @@
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\GettingStarted.xaml.cs">
+    <Compile Include="Views\AppStartup\GettingStarted.xaml.cs">
       <DependentUpon>GettingStarted.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OpenWallet.xaml.cs">
+    <Compile Include="Views\AppStartup\OpenWallet.xaml.cs">
       <DependentUpon>OpenWallet.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
@@ -290,7 +290,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="AppStart.xaml">
+    <Page Include="Views\AppStartup\AppStart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -346,11 +346,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\GettingStarted.xaml">
+    <Page Include="Views\AppStartup\GettingStarted.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\OpenWallet.xaml">
+    <Page Include="Views\AppStartup\OpenWallet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

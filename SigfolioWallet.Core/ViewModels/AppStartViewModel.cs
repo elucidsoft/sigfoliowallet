@@ -8,6 +8,7 @@ using MvvmCross;
 using MvvmCross.Base;
 using SigfolioWallet.Core.Models;
 using SigfolioWallet.Core.Services;
+using SigfolioWallet.Core.ViewModels.AppStartup;
 
 namespace SigfolioWallet.Core.ViewModels
 {
@@ -27,6 +28,11 @@ namespace SigfolioWallet.Core.ViewModels
         {
             _navigationService = navigationService;
             _settingsService = settingsService;
+        }
+
+        public override void ViewAppeared()
+        {
+            _navigationService.Navigate<GettingStartedViewModel>();
         }
 
         //TEMP Fix until new MVVMCross nuget package is released to fix startup hang with async

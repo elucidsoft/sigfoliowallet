@@ -1,10 +1,11 @@
-﻿<Page
-    x:Class="SigfolioWallet.Views.OpenWallet"
+﻿<views:MvxWindowsPage
+    x:Class="SigfolioWallet.Views.AppStartup.OpenWallet"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SigfolioWallet.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:MvvmCross.Platforms.Uap.Views"
     mc:Ignorable="d"
     Width="570" Height="650"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -36,4 +37,4 @@
         <Button HorizontalAlignment="Left" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="#fff" Margin="445,0,0,20" VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Width="115" Content="Open Wallet"/>
         <Button HorizontalAlignment="Right" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="#fff"  VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Width="115" Content="Add Account" Margin="0,0,445,20"/>
     </Grid>
-</Page>
+</views:MvxWindowsPage>
