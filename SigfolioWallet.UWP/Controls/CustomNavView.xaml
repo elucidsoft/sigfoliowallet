@@ -405,7 +405,7 @@
                 </NavigationViewItem>
                 <NavigationViewItem Foreground="White" Content="Balances" Tag="Balance">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE80F;" />
+                        <FontIcon Glyph="&#xE8C7;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem Foreground="White" Content="Transactions" Tag="Transactions">
