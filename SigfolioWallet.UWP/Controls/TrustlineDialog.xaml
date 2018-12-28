@@ -19,28 +19,43 @@
                 <PivotItem.Header>
                     <TextBlock Text="Explore" FontFamily="Segoe UI" FontWeight="Bold" FontSize="14"/>
                 </PivotItem.Header>
-                <PivotItem.Content>
-                    <Grid Margin="0,0,0,0">
-                        <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Height="32" Width="319" Margin="7,8,0,0" PlaceholderText="Filter by federation URL" TextChanging="OnFilterTextChanging"/>
-                        <GridView HorizontalAlignment="Center" Margin="0,53,0,0" Width="340" Padding="10,5,0,5" VerticalAlignment="Top" Height="401" ItemsSource="{x:Bind FilteredTrustlines, Mode=OneWay}">
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <sfw:TrustlineCard/>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                            <GridView.ItemContainerStyle>
-                                <Style TargetType="FrameworkElement">
-                                    <Setter Property="Margin" Value="0 0 10 10"/>
-                                </Style>
-                            </GridView.ItemContainerStyle>
-                        </GridView>
-                    </Grid>
-                </PivotItem.Content>
+                <Grid>
+                    <TextBox x:Name="SearchBox" HorizontalAlignment="Center" Text="" VerticalAlignment="Top" Height="32" Margin="0,8,0,0" PlaceholderText="Filter by federation URL" TextChanging="OnFilterTextChanging" Width="316"/>
+                    <GridView HorizontalAlignment="Center" Margin="0,53,0,0" Width="340" Padding="10,5,0,5" VerticalAlignment="Top" Height="401" ItemsSource="{x:Bind FilteredTrustlines, Mode=OneWay}">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <sfw:TrustlineCard/>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                        <GridView.ItemContainerStyle>
+                            <Style TargetType="FrameworkElement">
+                                <Setter Property="Margin" Value="0 0 10 10"/>
+                            </Style>
+                        </GridView.ItemContainerStyle>
+                    </GridView>
+                </Grid>
             </PivotItem>
-            <PivotItem Background="Transparent" d:IsHidden="True" Margin="0,0,0,0">
+            <PivotItem Background="Transparent">
                 <PivotItem.Header>
                     <TextBlock Text="Add Manually" FontFamily="Segoe UI" FontWeight="Bold" FontSize="14"/>
                 </PivotItem.Header>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBox Margin="0,10,0,0" Text="" VerticalAlignment="Top" PlaceholderText="Example: CNY" BorderThickness="1,1,1,1" HorizontalAlignment="Stretch" FontSize="14">
+                        <TextBox.Header>
+                            <TextBlock Text="Asset code" FontFamily="Segoe UI" FontSize="12"/>
+                        </TextBox.Header>
+                    </TextBox>
+                    <TextBox Margin="0,88,0,0" Text="" VerticalAlignment="Top" PlaceholderText="Example: GOIUD5OIU4OIUKJLDFLIJK234LKJLKJFS" BorderThickness="1,1,1,1" HorizontalAlignment="Stretch" FontSize="14">
+                        <TextBox.Header>
+                            <TextBlock Text="Trust Address" FontFamily="Segoe UI" FontSize="12"/>
+                        </TextBox.Header>
+                    </TextBox>
+                    <TextBox Margin="0,176,0,0" Text="" VerticalAlignment="Top" PlaceholderText="Example: 250" BorderThickness="1,1,1,1" HorizontalAlignment="Stretch" FontSize="14">
+                        <TextBox.Header>
+                            <TextBlock Text="Amount Limit" FontFamily="Segoe UI" FontSize="12"/>
+                        </TextBox.Header>
+                    </TextBox>
+                </Grid>
             </PivotItem>
         </Pivot>
     </Grid>
