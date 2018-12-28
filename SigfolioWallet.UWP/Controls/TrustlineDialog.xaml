@@ -13,19 +13,35 @@
 
     <Grid HorizontalAlignment="Center" Height="582" Margin="0,0,0,0" VerticalAlignment="Center" Width="400" Background="White">
         <TextBlock HorizontalAlignment="Left" Text="Add Trust" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold" FontSize="36" Margin="40,34,0,0"/>
-        <TextBox HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Height="32" Width="319" Margin="40,139,0,0" PlaceholderText="Filter by federation URL" TextChanging="OnFilterTextChanging"/>
         <TextBlock HorizontalAlignment="Left" Text="&#xE10A;" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" Width="16" Height="16" Margin="354,30,0,0" FontSize="16" Foreground="#FF2C5FF5" PointerPressed="OnClickExit"/>
-        <GridView HorizontalAlignment="Center" Margin="0,181,0,0" Width="340" Padding="10,5,0,5" VerticalAlignment="Top" Height="401" ItemsSource="{x:Bind FilteredTrustlines, Mode=OneWay}">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <sfw:TrustlineCard/>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-            <GridView.ItemContainerStyle>
-                <Style TargetType="FrameworkElement">
-                    <Setter Property="Margin" Value="0 0 10 10"/>
-                </Style>
-            </GridView.ItemContainerStyle>
-        </GridView>
+        <Pivot Margin="0,79,0,0" Width="340" Background="{x:Null}">
+            <PivotItem Margin="0,0,0,0">
+                <PivotItem.Header>
+                    <TextBlock Text="Explore" FontFamily="Segoe UI" FontWeight="Bold" FontSize="14"/>
+                </PivotItem.Header>
+                <PivotItem.Content>
+                    <Grid Margin="0,0,0,0">
+                        <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Height="32" Width="319" Margin="7,8,0,0" PlaceholderText="Filter by federation URL" TextChanging="OnFilterTextChanging"/>
+                        <GridView HorizontalAlignment="Center" Margin="0,53,0,0" Width="340" Padding="10,5,0,5" VerticalAlignment="Top" Height="401" ItemsSource="{x:Bind FilteredTrustlines, Mode=OneWay}">
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <sfw:TrustlineCard/>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                            <GridView.ItemContainerStyle>
+                                <Style TargetType="FrameworkElement">
+                                    <Setter Property="Margin" Value="0 0 10 10"/>
+                                </Style>
+                            </GridView.ItemContainerStyle>
+                        </GridView>
+                    </Grid>
+                </PivotItem.Content>
+            </PivotItem>
+            <PivotItem Background="Transparent" d:IsHidden="True" Margin="0,0,0,0">
+                <PivotItem.Header>
+                    <TextBlock Text="Add Manually" FontFamily="Segoe UI" FontWeight="Bold" FontSize="14"/>
+                </PivotItem.Header>
+            </PivotItem>
+        </Pivot>
     </Grid>
 </UserControl>
