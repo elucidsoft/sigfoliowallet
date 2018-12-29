@@ -1,8 +1,8 @@
+# Sigfolio Wallet
 [![Build status](https://ci.appveyor.com/api/projects/status/3e9qmpopvkdk8935?svg=true)](https://ci.appveyor.com/project/elucidsoft/sigfoliowallet)
 [![codecov](https://codecov.io/gh/elucidsoft/sigfoliowallet/branch/master/graph/badge.svg)](https://codecov.io/gh/elucidsoft/sigfoliowallet)
 [![CodeFactor](https://www.codefactor.io/repository/github/elucidsoft/sigfoliowallet/badge)](https://www.codefactor.io/repository/github/elucidsoft/sigfoliowallet)
 
-# Sigfolio Wallet
 A wallet for the Stellar Network
 
 ## Status
