@@ -1,5 +1,5 @@
 version: 1.0.{build}
-environment: 
+environment:
     APPVEYOR_BLOCK_DOTNETCORE_TESTS_AUTORUN: false
 pull_requests:
   do_not_increment_build_number: true
@@ -21,7 +21,7 @@ build:
   verbosity: minimal
 deploy: off
 test_script:
- - cmd: dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover ./SigfolioWallet.Test/ --test-adapter-path:. --logger:Appveyor 
+ - cmd: dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover ./SigfolioWallet.Test/ --test-adapter-path:. --logger:Appveyor
 after_test:
   - ps: |
       $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
