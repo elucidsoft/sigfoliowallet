@@ -17,6 +17,11 @@ Get a working Wallet that can do the very basics of the following.
 - Send XLM Asset
 - View Balance of XLM Asset
 
+#### Wallet Guidelines
+Stellar has released new guidelines for Wallets, you can read more about them [here](
+https://www.stellar.org/lumens/wallets/wallet-listing-guidelines/#completeguidelines).  This wallet will comply and go beyond these wallet requirements.  We also plan on getting multiple audits of the code system. 
+
+
 Once the above features are completed and we have reached MVP a secondary project will be created to work on adding more features.
 
 
