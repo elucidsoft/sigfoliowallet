@@ -209,3 +209,4 @@ FakesAssemblies/
 # Custom ignores
 gallery.xml
 project.lock.json
+SigfolioWallet.Test/coverage.opencover.xml

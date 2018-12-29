@@ -1,6 +1,6 @@
 version: 1.0.{build}
-environment: 
-    APPVEYOR_BLOCK_DOTNETCORE_TESTS_AUTORUN: true
+environment:
+    APPVEYOR_BLOCK_DOTNETCORE_TESTS_AUTORUN: false
 pull_requests:
   do_not_increment_build_number: true
 os: Visual Studio 2017
@@ -20,7 +20,10 @@ build:
   parallel: true
   verbosity: minimal
 deploy: off
-test:
-    assemblies:
-        only:
-         -  SigfolioWallet.Test\bin\Debug\netcoreapp2.1\SigfolioWallet.Test.dll
+test_script:
+ - cmd: dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover ./SigfolioWallet.Test/ --test-adapter-path:. --logger:Appveyor
+after_test:
+  - ps: |
+      $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
+      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+      bash codecov.sh -f "./SigfolioWallet.Test/coverage.opencover.xml" -t 5e9a3a7e-b0e7-492e-bac9-43401e17cbe5
