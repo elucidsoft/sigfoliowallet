@@ -18,7 +18,7 @@ before_build:
 build:
   project: SigfolioWallet.sln
   parallel: true
-  verbosity: minimal 
+  verbosity: minimal
 deploy: off
 test_script:
  - cmd: dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover ./SigfolioWallet.Test/ --test-adapter-path:. --logger:Appveyor 
