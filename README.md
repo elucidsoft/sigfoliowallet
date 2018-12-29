@@ -5,6 +5,8 @@
 
 A wallet for the Stellar Network
 
+[![Build history](https://buildstats.info/appveyor/chart/elucidsoft/sigfoliowallet)](https://ci.appveyor.com/project/elucidsoft/sigfoliowallet)
+
 ## Status
 ### Development phase
 
