@@ -3,9 +3,9 @@
 [![codecov](https://codecov.io/gh/elucidsoft/sigfoliowallet/branch/master/graph/badge.svg)](https://codecov.io/gh/elucidsoft/sigfoliowallet)
 [![CodeFactor](https://www.codefactor.io/repository/github/elucidsoft/sigfoliowallet/badge)](https://www.codefactor.io/repository/github/elucidsoft/sigfoliowallet)
 
-A wallet for the Stellar Network
-
 [![Build history](https://buildstats.info/appveyor/chart/elucidsoft/sigfoliowallet)](https://ci.appveyor.com/project/elucidsoft/sigfoliowallet)
+
+A wallet for the Stellar Network
 
 ## Status
 ### Development phase
