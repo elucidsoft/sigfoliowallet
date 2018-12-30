@@ -34,7 +34,7 @@ namespace SigfolioWallet.Core.ViewModels.AppStartup
             _wallet.Accounts.Add(account);
 
             //TODO: Note this requires the SetPassword call above which is stored in memory, etc.
-            var privateKey = _settingsService.GetPrivateKey();
+            var privateKey = _settingsService.GetPrivateKey(account);
         }
 
         public OpenWalletViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, ISettingsService settingsService, IAuthenticationService authenticationService)

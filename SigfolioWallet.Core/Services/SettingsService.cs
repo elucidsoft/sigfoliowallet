@@ -26,9 +26,9 @@ namespace SigfolioWallet.Core.Services
 
         public Wallet Wallet { get; private set; }
 
-        public string GetPrivateKey()
+        public string GetPrivateKey(Account account)
         {
-           return _encryptionService.Decrypt(_authenticationService.GetPassword(), Wallet.CurrentAccount);
+           return _encryptionService.Decrypt(_authenticationService.GetPassword(), account);
         }
 
         public Account CreateAccount(string privateKey)

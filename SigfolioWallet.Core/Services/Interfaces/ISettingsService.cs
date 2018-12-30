@@ -13,7 +13,7 @@ namespace SigfolioWallet.Core.Services
 
         Account CreateAccount(string privateKey);
 
-        string GetPrivateKey();
+        string GetPrivateKey(Account account);
 
         void ResetSettings();
         Wallet Wallet { get; }
