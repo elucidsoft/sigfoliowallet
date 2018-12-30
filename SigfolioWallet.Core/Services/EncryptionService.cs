@@ -39,19 +39,19 @@ namespace SigfolioWallet.Core.Services
             }
         }
 
-        public string Decrypt(byte[] password, byte[] encryptedData, EncryptionKeys encryptionKeys)
+        public string Decrypt(byte[] password, Account account)
         {
             var decryptionAlgorithm = TripleDES.Create();
-            var rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, encryptionKeys.SaltBytes, Iterations);
+            var rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, account.EncryptionKeys.SaltBytes, Iterations);
 
             decryptionAlgorithm.Key = rfc2898DeriveBytes.GetBytes(16);
-            decryptionAlgorithm.IV = encryptionKeys.IvBytes;
+            decryptionAlgorithm.IV = account.EncryptionKeys.IvBytes;
 
             using (var memoryStream = new MemoryStream())
             {
                 using (var encrypt = new CryptoStream(memoryStream, decryptionAlgorithm.CreateDecryptor(), CryptoStreamMode.Write))
                 {
-                    encrypt.Write(encryptedData, 0, encryptedData.Length);
+                    encrypt.Write(account.EncryptedPrivateKey, 0, account.EncryptedPrivateKey.Length);
                     encrypt.Flush();
                 }
 

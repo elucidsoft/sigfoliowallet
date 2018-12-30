@@ -1,84 +1,48 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SigfolioWallet.Core.Models;
 using SigfolioWallet.Core.Services;
-using SigfolioWallet.Core.Services.Interfaces;
 using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace SigfolioWallet.Test
 {
-    //[TestClass]
-    //public class SettingsServiceTests
-    //{
-    //    [TestMethod]
-    //    public async Task SaveWalletTest()
-    //    {
-    //        var testStorageService = new TestStorageService();
-    //        var authenticationService = new AuthenticationService();
+    [TestClass]
+    public class SettingsServiceTests
+    {
+        private AuthenticationService _authenticationService;
+        private SettingsService _settingsService;
 
-    //        authenticationService.RequestPassword += (sender, args) => { args.SetPassword("password"); };
+        private const string PrivateKey = "SABKP6TWACKPAYZOUHZOIDB4NGL57ZNJXPQF7XPFZXDRDICMHB4QOH65";
+        private const string PublicKey = "GD6L6LCT42ZVODR55IL6MD7NLIPINSSSEOGJFGNVCTXJWNCMQJYVXTSL";
 
-    //        var settingsService = new SettingsService(testStorageService, new EncryptionService(), authenticationService);
+        private const string Password = "TestP@ssw0rd";
 
-    //        var wallet = new Core.Models.Wallet
-    //        {
-    //            WalletName = "test wallet",
-    //            Accounts = new List<Account>(new[]
-    //            {
-    //                new Account
-    //                {
-    //                    Name = "One",
-    //                    PublicKey = "1253223sadffdfgasdfadsf"
-    //                }
-    //            })
-    //        };
+        [TestInitialize]
+        public void Initialize()
+        {
+            _authenticationService = new AuthenticationService();
+            _settingsService = new SettingsService(new TestStorageService(), new EncryptionService(), _authenticationService);
+        }
 
-    //        await settingsService.SaveWallet(wallet);
-    //        var loadedWallet = await settingsService.LoadWallet();
+        [TestMethod]
+        public void TestEncryptAndDecryptPrivateKey()
+        {
+            _authenticationService.SetPassword(Password);
+          
+            var account = _settingsService.CreateAccount(PrivateKey);
+            var privateKeyRetrievedFromEncryptedLayer = _settingsService.GetPrivateKey(account);
 
-    //        Assert.AreEqual(wallet, loadedWallet);
+            Assert.AreEqual(PrivateKey, privateKeyRetrievedFromEncryptedLayer);
+        }
 
-    //        var encryptedWallet = testStorageService.GetEncrypedWallet();
-    //        using (var encryptedStream = new MemoryStream(encryptedWallet))
-    //        using (var reader = new StreamReader(encryptedStream))
-    //        {
-    //            var encrypedJson = await reader.ReadToEndAsync();
-    //            Assert.IsFalse(encrypedJson.Contains("test"));
-    //        }
-    //    }
-    //}
+        [TestMethod]
+        public void TestPrivateKeyGeneratesCorrectPublicKey()
+        {
+            _authenticationService.SetPassword(Password);
 
-    //public class TestStorageService : IStorageService
-    //{
-    //    private byte[] EncryptedWallet;
-    //    private byte[] Salt;
-    //    private byte[] Iv;
+            var account = _settingsService.CreateAccount(PrivateKey);
 
-    //    public byte[] GetEncrypedWallet()
-    //    {
-    //        return EncryptedWallet;
-    //    }
-
-    //    public Task<(byte[] EncryptedWallet, EncryptionKeys EncryptionKeys)> GetWalletFromStorage()
-    //    {
-    //        return Task.FromResult((EncryptedWallet: EncryptedWallet, new EncryptionKeys(Salt, Iv)));
-    //    }
-
-    //    public Task SaveEncryptedWalletToStorage(byte[] encryptedWallet, EncryptionKeys encryptionKeys)
-    //    {
-    //        EncryptedWallet = encryptedWallet;
-    //        Salt = encryptionKeys.SaltBytes;
-    //        Iv = encryptionKeys.IvBytes;
-
-    //        return Task.CompletedTask;
-    //    }
-
-    //    public Task<bool> WalletExists()
-    //    {
-    //        return Task.FromResult(EncryptedWallet.Length > 0);
-    //    }
-    //}
-
+            Assert.AreEqual(PublicKey, account.PublicKey);
+        }
+    }
 }
 

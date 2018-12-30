@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SigfolioWallet.Core.Services
 {
+    //TODO: I need to redo how this is done, but for now its stubbed out like this...
     public class AuthenticationService : IAuthenticationService
     {
         public event EventHandler<PasswordEventArgs> RequestPassword;
