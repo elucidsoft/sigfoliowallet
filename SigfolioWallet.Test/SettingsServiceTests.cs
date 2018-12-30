@@ -1,10 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SigfolioWallet.Core.Models;
 using SigfolioWallet.Core.Services;
-using SigfolioWallet.Core.Services.Interfaces;
 using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace SigfolioWallet.Test
 {
@@ -45,14 +42,6 @@ namespace SigfolioWallet.Test
             var account = _settingsService.CreateAccount(PrivateKey);
 
             Assert.AreEqual(PublicKey, account.PublicKey);
-        }
-    }
-
-    public class TestStorageService : IStorageService
-    {
-        public Task<Stream> GetStorageStream()
-        {
-            return Task.FromResult((Stream)new MemoryStream());
         }
     }
 }
