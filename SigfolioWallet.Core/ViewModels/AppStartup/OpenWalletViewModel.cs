@@ -43,7 +43,6 @@ namespace SigfolioWallet.Core.ViewModels.AppStartup
             _wallet = new Wallet();
             _settingsService = settingsService;
             _authenticationService = authenticationService;
-
             
             OpenWallet = new MvxAsyncCommand(async () => { await NavigationService.Navigate<AppShellViewModel>(); });
         }

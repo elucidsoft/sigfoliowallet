@@ -20,6 +20,5 @@ namespace SigfolioWallet.Views.AppStartup
         }
 
         public new OpenWalletViewModel ViewModel => (OpenWalletViewModel)base.ViewModel;
-
     }
 }

@@ -19,7 +19,4 @@ namespace SigfolioWallet.Core.ViewModels.AppStartup
         public IMvxAsyncCommand Next { get; }
 
     }
-
-
-
 }

@@ -65,8 +65,6 @@ namespace SigfolioWallet.Core.Services
             return Wallet;
         }
 
-
-
         public async Task SaveWallet(Wallet wallet)
         {
             using (var stream = await _storageService.GetStorageStream())
