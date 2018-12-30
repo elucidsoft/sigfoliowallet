@@ -32,9 +32,9 @@
             <TextBlock Text="Wallet:"/>
             <ComboBox Name="cbWallets" HorizontalAlignment="Center" VerticalAlignment="Center" Width="510" />
             <TextBlock Margin="0 30 0 0" Text="Accounts:"/>
-            <ComboBox Name="cbAccounts" HorizontalAlignment="Center" SelectedValuePath="Id" FontFamily="Consolas" ItemsSource="{Binding Wallet.Accounts}" DisplayMemberPath="PublicKey" VerticalAlignment="Center" Width="510" Margin="0,0,0,0" />
+            <ComboBox Name="cbAccounts" HorizontalAlignment="Center" SelectedValuePath="Id" FontFamily="Consolas" ItemsSource="{Binding Wallet.Accounts}" SelectedValue="{Binding Wallet.CurrentAccountId}" DisplayMemberPath="PublicKey" VerticalAlignment="Center" Width="510" Margin="0,0,0,0" />
         </StackPanel>
-        <Button HorizontalAlignment="Left" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="#fff" Margin="445,0,0,20" VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Width="115" Content="Open Wallet"/>
+        <Button HorizontalAlignment="Left" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Command="{Binding OpenWallet}"  Foreground="#fff" Margin="445,0,0,20" VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Width="115" Content="Open Wallet"/>
         <Button HorizontalAlignment="Right" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Foreground="#fff"  VerticalAlignment="Bottom" RenderTransformOrigin="0.547,1.467" Width="115" Content="Add Account" Margin="0,0,445,20"/>
     </Grid>
 </views:MvxWindowsPage>

@@ -7,6 +7,6 @@ namespace SigfolioWallet.Core.Services.Interfaces
     {
         (byte[] EncryptedBytes, EncryptionKeys EncryptionKeys) Encrypt(byte[] password, string secret);
 
-        string Decrypt(byte[] password, byte[] encryptedData, EncryptionKeys encryptionKeys);
+        string Decrypt(byte[] password, Account account);
     }
 }
