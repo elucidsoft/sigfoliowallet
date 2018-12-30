@@ -210,3 +210,4 @@ FakesAssemblies/
 gallery.xml
 project.lock.json
 SigfolioWallet.Test/coverage.opencover.xml
+*.orig
