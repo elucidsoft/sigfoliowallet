@@ -31,10 +31,10 @@ namespace SigfolioWallet.Core.Services
            return _encryptionService.Decrypt(_authenticationService.GetPassword(), account);
         }
 
-        public Account CreateAccount(string privateKey)
+        public async Task<Account> CreateAccount(string privateKey)
         {
             var password = _authenticationService.GetPassword();
-            var encryptionResults = _encryptionService.Encrypt(password, privateKey);
+            var encryptionResults = await _encryptionService.Encrypt(password, privateKey);
 
             var keyPair = stellar_dotnet_sdk.KeyPair.FromSecretSeed(privateKey);
             var account = new Account

@@ -11,7 +11,7 @@ namespace SigfolioWallet.Core.Services
 
         Task SaveWallet(Wallet wallet);
 
-        Account CreateAccount(string privateKey);
+        Task<Account> CreateAccount(string privateKey);
 
         string GetPrivateKey(Account account);
 
