@@ -21,7 +21,7 @@
                 </PivotItem.Header>
                 <Grid>
                     <TextBox x:Name="SearchBox" HorizontalAlignment="Center" Text="" VerticalAlignment="Top" Height="32" Margin="0,0,0,0" PlaceholderText="Filter by federation URL" TextChanging="OnFilterTextChanging" Width="316"/>
-                    <GridView HorizontalAlignment="Center" Margin="0,53,0,0" Width="340" Padding="10,5,0,5" VerticalAlignment="Top" Height="401" ItemsSource="{x:Bind FilteredTrustlines, Mode=OneWay}">
+                    <GridView HorizontalAlignment="Center" Margin="0,53,0,0" Width="340" Padding="10,5,0,5" VerticalAlignment="Top" Height="401" ItemsSource="{x:Bind FilteredTrustlines, Mode=OneWay}" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsDoubleTapEnabled="False" SelectionMode="None">
                         <GridView.ItemTemplate>
                             <DataTemplate>
                                 <sfw:TrustlineCard/>

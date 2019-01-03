@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using MvvmCross.Commands;
 
 namespace SigfolioWallet.Core.ViewModels
 {
@@ -26,6 +27,7 @@ namespace SigfolioWallet.Core.ViewModels
 
         public class TrustlineCard
         {
+            public MvxCommand AddTrustlineCommand { get; set; }
             public Trustline Trustline { get; set; }
             public string Logo { get; set; }
         }
@@ -87,7 +89,6 @@ namespace SigfolioWallet.Core.ViewModels
                 }
 
                 //Set AssetCard Other
-
                 assetCard.BgColor = "#275AF0";
 
                 //Add it to the list
@@ -114,10 +115,15 @@ namespace SigfolioWallet.Core.ViewModels
 
                     trustline.AssetCode = assetArray[0];
                     trustline.IssuerAddress = assetArray[1];
-
+                    trustlineCard.AddTrustlineCommand = new MvxCommand(()=>AddTrustline(trustline));
                     _trustlineCards.Add(trustlineCard);
                 }
             }
+        }
+
+        private void AddTrustline(Trustline trustline)
+        {
+            Console.WriteLine(trustline.AssetCode);
         }
     }
 }
