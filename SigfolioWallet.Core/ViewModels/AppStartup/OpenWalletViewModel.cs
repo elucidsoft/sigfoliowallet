@@ -5,6 +5,7 @@ using MvvmCross.ViewModels;
 using SigfolioWallet.Core.Models;
 using SigfolioWallet.Core.Services;
 using SigfolioWallet.Core.Services.Interfaces;
+using SigfolioWallet.Core.ViewModels.Modal;
 using System;
 using System.Threading.Tasks;
 
@@ -24,10 +25,17 @@ namespace SigfolioWallet.Core.ViewModels.AppStartup
             set => SetProperty(ref _wallet, value);
         }
 
+        public async override void ViewAppeared()
+        {
+
+        }
+
         public async override Task Initialize()
         {
             //TODO: Stubbed out for now, manual adding accounts, etc. will be done through services and not here...
             _wallet = await _settingsService.LoadWallet();
+
+            await NavigationService.Navigate<PasswordDialogViewModel>();
 
             _authenticationService.SetPassword("TestP@ssw0rd");
 
@@ -45,6 +53,7 @@ namespace SigfolioWallet.Core.ViewModels.AppStartup
 
             OpenWallet = new MvxAsyncCommand(async () =>
             {
+
                 await NavigationService.Navigate<AppShellViewModel>();
             });
         }

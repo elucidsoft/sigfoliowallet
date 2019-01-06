@@ -163,6 +163,9 @@
     <Compile Include="Views\AppStartup\OpenWallet.xaml.cs">
       <DependentUpon>OpenWallet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Modal\PasswordDialogView.xaml.cs">
+      <DependentUpon>PasswordDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
@@ -351,6 +354,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\AppStartup\OpenWallet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Modal\PasswordDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
