@@ -1,10 +1,9 @@
-﻿using System;
+﻿using SigfolioWallet.Core.Models;
+using SigfolioWallet.Core.Services.Interfaces;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using SigfolioWallet.Core.Models;
-using SigfolioWallet.Core.Services.Interfaces;
 
 namespace SigfolioWallet.Core.Services
 {
@@ -12,31 +11,34 @@ namespace SigfolioWallet.Core.Services
     {
         private const int Iterations = 1000000;
 
-        public (byte[] EncryptedBytes, EncryptionKeys EncryptionKeys) Encrypt(byte[] password, string secret)
+        public async Task<(byte[] EncryptedBytes, EncryptionKeys EncryptionKeys)> Encrypt(byte[] password, string secret)
         {
-            var salt = new byte[64];
-            using (var rngCsp = new RNGCryptoServiceProvider())
+            return await Task.Run(() =>
             {
-                rngCsp.GetBytes(salt);
-            }
-
-            var rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, salt, Iterations);
-
-            var encryptionAlgorithm = TripleDES.Create();
-            encryptionAlgorithm.Key = rfc2898DeriveBytes.GetBytes(16);
-
-            var dataBytes = Encoding.UTF8.GetBytes(secret);
-
-            using (var memoryStream = new MemoryStream())
-            {
-                using (var encrypt = new CryptoStream(memoryStream, encryptionAlgorithm.CreateEncryptor(), CryptoStreamMode.Write))
+                var salt = new byte[64];
+                using (var rngCsp = new RNGCryptoServiceProvider())
                 {
-                    encrypt.Write(dataBytes, 0, dataBytes.Length);
-                    encrypt.FlushFinalBlock();
+                    rngCsp.GetBytes(salt);
                 }
 
-                return (EncryptedBytes: memoryStream.ToArray(), new EncryptionKeys(salt, encryptionAlgorithm.IV));
-            }
+                var rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, salt, Iterations);
+
+                var encryptionAlgorithm = TripleDES.Create();
+                encryptionAlgorithm.Key = rfc2898DeriveBytes.GetBytes(16);
+
+                var dataBytes = Encoding.UTF8.GetBytes(secret);
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    using (var encrypt = new CryptoStream(memoryStream, encryptionAlgorithm.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        encrypt.Write(dataBytes, 0, dataBytes.Length);
+                        encrypt.FlushFinalBlock();
+                    }
+
+                    return (EncryptedBytes: memoryStream.ToArray(), new EncryptionKeys(salt, encryptionAlgorithm.IV));
+                }
+            });
         }
 
         public string Decrypt(byte[] password, Account account)

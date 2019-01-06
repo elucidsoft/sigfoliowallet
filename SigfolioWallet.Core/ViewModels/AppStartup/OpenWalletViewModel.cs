@@ -4,8 +4,10 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using SigfolioWallet.Core.Models;
 using SigfolioWallet.Core.Services;
-using System.Threading.Tasks;
 using SigfolioWallet.Core.Services.Interfaces;
+using SigfolioWallet.Core.ViewModels.Modal;
+using System;
+using System.Threading.Tasks;
 
 namespace SigfolioWallet.Core.ViewModels.AppStartup
 {
@@ -15,6 +17,7 @@ namespace SigfolioWallet.Core.ViewModels.AppStartup
         private readonly IAuthenticationService _authenticationService;
 
         private Wallet _wallet;
+        private string _test;
 
         public Wallet Wallet
         {
@@ -22,29 +25,37 @@ namespace SigfolioWallet.Core.ViewModels.AppStartup
             set => SetProperty(ref _wallet, value);
         }
 
-        public override async Task Initialize()
+        public async override void ViewAppeared()
         {
+
+        }
+
+        public async override Task Initialize()
+        {
+            //TODO: Stubbed out for now, manual adding accounts, etc. will be done through services and not here...
             _wallet = await _settingsService.LoadWallet();
 
-            //TODO: Stubbed out for now, manual adding accounts, etc. will be done through services and not here...
+            await NavigationService.Navigate<PasswordDialogViewModel>();
+
             _authenticationService.SetPassword("TestP@ssw0rd");
 
             //PublicKey: GD6L6LCT42ZVODR55IL6MD7NLIPINSSSEOGJFGNVCTXJWNCMQJYVXTSL
-            var account = _settingsService.CreateAccount("SABKP6TWACKPAYZOUHZOIDB4NGL57ZNJXPQF7XPFZXDRDICMHB4QOH65");
+            var account = await _settingsService.CreateAccount("SABKP6TWACKPAYZOUHZOIDB4NGL57ZNJXPQF7XPFZXDRDICMHB4QOH65");
             _wallet.Accounts.Add(account);
-
-            //TODO: Note this requires the SetPassword call above which is stored in memory, etc.
-            var privateKey = _settingsService.GetPrivateKey(account);
+            _wallet.CurrentAccountId = account.Id;
         }
 
         public OpenWalletViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, ISettingsService settingsService, IAuthenticationService authenticationService)
             : base(logProvider, navigationService)
         {
-            _wallet = new Wallet();
             _settingsService = settingsService;
             _authenticationService = authenticationService;
-            
-            OpenWallet = new MvxAsyncCommand(async () => { await NavigationService.Navigate<AppShellViewModel>(); });
+
+            OpenWallet = new MvxAsyncCommand(async () =>
+            {
+
+                await NavigationService.Navigate<AppShellViewModel>();
+            });
         }
 
         public IMvxAsyncCommand OpenWallet { get; }

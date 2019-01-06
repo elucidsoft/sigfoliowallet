@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SigfolioWallet.Core.Models;
 using SigfolioWallet.Core.Services;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SigfolioWallet.Test
 {
@@ -24,22 +23,22 @@ namespace SigfolioWallet.Test
         }
 
         [TestMethod]
-        public void TestEncryptAndDecryptPrivateKey()
+        public async Task TestEncryptAndDecryptPrivateKey()
         {
             _authenticationService.SetPassword(Password);
-          
-            var account = _settingsService.CreateAccount(PrivateKey);
+
+            var account = await _settingsService.CreateAccount(PrivateKey);
             var privateKeyRetrievedFromEncryptedLayer = _settingsService.GetPrivateKey(account);
 
             Assert.AreEqual(PrivateKey, privateKeyRetrievedFromEncryptedLayer);
         }
 
         [TestMethod]
-        public void TestPrivateKeyGeneratesCorrectPublicKey()
+        public async Task TestPrivateKeyGeneratesCorrectPublicKey()
         {
             _authenticationService.SetPassword(Password);
 
-            var account = _settingsService.CreateAccount(PrivateKey);
+            var account = await _settingsService.CreateAccount(PrivateKey);
 
             Assert.AreEqual(PublicKey, account.PublicKey);
         }
