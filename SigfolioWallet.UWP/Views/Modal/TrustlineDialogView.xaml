@@ -1,12 +1,13 @@
-﻿<UserControl
+﻿<views:MvxWindowsContentDialog
+    xmlns:views="using:MvvmCross.Platforms.Uap.Views"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SigfolioWallet.Controls"
+    xmlns:local="using:SigfolioWallet.Views.Modal"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Custom="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:sfw="using:SigfolioWallet.Controls"
-    x:Class="SigfolioWallet.Controls.TrustlineDialog"
+    x:Class="SigfolioWallet.Views.Modal.TrustlineDialogView"
     mc:Ignorable="d"
     d:DesignHeight="582"
     d:DesignWidth="400">
@@ -23,10 +24,10 @@
                 </PivotItem.Header>
                 <Grid>
                     <TextBox x:Name="SearchBox" HorizontalAlignment="Center" Text="" VerticalAlignment="Top" Height="32" Margin="0,0,0,0" PlaceholderText="Filter by federation URL" TextChanging="OnFilterTextChanging" Width="316"/>
-                    <GridView HorizontalAlignment="Center" Margin="0,53,0,0" Width="340" Padding="10,5,0,5" VerticalAlignment="Top" Height="401" ItemsSource="{x:Bind Mode=OneWay, Path=FilteredTrustlines}" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsDoubleTapEnabled="False" SelectionMode="None">
+                    <GridView HorizontalAlignment="Center" Margin="0,53,0,0" Width="340" Padding="10,5,0,5" VerticalAlignment="Top" Height="401" ItemsSource="{x:Bind Mode=OneWay, Path=ViewModel.FilteredTrustlines}" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" IsDoubleTapEnabled="False" SelectionMode="None">
                         <GridView.ItemTemplate>
                             <DataTemplate>
-                                <sfw:TrustlineCard/>
+                                <sfw:TrustlineCard></sfw:TrustlineCard>
                             </DataTemplate>
                         </GridView.ItemTemplate>
                         <GridView.ItemContainerStyle>
@@ -63,4 +64,4 @@
             </PivotItem>
         </Pivot>
     </Grid>
-</UserControl>
+</views:MvxWindowsContentDialog>

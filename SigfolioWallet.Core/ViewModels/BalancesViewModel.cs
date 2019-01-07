@@ -122,9 +122,9 @@ namespace SigfolioWallet.Core.ViewModels
             }
         }
 
-        private async void OpenTrustlineDialog()
+        public async void OpenTrustlineDialog()
         {
-            await NavigationService.Navigate<TrustlineDialogViewModel>();
+            await NavigationService.Navigate<TrustlineDialogViewModel, BalancesViewModel>(this);
         }
 
         private void AddTrustline(Trustline trustline)
