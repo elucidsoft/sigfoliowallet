@@ -1,21 +1,21 @@
-﻿using MvvmCross.ViewModels;
+﻿using MvvmCross.Commands;
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using SigfolioWallet.Core.Models;
-using SigfolioWallet.Core.Services;
 using stellar_dotnet_sdk;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.IO;
 using Newtonsoft.Json.Linq;
-using MvvmCross.Commands;
+using SigfolioWallet.Core.ViewModels.Modal;
+using SigfolioWallet.Core.Services;
+using MvvmCross.Logging;
+using SigfolioWallet.Core.Services.Interfaces;
 
 namespace SigfolioWallet.Core.ViewModels
 {
-    public class BalancesViewModel : MvxViewModel
+    public class BalancesViewModel : MvxNavigationViewModel
     {
         public class AssetCard
         {
@@ -46,7 +46,8 @@ namespace SigfolioWallet.Core.ViewModels
 
         private readonly ISettingsService _settingsService;
 
-        public BalancesViewModel(ISettingsService settingsService)
+        public BalancesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, ISettingsService settingsService, IAuthenticationService authenticationService)
+            : base(logProvider, navigationService)
         {
             _settingsService = settingsService;
         }
@@ -119,6 +120,11 @@ namespace SigfolioWallet.Core.ViewModels
                     _trustlineCards.Add(trustlineCard);
                 }
             }
+        }
+
+        private async void OpenTrustlineDialog()
+        {
+            await NavigationService.Navigate<TrustlineDialogViewModel>();
         }
 
         private void AddTrustline(Trustline trustline)

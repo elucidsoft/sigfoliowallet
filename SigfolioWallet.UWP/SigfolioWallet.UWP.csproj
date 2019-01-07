@@ -120,8 +120,8 @@
     <Compile Include="Controls\AddCard.xaml.cs">
       <DependentUpon>AddCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TrustlineDialog.xaml.cs">
-      <DependentUpon>TrustlineDialog.xaml</DependentUpon>
+    <Compile Include="Views\Modal\TrustlineDialogView.xaml.cs">
+      <DependentUpon>TrustlineDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CardBarChart.xaml.cs">
       <DependentUpon>CardBarChart.xaml</DependentUpon>
@@ -301,7 +301,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\TrustlineDialog.xaml">
+    <Page Include="Views\Modal\TrustlineDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

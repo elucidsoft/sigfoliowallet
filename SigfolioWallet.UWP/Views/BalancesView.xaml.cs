@@ -24,9 +24,8 @@ namespace SigfolioWallet.Views
         private void AddTrustlineButton_Click(object sender, RoutedEventArgs e)
         {
             BlankContentDialog dialog = new BlankContentDialog();
-            TrustlineDialog trustlineDialog = new TrustlineDialog();
+            TrustlineDialogView trustlineDialog = new TrustlineDialogView();
             trustlineDialog.viewModel = ViewModel;
-            trustlineDialog.dialog = dialog;
             trustlineDialog.Setup();
             dialog.Content = trustlineDialog;
             dialog.ShowAsync();

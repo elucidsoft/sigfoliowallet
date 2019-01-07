@@ -1,28 +1,24 @@
-﻿using SigfolioWallet.Core.ViewModels;
+﻿using MvvmCross.Platforms.Uap.Presenters.Attributes;
+using MvvmCross.Platforms.Uap.Views;
+using MvvmCross.ViewModels;
+using SigfolioWallet.Core.ViewModels;
+using SigfolioWallet.Core.ViewModels.Modal;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
-namespace SigfolioWallet.Controls
+namespace SigfolioWallet.Views.Modal
 {
-    public sealed partial class TrustlineDialog : UserControl, INotifyPropertyChanged
+    [MvxDialogViewPresentation]
+    [MvxViewFor(typeof(TrustlineDialogViewModel))]
+    public sealed partial class TrustlineDialogView : MvxWindowsContentDialog, INotifyPropertyChanged
     {
+        //To be changed
         public BalancesViewModel viewModel;
-        public BlankContentDialog dialog;
+        public new TrustlineDialogViewModel ViewModel => (TrustlineDialogViewModel)base.ViewModel;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -34,7 +30,7 @@ namespace SigfolioWallet.Controls
             set { _filteredTrustlines = value; NotifyPropertyChanged("FilteredTrustlines"); }
         }
 
-        public TrustlineDialog()
+        public TrustlineDialogView()
         {
             this.InitializeComponent();
         }
@@ -42,12 +38,6 @@ namespace SigfolioWallet.Controls
         public void Setup()
         {
             FilteredTrustlines = viewModel.TrustlineCards;
-        }
-
-        private void OnClickExit(object sender, PointerRoutedEventArgs e)
-        {
-            dialog.Hide();
-            dialog.Dispose();
         }
 
         private void OnFilterTextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
