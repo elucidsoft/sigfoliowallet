@@ -16,11 +16,5 @@ namespace SigfolioWallet.Views.Modal
         }
 
         public TrustlineDialogViewModel ViewModel => (TrustlineDialogViewModel)base.ViewModel;
-
-        private void OnFilterTextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
-        {
-            //Change to command
-            ViewModel.RefreshFilteredTrustlines(sender.Text);
-        }
     }
 }

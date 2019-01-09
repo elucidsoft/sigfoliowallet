@@ -13,9 +13,17 @@ namespace SigfolioWallet.Core.ViewModels.Modal
 {
     public class TrustlineDialogViewModel : MvxNavigationViewModel<BalancesViewModel>, IMvxNotifyPropertyChanged
     {
-        private BalancesViewModel _balancesViewModel;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                RefreshFilteredTrustlines();
+            }
+        }
 
-        private ObservableCollection<BalancesViewModel.TrustlineCard> _filteredTrustlines;
+        public IMvxAsyncCommand Close { get; set; }
 
         public ObservableCollection<BalancesViewModel.TrustlineCard> FilteredTrustlines
         {
@@ -23,6 +31,10 @@ namespace SigfolioWallet.Core.ViewModels.Modal
             set { _filteredTrustlines = value; RaisePropertyChanged("FilteredTrustlines"); }
         }
 
+        private BalancesViewModel _balancesViewModel;
+        private ObservableCollection<BalancesViewModel.TrustlineCard> _filteredTrustlines;
+        private string _searchText;
+       
         public TrustlineDialogViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthenticationService authenticationService)
             : base(logProvider, navigationService)
         {
@@ -35,11 +47,9 @@ namespace SigfolioWallet.Core.ViewModels.Modal
             FilteredTrustlines = _balancesViewModel.TrustlineCards;
         }
 
-        public IMvxAsyncCommand Close { get; set; }
-
-        public void RefreshFilteredTrustlines(string filterString)
+        public void RefreshFilteredTrustlines()
         {
-            var tc = _balancesViewModel.TrustlineCards.Where(item => item.Trustline.AssetCode.Contains(filterString));
+            var tc = _balancesViewModel.TrustlineCards.Where(item => item.Trustline.AssetCode.Contains(_searchText));
             FilteredTrustlines = new ObservableCollection<BalancesViewModel.TrustlineCard>(tc);
         }
     }
