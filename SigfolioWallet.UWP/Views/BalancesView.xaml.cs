@@ -20,17 +20,5 @@ namespace SigfolioWallet.Views
         }
 
         public new BalancesViewModel ViewModel => (BalancesViewModel)base.ViewModel;
-
-
-        //Change to command
-        private void AddTrustlineButton_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.OpenTrustlineDialog();
-        }
-
-        private void TradeAssetsButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

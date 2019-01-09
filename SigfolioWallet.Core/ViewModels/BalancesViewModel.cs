@@ -17,6 +17,8 @@ namespace SigfolioWallet.Core.ViewModels
 {
     public class BalancesViewModel : MvxNavigationViewModel
     {
+        public MvxCommand AddTrustlineCommand { get; set; }
+
         public class AssetCard
         {
             public Balance Balance { get; set; }
@@ -27,7 +29,7 @@ namespace SigfolioWallet.Core.ViewModels
 
         public class TrustlineCard
         {
-            public MvxCommand AddTrustlineCommand { get; set; }
+            public MvxCommand AddCommand { get; set; }
             public Trustline Trustline { get; set; }
             public string Logo { get; set; }
         }
@@ -54,6 +56,7 @@ namespace SigfolioWallet.Core.ViewModels
 
         public override async Task Initialize()
         {
+            AddTrustlineCommand = new MvxCommand(() => OpenTrustlineDialog());
             CreateBalances();
             FetchAvailableTrustlines();
         }
@@ -116,7 +119,7 @@ namespace SigfolioWallet.Core.ViewModels
 
                     trustline.AssetCode = assetArray[0];
                     trustline.IssuerAddress = assetArray[1];
-                    trustlineCard.AddTrustlineCommand = new MvxCommand(()=>AddTrustline(trustline));
+                    trustlineCard.AddCommand = new MvxCommand(()=>AddTrustline(trustline));
                     _trustlineCards.Add(trustlineCard);
                 }
             }
