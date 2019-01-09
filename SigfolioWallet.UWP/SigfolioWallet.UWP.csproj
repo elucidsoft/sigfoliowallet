@@ -141,9 +141,6 @@
     <Compile Include="Controls\TrustlineCard.xaml.cs">
       <DependentUpon>TrustlineCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\BlankContentDialog.xaml.cs">
-      <DependentUpon>BlankContentDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Converters\IDToShortID.cs" />
     <Compile Include="Utilities\UWPUtilities.cs" />
     <Compile Include="Utilities\UIUtility.cs" />
@@ -328,10 +325,6 @@
     <Page Include="Controls\TrustlineCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Dialogs\BlankContentDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Buttons.xaml">
       <Generator>MSBuild:Compile</Generator>
